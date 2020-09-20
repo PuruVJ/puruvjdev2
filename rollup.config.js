@@ -8,7 +8,6 @@ import config from "sapper/config/rollup.js";
 import pkg from "./package.json";
 import autoPreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
-import reload from "rollup-plugin-livereload";
 
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
@@ -35,7 +34,6 @@ export default {
         emitCss: true,
         preprocess: autoPreprocess(),
       }),
-      reload(),
       typescript({ sourceMap: dev }),
       resolve({
         browser: true,
