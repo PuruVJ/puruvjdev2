@@ -96,6 +96,8 @@
 
   {#if dev}
     <link rel="icon" href="./icons/favicon-dev.svg" />
+  {:else}
+    <link rel="icon" href="./icons/favicon.svg" />
   {/if}
 </svelte:head>
 
@@ -105,7 +107,9 @@
       <a aria-current={segment === undefined && 'page'} href="."> HOME </a>
     </li>
     <li>
-      <a aria-current={segment && segment.startsWith('blog') && 'page'} href="blog">
+      <a
+        aria-current={segment && segment.startsWith('blog') && 'page'}
+        href="blog">
         BLOG
       </a>
     </li>
