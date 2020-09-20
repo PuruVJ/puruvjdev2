@@ -2,7 +2,7 @@
   import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
   import { theme } from "../stores/theme.store";
 
-  const dev = process.env.NODE_ENV !== "PRODUCTION";
+  const dev = process.env.NODE_ENV === "development";
 
   export let segment: string;
 </script>
