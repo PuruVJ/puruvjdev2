@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "vercel-sapper",
-      "config": {
-        "build": false
-      }
+      "use": "vercel-sapper"
     }
   ]
 }
