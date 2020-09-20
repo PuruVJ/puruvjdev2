@@ -45,6 +45,7 @@
 
   #about-me {
     font-family: "Fira Code", monospace;
+    font-weight: 550 !important;
   }
 
   mark {
