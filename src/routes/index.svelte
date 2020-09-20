@@ -3,7 +3,6 @@
 
   import { fadeIn, fadeOut } from "../components/fade";
 
-
   onMount(async () => {
     await import("lazysizes");
 
@@ -81,10 +80,7 @@
     <!-- svelte-ignore a11y-img-redundant-alt -->
     <div class="photo-area">
       <figure>
-        <img
-          class="lazyload"
-          data-src="./photos/puru-profile.jpg"
-          alt="Puru Vijay Profile Photo" />
+        <img src="./photos/puru-profile.jpg" alt="Puru Vijay Profile Photo" />
       </figure>
     </div>
 
