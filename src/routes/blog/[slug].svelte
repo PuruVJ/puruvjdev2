@@ -2,17 +2,16 @@
   export async function preload(page) {
     const { slug } = page.params;
 
-    const res = await this.fetch(`../blog/${slug}.json`);
+    try {
+      const res = await this.fetch(`../blog/${slug}.json`);
 
-    if (res.status === 404) {
-      console.log("Not found");
+      const data = await res.json();
+
+      return { blogData: data };
+    } catch {
       this.error(404, "Not Found");
       return;
     }
-
-    const data = await res.json();
-
-    return { blogData: data };
   }
 </script>
 
@@ -23,7 +22,7 @@
   import type { IBlog } from "../../interfaces/blog.interface";
 
   export let blogData: IBlog;
-  let { title, body, date } = blogData;
+  let { title, body, date, description, cover_image, id } = blogData;
 
   onMount(async () => {
     document.body.classList.remove("background");
@@ -46,7 +45,15 @@
 </style>
 
 <svelte:head>
-  <title>{title}</title>
+  <title>{title} // Puru Vijay</title>
+  <meta name="description" content={description} />
+
+  <meta property="og:title" content="{title} // Puru Vijay" />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://puruvj.dev/{cover_image}" />
+  <meta property="og:url" content="https://puruvj.dev/blog/{id}" />
+
+  <link rel="canonical" href="https://puruvj.dev/blog/{id}" />
 </svelte:head>
 
 <main in:fadeIn out:fadeOut>

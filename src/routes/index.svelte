@@ -73,7 +73,23 @@
 </style>
 
 <svelte:head>
-  <title>Home</title>
+  <title>Puru, Developer and Designer</title>
+  <meta
+    name="description"
+    content="Read about web development, designing and programming on Puru Vijay's blog." />
+  <meta property="og:title" content="Puru, Developer and Designer" />
+  <meta
+    property="og:description"
+    content="Read about web development, designing and programming on Puru Vijay's blog." />
+  <meta
+    property="og:image"
+    content="https://puruvj.dev/media/blog-social-intro.png" />
+  <meta property="og:url" content="https://puruvj.dev" />
+
+  <!-- Twitter required tag -->
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="canonical" href="https://puruvj.dev/" />
 </svelte:head>
 
 <main in:fadeIn out:fadeOut>

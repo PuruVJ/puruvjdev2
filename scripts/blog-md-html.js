@@ -101,7 +101,7 @@ const { JSDOM } = require("jsdom");
 
     await writeFile(
       `../static/blog/${fileName}.json`,
-      JSON.stringify({ ...attributes, body: html })
+      JSON.stringify({ ...attributes, body: html, id: fileName })
     );
   }
 })();
