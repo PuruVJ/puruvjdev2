@@ -52,9 +52,20 @@ code {
   line-height: 1.618;
 }
 
-#blog-content h2 a, #blog-content h1 a {
+#blog-content h2 a,
+#blog-content h1 a {
   font-weight: 600;
   margin-right: 0.7rem;
+}
+
+#blog-content h2::before,
+#blog-content h1::before,
+#blog-content h3::before {
+  display: block;
+  content: " ";
+  margin-top: -50px;
+  height: 50px;
+  visibility: hidden;
 }
 
 #blog-content video {
