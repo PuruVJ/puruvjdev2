@@ -3,6 +3,11 @@ mark {
   background-color: var(--app-color-primary);
   padding: 0 0.3rem;
   border-radius: 4px;
+  font-weight: 600;
+}
+
+body.dark mark {
+  color: var(--app-color-dark);
 }
 
 pre.shiki {

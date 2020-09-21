@@ -29,6 +29,7 @@
     <link rel="icon" href="./icons/favicon.svg" />
   {/if}
 </svelte:head>
+
 <Nav {segment} />
 
 <main>

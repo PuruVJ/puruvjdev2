@@ -53,6 +53,8 @@ h3 {
   font-family: "Comfortaa", sans-serif;
   color: var(--app-color-dark);
   line-height: 1.618;
+
+  transition: color 200ms ease-in;
 }
 
 h1 {
