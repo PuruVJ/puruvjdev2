@@ -6,7 +6,7 @@
 
   const { page } = stores();
 
-  page.subscribe((val) => {
+  page.subscribe(() => {
     if (!BUILD.isBrowser) return;
     document.body.scrollTo({ top: 0, behavior: "smooth" });
   });

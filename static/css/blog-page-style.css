@@ -1,6 +1,8 @@
 mark {
-  color: var(--app-color-primary);
-  background-color: transparent;
+  color: var(--app-color-light);
+  background-color: var(--app-color-primary);
+  padding: 0 0.3rem;
+  border-radius: 4px;
 }
 
 pre.shiki {
