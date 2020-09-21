@@ -58,6 +58,21 @@
 
 <svelte:head>
   <title>Blog // Puru Vijay</title>
+
+  <meta
+    name="description"
+    content="Read about web development, designing and programming on Puru Vijay's blog." />
+
+  <meta property="og:title" content="Blog // Puru Vijay" />
+  <meta
+    property="og:description"
+    content="Read about web development, designing and programming on Puru Vijay's blog." />
+  <meta
+    property="og:image"
+    content="https://puruvj.dev/media/blog-social-intro.png" />
+  <meta property="og:url" content="https://puruvj.dev/blog/" />
+
+  <link rel="canonical" href="https://puruvj.dev/blog/" />
 </svelte:head>
 
 <main tabindex="-1" in:fadeIn out:fadeOut>
