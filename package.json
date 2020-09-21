@@ -53,6 +53,7 @@
     "sapper": "^0.28.0",
     "sass": "^1.26.11",
     "shiki": "^0.2.5",
+    "slugify": "^1.4.5",
     "svelte": "^3.25.1",
     "svelte-preprocess": "^4.3.0",
     "tslib": "^2.0.1",

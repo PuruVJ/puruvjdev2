@@ -4,6 +4,7 @@ const shiki = require("shiki");
 const fm = require("front-matter");
 const { optimizeBlogImages } = require("./optimize-images");
 const { JSDOM } = require("jsdom");
+const slugify = require("slugify");
 
 (async () => {
   // Shiki instance
@@ -94,6 +95,17 @@ const { JSDOM } = require("jsdom");
 
       // Put it after the img
       img.after(divContainer);
+    }
+
+    // Now work on the headings
+    const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+    for (let heading of headings) {
+      const headingVal = heading.innerHTML;
+      const slug = slugify(headingVal);
+
+      heading.innerHTML = `<a href="blog/${fileName}#${slug}">#</a>${headingVal}`;
+      heading.id = slug;
     }
 
     // Finally
