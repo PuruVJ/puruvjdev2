@@ -20,15 +20,23 @@ async function optimizeGif(fileName = "dumbledore-pretty-hard") {
   } catch (e) {}
 
   console.log(`Starting gif conversion: ${fileName}`);
+
   await new Promise((resolve) =>
     ffmpeg
       .input(gifPath)
+      .inputOption("-f gif")
+      .outputOptions([
+        "-pix_fmt yuv420p",
+        "-c:v libx264",
+        "-movflags +faststart",
+        "-filter:v crop='floor(in_w/2)*2:floor(in_h/2)*2'",
+      ])
       .noAudio()
-      .videoCodec("libx264")
+      .output(`${folderPath}/vidgif.mp4`)
       .on("end", () => {
         resolve();
       })
-      .output(`${folderPath}/vidgif.mp4`)
+      .on("error", (e) => console.log(e))
       .run()
   );
   console.log(`Done with GIF: ${fileName}`);
