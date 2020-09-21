@@ -33,13 +33,13 @@
     reading_time,
   } = blogData;
 
-  let mainTag: HTMLDivElement;
-  let height: number;
+  // let height: number = 0;
 
   function handleProgressBar() {
-    const currentY =
-      (document.documentElement.scrollTop || document.body.scrollTop) +
-      document.documentElement.clientHeight;
+    let height =
+      document.body.scrollHeight - document.documentElement.clientHeight;
+    const currentY = document.body.scrollTop;
+    // console.log({ currentY, height, sh: document.body.scrollHeight });
 
     $readingProgress = currentY / height;
   }
@@ -47,14 +47,6 @@
   onMount(async () => {
     document.body.classList.remove("background");
     await import("lazysizes");
-
-    height = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
   });
 
   onDestroy(() => {
@@ -114,7 +106,7 @@
 
 <svelte:body on:scroll={handleProgressBar} />
 
-<main bind:this={mainTag} in:fadeIn out:fadeOut>
+<main in:fadeIn out:fadeOut>
   <div class="progress" aria-roledescription="progress">
     <div class="indicator" style="transform: scaleX({$readingProgress})" />
   </div>
