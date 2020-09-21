@@ -5,11 +5,5 @@
       "src": "package.json",
       "use": "vercel-sapper"
     }
-  ],
-  "routes": [
-    {
-      "src": "/**/*",
-      "dest": "/index.html"
-    }
   ]
 }
