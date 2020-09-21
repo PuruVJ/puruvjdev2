@@ -22,6 +22,8 @@
   figure {
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    align-items: flex-start;
   }
 
   img {
@@ -85,9 +87,6 @@
     property="og:image"
     content="https://puruvj.dev/media/blog-social-intro.png" />
   <meta property="og:url" content="https://puruvj.dev" />
-
-  <!-- Twitter required tag -->
-  <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="canonical" href="https://puruvj.dev/" />
 </svelte:head>

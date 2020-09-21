@@ -6,8 +6,16 @@
 
   const { page } = stores();
 
+  let previousScrollTop = false;
+
   page.subscribe(() => {
     if (!BUILD.isBrowser) return;
+
+    if (!previousScrollTop) {
+      previousScrollTop = true;
+      return;
+    }
+
     document.body.scrollTo({ top: 0, behavior: "smooth" });
   });
 

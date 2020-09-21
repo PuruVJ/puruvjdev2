@@ -5,6 +5,7 @@ const fm = require("front-matter");
 const { optimizeBlogImages } = require("./optimize-images");
 const { JSDOM } = require("jsdom");
 const slugify = require("slugify");
+const readingTime = require("reading-time");
 
 (async () => {
   // Shiki instance
@@ -110,10 +111,11 @@ const slugify = require("slugify");
 
     // Finally
     html = document.body.innerHTML;
+    const reading_time = readingTime(html, { wordsPerMinute: 300 }).minutes;
 
     await writeFile(
       `../static/blog/${fileName}.json`,
-      JSON.stringify({ ...attributes, body: html, id: fileName })
+      JSON.stringify({ ...attributes, body: html, id: fileName, reading_time })
     );
   }
 })();

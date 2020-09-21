@@ -5,4 +5,5 @@ export interface IBlog {
   description: string;
   cover_image?: string;
   body?: string;
+  reading_time?: number;
 }

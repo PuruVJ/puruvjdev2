@@ -1,3 +1,6 @@
-import { writable } from "svelte/store";
+import { quintOut } from "svelte/easing";
+import { tweened } from "svelte/motion";
 
-export const readingProgress = writable(0);
+export const readingProgress = tweened(0, {
+  easing: quintOut,
+});

@@ -6,6 +6,7 @@
     "dev": "sapper dev",
     "prebuild": "cd scripts && node blogs-list.js && node blog-md-html.js",
     "build": "sapper build",
+    "postbuild": "curl http://www.google.com/ping?sitemap=https://puruvj.dev/sitemap.xml",
     "export": "sapper export",
     "start": "node __sapper__/build"
   },
@@ -45,6 +46,7 @@
     "markdown-it": "^11.0.1",
     "node-fetch": "^2.6.1",
     "node-pre-gyp": "0.12.0",
+    "reading-time": "^1.2.0",
     "resize-img": "^2.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-livereload": "^2.0.0",

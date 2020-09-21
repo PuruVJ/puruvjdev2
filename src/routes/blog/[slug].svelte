@@ -16,17 +16,49 @@
 </script>
 
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { fadeIn, fadeOut } from "../../components/fade";
   import { formatDate } from "../../helpers/format-date";
   import type { IBlog } from "../../interfaces/blog.interface";
+  import { readingProgress } from "../../stores/progress.store";
 
   export let blogData: IBlog;
-  let { title, body, date, description, cover_image, id } = blogData;
+  let {
+    title,
+    body,
+    date,
+    description,
+    cover_image,
+    id,
+    reading_time,
+  } = blogData;
+
+  let mainTag: HTMLDivElement;
+  let height: number;
+
+  function handleProgressBar() {
+    const currentY =
+      (document.documentElement.scrollTop || document.body.scrollTop) +
+      document.documentElement.clientHeight;
+
+    $readingProgress = currentY / height;
+  }
 
   onMount(async () => {
     document.body.classList.remove("background");
     await import("lazysizes");
+
+    height = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+  });
+
+  onDestroy(() => {
+    $readingProgress = 0;
   });
 </script>
 
@@ -37,10 +69,34 @@
     font-weight: bold;
     font-size: 1.2rem;
     color: var(--app-color-primary);
+
+    text-align: end;
   }
 
   #blog-content {
     font-size: 1.3rem;
+  }
+
+  div.progress {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 21;
+
+    margin: 0;
+
+    width: 100%;
+    height: 4px;
+
+    .indicator {
+      height: 100%;
+      width: 100%;
+
+      background-color: var(--app-color-primary);
+
+      transform: scaleX(0);
+      transform-origin: 0 0;
+    }
   }
 </style>
 
@@ -56,9 +112,16 @@
   <link rel="canonical" href="https://puruvj.dev/blog/{id}" />
 </svelte:head>
 
-<main in:fadeIn out:fadeOut>
+<svelte:body on:scroll={handleProgressBar} />
+
+<main bind:this={mainTag} in:fadeIn out:fadeOut>
+  <div class="progress" aria-roledescription="progress">
+    <div class="indicator" style="transform: scaleX({$readingProgress})" />
+  </div>
   <h1>{title}</h1>
-  <p>{formatDate(date)}</p>
+  <p>
+    {formatDate(date)} &bull; <span>{Math.ceil(reading_time)} min read</span>
+  </p>
   <article id="blog-content">
     {@html body}
   </article>
