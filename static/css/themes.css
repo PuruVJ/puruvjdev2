@@ -41,10 +41,10 @@ body.midday {
 }
 
 body.dark {
-  --app-color-primary: #714cfe;
-  --app-color-primary-rgb: 113, 76, 254;
-  --app-color-primary-shade: #aa94fe;
-  --app-color-primary-tint: #442e98;
+  --app-color-primary: #f73379;
+  --app-color-primary-rgb: 247, 51, 121;
+  --app-color-primary-shade: #f970a1;
+  --app-color-primary-tint: #ad2455;
   --app-color-primary-contrast: #ffffff;
 
   --app-color-dark: #f4f5f8;

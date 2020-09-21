@@ -2,30 +2,42 @@
   import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
   import { theme } from "../stores/theme.store";
 
-  const dev = process.env.NODE_ENV === "development";
+  // The scroll from above
+  let scrollY: number = 0;
 
   export let segment: string;
 </script>
 
 <style lang="scss">
   nav {
-    display: flex;
+    display: grid;
     align-items: center;
+    grid-template-columns: auto 1fr auto;
 
     font-family: "Quicksand", monospace;
     font-size: 1.2rem;
 
     background: var(--app-color-shell);
 
-    position: sticky;
+    width: 61.8%;
+
+    position: fixed;
     top: 0;
+    z-index: 20;
 
     padding-right: 0.6rem;
 
     border-radius: 0 0 1rem 1rem;
 
-    &.dark {
-      background: #383a3e;
+    transition: box-shadow 150ms ease-out, background-color 200ms ease-in;
+
+    &.dark.shadow {
+      background-color: #383a3e;
+    }
+
+    &.shadow {
+      box-shadow: 0 3.4px 6.3px rgba(0, 0, 0, 0.099),
+        0 27px 50px rgba(0, 0, 0, 0.1);
     }
   }
 
@@ -43,19 +55,16 @@
     margin: 0.6rem 0.8rem;
   }
 
-  .flex {
-    flex: 1 1 auto;
-  }
-
-  nav.dark a {
-    --color: var(--app-color-dark);
-    --color-rgb: var(--app-color-dark-rgb);
-  }
+  // nav.dark a {
+  //   --color: var(--app-color-dark);
+  //   --color-rgb: var(--app-color-dark-rgb);
+  // }
 
   a {
     --color: var(--app-color-primary);
     --color-rgb: var(--app-color-primary-rgb);
 
+    font-weight: bold;
     color: var(--color);
 
     position: relative;
@@ -89,25 +98,26 @@
 
     background-color: rgba(var(--color-rgb), 0.4);
   }
+
+  @media screen and (max-width: 1100px) {
+    nav {
+      width: 95%;
+    }
+  }
 </style>
 
-<svelte:head>
-  <!-- As this component is omnipresent, the script for different favicons will live here -->
+<svelte:body on:scroll={() => (scrollY = document.body.scrollTop)} />
 
-  {#if dev}
-    <link rel="icon" href="./icons/favicon-dev.svg" />
-  {:else}
-    <link rel="icon" href="./icons/favicon.svg" />
-  {/if}
-</svelte:head>
-
-<nav class:dark={$theme === 'dark'}>
+<nav class:dark={$theme === 'dark'} class:shadow={scrollY > 2}>
   <ul>
     <li>
-      <a aria-current={segment === undefined && 'page'} href="."> HOME </a>
+      <a rel="prefetch" aria-current={segment === undefined && 'page'} href=".">
+        HOME
+      </a>
     </li>
     <li>
       <a
+        rel="prefetch"
         aria-current={segment && segment.startsWith('blog') && 'page'}
         href="blog">
         BLOG
@@ -120,3 +130,6 @@
   <span class="flex" />
   <ThemeSwitcher />
 </nav>
+
+<br />
+<br />

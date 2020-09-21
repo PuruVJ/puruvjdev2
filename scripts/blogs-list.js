@@ -35,6 +35,15 @@ const fm = require("front-matter");
       });
   }
 
+  finaldata = finaldata.sort((a, b) => {
+    const date1 = new Date(a.date);
+    const date2 = new Date(b.date);
+
+    return date2 > date1 ? 1 : -1;
+  });
+
+  console.log(finaldata.map(({ date }) => date));
+
   // Write data
   await writeFile("../static/data/blogs-list.json", JSON.stringify(finaldata));
 

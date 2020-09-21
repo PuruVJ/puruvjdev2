@@ -25,8 +25,9 @@
   }
 
   img {
-    max-width: 100%;
-    height: auto;
+    width: 25vmax;
+    height: 25vmax;
+    min-height: 0;
 
     box-shadow: 0 0 0 1rem var(--app-color-primary);
 
@@ -59,7 +60,8 @@
     }
 
     img {
-      max-width: 90%;
+      width: 90%;
+      height: auto;
     }
 
     #written {

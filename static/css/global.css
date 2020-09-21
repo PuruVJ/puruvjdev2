@@ -1,10 +1,5 @@
 @import "./themes.css";
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
+@import "./blog-page-style.css";
 
 body {
   margin: 0;
@@ -18,9 +13,19 @@ body {
   background-color: var(--app-color-shell);
   color: var(--app-color-dark);
 
+  overflow-y: scroll;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+
+  overflow-x: hidden;
 }
 
 body.background {
@@ -95,10 +100,24 @@ a:hover {
 #sapper {
   width: 61.8%;
   height: 100%;
+
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1100px) {
   #sapper {
     width: 95% !important;
+  }
+
+  /* html,
+  body {
+    /* overflow-y: initial !important; */
+  /* } */
+
+  ::-webkit-scrollbar,
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb:hover {
+    display: none;
   }
 }
