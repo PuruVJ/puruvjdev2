@@ -4,9 +4,9 @@ export const BUILD = {
   isDev: process.env.NODE_ENV === "development",
 };
 
-export const API_BASE = "";
+export const API_BASE = "/api";
 
 export const API = {
-  getEmos: `${API_BASE}`,
-  setEmos: `${API_BASE}`,
+  getEmos: `${API_BASE}/get-emos`,
+  setEmos: `${API_BASE}/set-emos`,
 };

@@ -8,3 +8,4 @@ yarn-error.log
 .vercel
 
 /api/node_modules
+/api/fb-admin-key.json
