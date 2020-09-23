@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "api/**/*.ts": {
-      "memory": 3008
+      "memory": 1024
     }
   }
 }
