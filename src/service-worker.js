@@ -8,7 +8,10 @@ const to_cache = shell
   .concat(files)
   .filter(
     (file) =>
-      file.endsWith(".css") || file.endsWith(".html") || file.endsWith(".js")
+      file.endsWith(".css") ||
+      file.endsWith(".html") ||
+      file.endsWith(".js") ||
+      file.endsWith(".json")
   );
 const cached = new Set(to_cache);
 
