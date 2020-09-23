@@ -17,7 +17,7 @@
       return;
     }
 
-    document.body.scrollTo({ top: 0, behavior: "smooth" });
+    return void document.body.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   export let segment;

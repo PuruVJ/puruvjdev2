@@ -3,12 +3,11 @@
   "description": "The v2 of puruvj.dev",
   "version": "2.0.0",
   "scripts": {
-    "dev": "sapper dev",
+    "start": "sapper dev",
     "prebuild": "cd scripts && node blogs-list.js && node blog-md-html.js",
     "build": "sapper build",
     "postbuild": "curl http://www.google.com/ping?sitemap=https://puruvj.dev/sitemap.xml",
-    "export": "sapper export",
-    "start": "node __sapper__/build"
+    "export": "sapper export"
   },
   "dependencies": {
     "@mdi/js": "^5.6.55",

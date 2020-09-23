@@ -1,29 +1,37 @@
 <script>
+  import { onMount } from "svelte";
+
   export let status;
   export let error;
 
   const dev = process.env.NODE_ENV === "development";
+
+  import { fadeOut, fadeIn } from "../components/fade";
+  import { theme } from "../stores/theme.store";
+
+  onMount(() => void document.body.classList.add("background"));
 </script>
 
-<style>
-  h1,
-  p {
-    margin: 0 auto;
+<style lang="scss">
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
   }
 
-  h1 {
-    font-size: 2.8em;
-    font-weight: 700;
-    margin: 0 0 0.5em 0;
+  img {
+    width: 100%;
+    max-width: 40rem;
+    height: auto;
   }
 
-  p {
-    margin: 1em auto;
-  }
-
-  @media (min-width: 480px) {
+  @media screen and (min-width: 600px) {
     h1 {
-      font-size: 4em;
+      font-size: 2.618rem * 1.618;
     }
   }
 </style>
@@ -32,10 +40,13 @@
   <title>{status}</title>
 </svelte:head>
 
-<h1>{status}</h1>
+<main in:fadeIn out:fadeOut>
+  <h1>
+    <span style="color: var(--app-color-primary)">{status}</span> - {error.message}
+  </h1>
+  <img src="art/not-found-{$theme}.svg" alt={error.message} />
 
-<p>{error.message}</p>
-
-{#if dev && error.stack}
-  <pre>{error.stack}</pre>
-{/if}
+  {#if dev && error.stack}
+    <pre>{error.stack}</pre>
+  {/if}
+</main>

@@ -55,11 +55,6 @@
     margin: 0.6rem 0.8rem;
   }
 
-  // nav.dark a {
-  //   --color: var(--app-color-dark);
-  //   --color-rgb: var(--app-color-dark-rgb);
-  // }
-
   a {
     --color: var(--app-color-primary);
     --color-rgb: var(--app-color-primary-rgb);
@@ -124,7 +119,7 @@
       </a>
     </li>
     <li>
-      <a aria-current={segment === 'work' && 'page'} href="work"> WORKS </a>
+      <a aria-current={segment === 'work' && 'page'} href="works"> WORKS </a>
     </li>
   </ul>
   <span class="flex" />

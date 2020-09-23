@@ -17,6 +17,7 @@
 
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
+  import EmoButton from "../../components/EmoButton.svelte";
   import { fadeIn, fadeOut } from "../../components/fade";
   import { formatDate } from "../../helpers/format-date";
   import type { IBlog } from "../../interfaces/blog.interface";
@@ -62,7 +63,7 @@
     font-size: 1.2rem;
     color: var(--app-color-primary);
 
-    text-align: end;
+    text-align: center;
   }
 
   #blog-content {
@@ -89,6 +90,21 @@
       transform: scaleX(0);
       transform-origin: 0 0;
     }
+  }
+
+  #emo-buttons {
+    position: fixed;
+    left: calc(61.8% + 19.1%);
+    top: 0;
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    width: calc((100% - 61.8%) / 2);
   }
 </style>
 
@@ -117,4 +133,10 @@
   <article id="blog-content">
     {@html body}
   </article>
+
+  <div id="emo-buttons">
+    <EmoButton type="love" blogID={id} />
+    <EmoButton type="unicorn" blogID={id} />
+    <EmoButton type="starry" blogID={id} />
+  </div>
 </main>
