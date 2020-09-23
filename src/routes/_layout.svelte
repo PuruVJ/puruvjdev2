@@ -3,6 +3,7 @@
   import Nav from "../components/Nav.svelte";
   import { BUILD } from "../constants";
   import { stores } from "@sapper/app";
+  import { theme } from "../stores/theme.store";
 
   const { page } = stores();
 
@@ -34,7 +35,7 @@
   {#if BUILD.isDev}
     <link rel="icon" href="./icons/favicon-dev.svg" />
   {:else}
-    <link rel="icon" href="./icons/favicon.svg" />
+    <link rel="icon" href="./icons/favicon-{$theme}.svg" />
   {/if}
 </svelte:head>
 
