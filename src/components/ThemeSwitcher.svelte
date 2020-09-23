@@ -65,7 +65,7 @@
     content={currentThemeIndex === 0 ? 'white' : currentThemeIndex === 1 ? '#f9dec9' : '#222428'} />
 </svelte:head>
 
-<button on:click={nextTheme}>
+<button tabindex="1" on:click={nextTheme}>
   {#if currentThemeIndex === 0}
     <Icon path={mdiWhiteBalanceSunny} />
   {:else if currentThemeIndex === 1}
