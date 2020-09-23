@@ -18,7 +18,7 @@ One of these properties is the `location` prop.
 With the `window.opener` property, the new page can redirect the page from which it was opened to some other page. An e-banking site `icici.com` can be redirected to `1c1c1.com`, and the user will almost always miss this transition. Watch this video I have here to get a feel.
 
 <video controls>
-  <source src="../../assets/media/link-noopener.mp4" type="video/mp4"></source>
+  <source src="/media/link-noopener.mp4" type="video/mp4"></source>
 </video>
 
 A bit scary, huh?
