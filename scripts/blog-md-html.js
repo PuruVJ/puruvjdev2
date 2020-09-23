@@ -6,6 +6,8 @@ const { optimizeBlogImages } = require("./optimize-images");
 const { JSDOM } = require("jsdom");
 const slugify = require("slugify");
 const readingTime = require("reading-time");
+const emoji = require("markdown-it-emoji");
+const twemoji = require("twemoji");
 
 (async () => {
   // Shiki instance
@@ -15,6 +17,8 @@ const readingTime = require("reading-time");
 
   // Prepare md for shiki
   const md = markdown({ html: true, highlight: highlighter.codeToHtml });
+
+  md.use(emoji);
 
   // Parse the links in a different way
   // Remember old renderer, if overridden, or proxy to default renderer
@@ -38,6 +42,21 @@ const readingTime = require("reading-time");
     // pass token to default renderer.
     return defaultRender(tokens, idx, options, env, self);
   };
+
+  md.renderer.rules.image = (tokens, idx, options, env, self) => {
+    tokens[idx].attrPush(["class", "feature-image"]);
+    return defaultRender(tokens, idx, options, env, self);
+  };
+
+  // Replace emojis
+  md.renderer.rules.emoji = function (token, idx) {
+    return twemoji.parse(token[idx].content, {
+      ext: ".svg",
+      folder: "svg",
+    });
+  };
+
+  // Override
 
   // get all blogs in directory
   const filesAbs = (await readdir("../src/blog")).filter((file) =>
@@ -75,7 +94,7 @@ const readingTime = require("reading-time");
     const { document } = new JSDOM(html).window;
 
     // Get all the image tags
-    const imgs = document.querySelectorAll("img");
+    const imgs = document.querySelectorAll("img.feature-image");
 
     for (let img of imgs) {
       // Lets collect values of `src`

@@ -11,7 +11,7 @@ Hi! In this blog post, I delve deep into the design part of how I created my per
 
 > How I built my personal site series:
 >
-> Part 1: Tech Stack & Design (You're reading it 😊) <br /> > [Part 2: Blogging with Markdown](/blog/how-i-created-personal-site-part-2) <br /> > [Part 3: Image Optimization Automation with Incremental builds](/blog/how-i-created-personal-site-part-3) <br />
+> Part 1: Tech Stack & Design (You're reading it :blush: ) <br /> > [Part 2: Blogging with Markdown](/blog/how-i-created-personal-site-part-2) <br /> > [Part 3: Image Optimization Automation with Incremental builds](/blog/how-i-created-personal-site-part-3) <br />
 > Part 4: Coming soon! <br />
 
 # Why
@@ -40,7 +40,7 @@ And most of all, it must a conscious design. I will later elaborate what I mean 
 
 > A fast site is a good site. A slow site is no site.
 >
-> ~ Me 😁
+> ~ Me :grin:
 
 No, literally. No one's gonna wait 2 minutes for your blog post to show up. They'll <s>definitely</s> probably leave your site. Plus you'll be doing your users with expensive data plans a big favour (Can tell from experience).
 
@@ -79,7 +79,7 @@ Then why not any of these? Why Stencil?
 
 **Thirdly**, Prerendering. Stencil `v1.13` came with the robust feature of Static Site Generation. Meaning all the routes will be prerendered at build-time and converted to plain HTML, making the site blazing fast, cuz the content can be shown even without any JS loading. I don't opt-in for 100% Static though.
 
-**Fourthly(If that's a word 🤔 )**, I still need interactivity and image lazyloading on the site, so disabling JS all-together is not an option. That's why Hugo or 11ty or Jekyll are out of question.
+**Fourthly(If that's a word :thinking: )**, I still need interactivity and image lazyloading on the site, so disabling JS all-together is not an option. That's why Hugo or 11ty or Jekyll are out of question.
 
 # Design Choices
 
@@ -89,7 +89,7 @@ There is a running joke in our industry that it takes 1 day to design the layout
 
 It's a little exaggerated, but kinda true. Choosing a color palette is quite difficult, for most designers.
 
-So after 3 hours, I found a perfect color palette. Mostly white background(Duh! 🙄) with the primary color <mark>#6002ee</mark>. This for **light mode**.
+So after 3 hours, I found a perfect color palette. Mostly white background(Duh! :roll_eyes:) with the primary color <mark>#6002ee</mark>. This for **light mode**.
 
 For **dark mode**, the background is **#222428**(which is also the text color in light mode) and <mark>#714cfe</mark>.
 
@@ -97,7 +97,7 @@ A secondary color wasn't required, as my site is quite minimalistic.
 
 ## Fonts
 
-Remember that joke about color palette I just mentioned? Well it applies to selecting fonts too. So after 1 more hour 😕, I found the best fonts(Note that I changed one font after I had launched the site).
+Remember that joke about color palette I just mentioned? Well it applies to selecting fonts too. So after 1 more hour :confused:, I found the best fonts(Note that I changed one font after I had launched the site).
 
 - **Comfortaa** for headings
 - **Quicksand** for blog body
@@ -146,11 +146,11 @@ Transitions and animations can increase the emotional appeal of a site. They ele
 
 ## Style Scrollbars
 
-Styling scrollbars is very easy. You just have to copy the code from StackOverflow and edit it(Cuz honestly, who can remember all those huge selectors 😏).
+Styling scrollbars is very easy. You just have to copy the code from StackOverflow and edit it(Cuz honestly, who can remember all those huge selectors :smirk:).
 
 Scrollbars as-of-now are editable only in Webkit based browsers, meaning Chromium-based browsers(Chrome, Brave, Edgium, Opera) and Safari only. Firefox, IE and legacy Edge don't support styling of scrollbars.
 
-> In my opinion, Firefox is not an issue. Their scrollbars look dope as hell 😎
+> In my opinion, Firefox is not an issue. Their scrollbars look dope as hell :sunglasses:
 
 Scrollbars occupy very little real-estate on a page, but when done correctly, can take the look, authenticity and integrity of your site to the next level. A well designed site with default scrollbars just don't do it for anyone, whereas those slick curved transparent scrollbars just do it for everyone.
 
@@ -166,8 +166,7 @@ Rather, use a sidebar. And a narrow one if possible. Like this blog you're readi
 
 > How I built my personal site series:
 >
-> Part 1: Tech Stack & Design (You're reading it 😊) <br />
-> [Part 2: Blogging with Markdown](/blog/how-i-created-personal-site-part-2) <br />
+> Part 1: Tech Stack & Design (You're reading it :blush:) <br> > [Part 2: Blogging with Markdown](/blog/how-i-created-personal-site-part-2) <br>
 > [Part 3: Image Optimization Automation with Incremental builds](/blog/how-i-created-personal-site-part-3) <br />
 > Part 4: Coming soon! <br />
 

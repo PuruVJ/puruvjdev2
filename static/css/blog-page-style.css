@@ -10,6 +10,13 @@ body.dark mark {
   color: var(--app-color-dark);
 }
 
+.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0;
+  vertical-align: -0.1em;
+}
+
 pre.shiki {
   --font-size: 1rem;
   border-radius: 0.6rem;

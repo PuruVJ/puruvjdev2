@@ -17,8 +17,8 @@
 
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import EmoButtons from "../../components/EmoButtons.svelte";
   import { fadeIn, fadeOut } from "../../components/fade";
+  import LikeButton from "../../components/LikeButton.svelte";
   import { formatDate } from "../../helpers/format-date";
   import type { IBlog } from "../../interfaces/blog.interface";
   import { readingProgress } from "../../stores/progress.store";
@@ -119,5 +119,5 @@
     {@html body}
   </article>
 
-  <EmoButtons blogID={id} />
+  <LikeButton blogID={id} />
 </main>

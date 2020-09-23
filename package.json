@@ -15,8 +15,10 @@
     "imagemin-jpegtran": "^7.0.0",
     "jsdom": "^16.4.0",
     "lazysizes": "^5.2.2",
+    "markdown-it-emoji": "^1.4.0",
     "polka": "next",
-    "sirv": "^1.0.0"
+    "sirv": "^1.0.0",
+    "twemoji": "^13.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

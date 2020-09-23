@@ -12,8 +12,8 @@ export default async function (req: NowRequest, res: NowResponse) {
 
     if (!docGet.exists) {
       // Create doc
-      doc.set({ love: 0, unicorn: 0, starry: 0 });
-      return void res.json({ love: 0, unicorn: 0, starry: 0 });
+      doc.set({ likes: 0 });
+      return void res.json({ likes: 0 });
     }
 
     const data = docGet.data();
