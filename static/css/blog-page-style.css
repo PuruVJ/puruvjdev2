@@ -11,8 +11,9 @@ body.dark mark {
 }
 
 .emoji {
-  max-height: 1em;
-  max-width: 1em;
+  display: inline-block;
+  height: 1em;
+  width: 1em;
   margin: 0;
   vertical-align: -0.1em;
 }
