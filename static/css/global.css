@@ -86,7 +86,7 @@ h2 {
   background-color: rgba(var(--app-color-primary-rgb), 0.3);
 }
 
-a {
+a[href] {
   text-decoration: none;
   font-weight: 600;
 
@@ -95,7 +95,7 @@ a {
   transition: color 200ms ease-out;
 }
 
-a:hover {
+a[href]:hover {
   color: var(--app-color-primary-tint);
 }
 

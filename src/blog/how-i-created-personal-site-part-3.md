@@ -1,10 +1,10 @@
 ---
-title: (Part 3) Image Optimization Automation with Incremental builds - How I created my personal site
+title: Image Optimization Automation with Incremental builds
 date: 29 June, 2020 9:50
 description: In this post, I delve deep into how I automated image optimization on my blog.
 cover_image: media/camera-scenery.jpg
 published: true
-series: how-i-created-personal-site
+series: "How I created my personal site"
 ---
 
 ![](../../static/media/camera-scenery.jpg)

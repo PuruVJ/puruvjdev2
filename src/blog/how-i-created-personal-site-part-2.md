@@ -1,10 +1,10 @@
 ---
-title: (Part 2) Blogging with Markdown -  How I created my personal site
+title: Blogging with Markdown
 date: 28 June, 2020 9:50
 description: In this post, I delve into the details of how I built the blogging with markdown system
 cover_image: media/writing-pen-paper.jpg
 published: true
-series: how-i-created-personal-site
+series: "How I created my personal site"
 ---
 
 ![](../../static/media/writing-pen-paper.jpg)

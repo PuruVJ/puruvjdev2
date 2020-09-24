@@ -1,9 +1,9 @@
 ---
-title: (Part 1) Tech Stack & Design -  How I created my personal site
+title: Tech Stack & Design
 date: 27 June, 2020 9:50
 description: In this post, I delve into the details of the design part of how I built my personal site with StencilJS and what did I use to do so.
 cover_image: media/media/brick-wall.jpg
-series: how-i-created-personal-site
+series: "How I created my personal site"
 ---
 
 ![](../../static/media/brick-wall.jpg)

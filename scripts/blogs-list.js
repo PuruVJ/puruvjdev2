@@ -22,7 +22,7 @@ const fm = require("front-matter");
 
     // Get the metadata inside the markdown
     const {
-      attributes: { title, description, date, published = true },
+      attributes: { title, description, date, published = true, series },
     } = fm(data);
 
     // Let's push
@@ -32,6 +32,7 @@ const fm = require("front-matter");
         description,
         date,
         id: fileName,
+        series,
       });
   }
 

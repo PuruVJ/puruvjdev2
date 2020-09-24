@@ -9,6 +9,7 @@ const { headingsWithAnchorsPlugin } = require("./blog-plugins/headings-anchor");
 const {
   convertToTwitterEmojisPlugin,
 } = require("./blog-plugins/twitter-emojis");
+const { seriesLinksPlugin } = require("./blog-plugins/series-links");
 
 (async () => {
   // Shiki instance
@@ -63,6 +64,7 @@ const {
 
   for (let i = 0; i < files.length; i++) {
     const filePath = files[i];
+    const fileName = filesAbs[i].split(".")[0];
 
     // Let's get the contents of the file
     const fileData = await readFile(filePath, "utf-8");
@@ -70,14 +72,18 @@ const {
     // Get the metadata inside the markdown
     const { attributes } = fm(fileData);
 
+    let { date, title } = attributes;
+
+    date = new Date(date);
+
     const series = attributes.series;
 
     if (series) {
       if (!(series in seriesList)) {
-        seriesList[series] = 0;
+        seriesList[series] = [];
       }
 
-      seriesList[series]++;
+      seriesList[series].push({ title, date, id: fileName });
     }
   }
 
@@ -92,7 +98,7 @@ const {
     const fileName = filesAbs[i].split(".")[0];
 
     console.log(filePath);
-    
+
     // Let's get the contents of the file
     const fileData = await readFile(filePath, "utf-8");
 
@@ -123,6 +129,26 @@ const {
 
     // Now work on the headings
     ({ document } = await headingsWithAnchorsPlugin(document, fileName));
+
+    if (series) {
+      /**
+       * @type {Array}
+       */
+      let seriesPostsList = seriesList[series].sort(
+        (p1, p2) => p1.date - p2.date
+      );
+
+      ({ document } = await seriesLinksPlugin(
+        document,
+        seriesPostsList,
+        series,
+        fileName
+      ));
+
+      attributes.title = `(Part ${
+        seriesPostsList.findIndex(({ id }) => id === fileName) + 1
+      }) ${attributes.title} - ${series}`;
+    }
 
     // Emojis
     ({ document } = await convertToTwitterEmojisPlugin(document));
