@@ -38,6 +38,7 @@
     display: flex;
     justify-content: space-between;
 
+    color: var(--app-color-primary);
     font-family: "Fira Code", monospace;
     margin-top: 0.3rem;
     font-weight: bold;
