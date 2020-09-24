@@ -87,7 +87,7 @@ code {
 
 #blog-content .gif-vid-container video {
   max-width: 100%;
-  width: 15em;
+  /* width: 15em; */
 }
 
 #blog-content video {
