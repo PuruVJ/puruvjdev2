@@ -88,6 +88,8 @@ code {
 #blog-content .gif-vid-container video {
   max-width: 100%;
   /* width: 15em; */
+
+  border-radius: 8px;
 }
 
 #blog-content video {
