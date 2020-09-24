@@ -1,7 +1,6 @@
 const ffmpegInstaller = require("@ffmpeg-installer/ffmpeg");
 const ffprobe = require("@ffprobe-installer/ffprobe");
 const { mkdir } = require("fs").promises;
-const { resolve: absPath } = require("path");
 
 const ffmpeg = require("fluent-ffmpeg")()
   .setFfprobePath(ffprobe.path)

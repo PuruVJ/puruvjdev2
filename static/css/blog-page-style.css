@@ -82,15 +82,19 @@ code {
   visibility: hidden;
 }
 
-#blog-content video {
-  max-width: 100%;
-  width: 15em;
-}
-
 #blog-content .gif-vid-container {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+#blog-content .gif-vid-container video {
+  max-width: 100%;
+  width: 15em;
+}
+
+#blog-content video {
+  max-width: 100%;
 }
 
 #blog-content blockquote {
