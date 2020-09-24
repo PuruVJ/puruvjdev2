@@ -4,15 +4,12 @@ date: 29 June, 2020 9:50
 description: In this post, I delve deep into how I automated image optimization on my blog.
 cover_image: media/camera-scenery.jpg
 published: true
+series: how-i-created-personal-site
 ---
 
 ![](../../static/media/camera-scenery.jpg)
 
-> How I built my personal site series:
->
-> [Part 1: Tech Stack & Design](/blog/how-i-created-personal-site-part-1) <br /> [Part 2: Blogging with Markdown](/blog/how-i-created-personal-site-part-2) <br />
-> Part 3: Image Optimization Automation with Incremental builds (You're reading it 😊) <br />
-> Part 4: Coming soon! <br />
+{{ series-links }}
 
 Image Optimization. Ah, The bane of frontend devs! All that is slow with a site is responsible mostly because of images. These take up 100s of Kilobytes, and slow up the site heavily. What if we could just optimize our images so they wouldn't make the page slow?
 
@@ -309,10 +306,4 @@ The library I use for lazyloading images is [lazysizes](https://www.npmjs.com/pa
 
 These are all the key parts of this crazy algorithm. I use some other hacks to get into the final markup, but that is for another day.
 
-> How I built my personal site series:
->
-> [Part 1: Tech Stack & Design](/blog/how-i-created-personal-site-part-1) <br /> [Part 2: Blogging with Markdown](/blog/how-i-created-personal-site-part-2) <br />
-> Part 3: Image Optimization Automation with Incremental builds (You're reading it 😊) <br />
-> Part 4: Coming soon! <br />
-
-_If you liked this article, please leave a review at my [Twitter handle](https://twitter.com/puruvjdev)_
+{{ series-links }}

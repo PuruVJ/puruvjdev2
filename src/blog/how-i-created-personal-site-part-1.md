@@ -3,16 +3,14 @@ title: (Part 1) Tech Stack & Design -  How I created my personal site
 date: 27 June, 2020 9:50
 description: In this post, I delve into the details of the design part of how I built my personal site with StencilJS and what did I use to do so.
 cover_image: media/media/brick-wall.jpg
+series: how-i-created-personal-site
 ---
 
 ![](../../static/media/brick-wall.jpg)
 
-Hi! In this blog post, I delve deep into the design part of how I created my personal website. I won't be going into the code. Feel free to look into my [Github Repo](https://github.com/puruvj/puruvjdev) for the the code.
+{{ series-links }}
 
-> How I built my personal site series:
->
-> Part 1: Tech Stack & Design (You're reading it :blush: ) <br /> > [Part 2: Blogging with Markdown](/blog/how-i-created-personal-site-part-2) <br /> > [Part 3: Image Optimization Automation with Incremental builds](/blog/how-i-created-personal-site-part-3) <br />
-> Part 4: Coming soon! <br />
+Hi! In this blog post, I delve deep into the design part of how I created my personal website. I won't be going into the code. Feel free to look into my [Github Repo](https://github.com/puruvj/puruvjdev) for the the code.
 
 # Why
 
@@ -164,10 +162,4 @@ This make our subconscious mind relate that site with closeness and suffocation.
 
 Rather, use a sidebar. And a narrow one if possible. Like this blog you're reading.
 
-> How I built my personal site series:
->
-> Part 1: Tech Stack & Design (You're reading it :blush:) <br> > [Part 2: Blogging with Markdown](/blog/how-i-created-personal-site-part-2) <br>
-> [Part 3: Image Optimization Automation with Incremental builds](/blog/how-i-created-personal-site-part-3) <br />
-> Part 4: Coming soon! <br />
-
-> Thank you for reading. Please leave a review at my [Twitter Profile](https://twitter.com/puruvjdev)
+{{ series-links }}

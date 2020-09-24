@@ -54,12 +54,45 @@ const {
 
   const files = filesAbs.map((absFile) => `../src/blog/${absFile}`);
 
+  // Define the series object here to collect all the series
+  const seriesList = {};
+
+  console.log("\n");
+
+  console.log("<<<--------- Finding series --------->>>");
+
+  for (let i = 0; i < files.length; i++) {
+    const filePath = files[i];
+
+    // Let's get the contents of the file
+    const fileData = await readFile(filePath, "utf-8");
+
+    // Get the metadata inside the markdown
+    const { attributes } = fm(fileData);
+
+    const series = attributes.series;
+
+    if (series) {
+      if (!(series in seriesList)) {
+        seriesList[series] = 0;
+      }
+
+      seriesList[series]++;
+    }
+  }
+
+  console.log(seriesList);
+
+  console.log("<<<--------- Series found --------->>>");
+  console.log("\n");
+
   // Let's do it
   for (let i = 0; i < files.length; i++) {
     const filePath = files[i];
     const fileName = filesAbs[i].split(".")[0];
 
     console.log(filePath);
+    
     // Let's get the contents of the file
     const fileData = await readFile(filePath, "utf-8");
 
@@ -75,6 +108,9 @@ const {
     // Reset the cover image if required
     attributes.cover_image =
       attributes.cover_image || "media/blog-social-intro.png";
+
+    // Get the series
+    const series = attributes.series;
 
     // Let's render it
     let html = md.render(body);
@@ -93,6 +129,8 @@ const {
 
     // Finally
     html = document.body.innerHTML;
+
+    // Calculate reading time
     const reading_time = readingTime(html, { wordsPerMinute: 300 }).minutes;
 
     await writeFile(
@@ -104,5 +142,7 @@ const {
         reading_time,
       })
     );
+
+    console.log("\n");
   }
 })();
