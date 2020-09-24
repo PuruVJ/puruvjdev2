@@ -6,4 +6,6 @@ export interface IBlog {
   cover_image?: string;
   body?: string;
   reading_time?: number;
+  series?: string;
+  seriesIndex?: number;
 }

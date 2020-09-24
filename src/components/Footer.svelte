@@ -45,7 +45,7 @@
 
 <footer>
   <div class="copy-area">
-    <span id="copyright">&copy;</span> &nbsp; 2020 Puru Vijay
+    <span id="copyright">&copy;</span> &nbsp; Puru Vijay
   </div>
   <div class="social-links">
     <a

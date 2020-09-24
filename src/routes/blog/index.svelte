@@ -34,8 +34,10 @@
     margin: 0;
   }
 
-  p.date {
-    text-align: end;
+  p.more-info {
+    display: flex;
+    justify-content: space-between;
+
     font-family: "Fira Code", monospace;
     margin-top: 0.3rem;
     font-weight: bold;
@@ -52,6 +54,17 @@
     &:hover,
     &:focus {
       background-color: rgba(var(--app-color-primary-rgb), 0.1);
+    }
+  }
+
+  .series {
+    color: rgba(var(--app-color-dark-rgb), 0.6);
+
+    letter-spacing: 1px;
+    font-family: "Fira Code", monospace;
+
+    mark {
+      font-family: "Quicksand", sans-serif;
     }
   }
 </style>
@@ -78,11 +91,12 @@
 <main tabindex="-1" in:fadeIn out:fadeOut>
   <h1>Blog</h1>
 
-  {#each blogsList as { title, id, description, date }}
+  {#each blogsList as { title, id, description, date, series, seriesIndex }}
     <a class="blog-link" rel="prefetch" href="blog/{id}" aria-label={title}>
-      <h2 class="title">{title}</h2>
+      <span class="series">{#if series}<mark>SERIES</mark> {series}{/if}</span>
+      <h2 class="title">{series ? `Part ${seriesIndex} - ` : ''}{title}</h2>
       <p class="description">{description}</p>
-      <p class="date">{formatDate(date)}</p>
+      <p class="more-info"><span /><span>{formatDate(date)}</span></p>
     </a>
   {/each}
 </main>

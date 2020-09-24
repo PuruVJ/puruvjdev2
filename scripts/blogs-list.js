@@ -7,6 +7,35 @@ const fm = require("front-matter");
     file.endsWith(".md")
   );
 
+  /**
+   * @type {{[blogID: string] : {id: string, date: Date}[]}}
+   */
+  let seriesList = {};
+
+  for (let file of filesList) {
+    const filePath = `../src/blog/${file}`;
+
+    // Data
+    const data = await readFile(filePath, "utf-8");
+
+    const fileName = file.split(".")[0];
+
+    // Get the metadata inside the markdown
+    let {
+      attributes: { date, series },
+    } = fm(data);
+
+    date = new Date(date);
+
+    if (series) {
+      if (!(series in seriesList)) {
+        seriesList[series] = [];
+      }
+
+      seriesList[series].push({ id: fileName, date });
+    }
+  }
+
   // The final list of data
   let finaldata = [];
 
@@ -25,6 +54,14 @@ const fm = require("front-matter");
       attributes: { title, description, date, published = true, series },
     } = fm(data);
 
+    let seriesIndex = null;
+
+    if (series) {
+      let seriesPosts = seriesList[series].sort((a, b) => a.date - b.date);
+
+      seriesIndex = seriesPosts.findIndex(({ id }) => id === fileName) + 1;
+    }
+
     // Let's push
     published &&
       finaldata.push({
@@ -33,6 +70,7 @@ const fm = require("front-matter");
         date,
         id: fileName,
         series,
+        seriesIndex,
       });
   }
 
@@ -42,8 +80,6 @@ const fm = require("front-matter");
 
     return date2 > date1 ? 1 : -1;
   });
-
-  console.log(finaldata.map(({ date }) => date));
 
   // Write data
   await writeFile("../static/data/blogs-list.json", JSON.stringify(finaldata));

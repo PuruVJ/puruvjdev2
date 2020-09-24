@@ -9,6 +9,7 @@ body {
   font-family: "Quicksand", "Segoe UI", Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   line-height: 1.618;
+  font-variant-numeric: tabular-nums;
 
   background-color: var(--app-color-shell);
   color: var(--app-color-dark);
