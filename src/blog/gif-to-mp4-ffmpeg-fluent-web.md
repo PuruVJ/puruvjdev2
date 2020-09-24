@@ -120,7 +120,7 @@ If you push this file to production, and try to view it on Android or IOS, you'l
 The code above doesn't encode the new MP4 video for maximum compatibility.
 
 The file you generated will work fine on a computer which comes with all kinds of codecs preinstalled. But your phone's browser won't be able to parse the video file.
-
+ 
 # Solution
 
 Remember the code snippet on top? Here it is again 👇
