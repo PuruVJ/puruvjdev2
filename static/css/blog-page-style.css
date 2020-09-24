@@ -6,10 +6,6 @@ mark {
   font-weight: 600;
 }
 
-body.dark mark {
-  color: var(--app-color-dark);
-}
-
 .emoji {
   display: inline-block;
   height: 1em;
