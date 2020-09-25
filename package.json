@@ -5,9 +5,8 @@
   "scripts": {
     "start": "sapper dev",
     "prebuild": "cd scripts && node blogs-list.js && node blog-md-html.js",
-    "build": "sapper build && npm run generate:sitemap",
-    "generate:sitemap": "cd scripts && node generate-sitemap.js && curl http://www.google.com/ping?sitemap=https://puruvj.dev/sitemap.xml",
-    "export": "sapper export"
+    "build": "sapper export && npm run generate:sitemap",
+    "generate:sitemap": "cd scripts && node generate-sitemap.js && curl http://www.google.com/ping?sitemap=https://puruvj.dev/sitemap.xml"
   },
   "dependencies": {
     "@mdi/js": "^5.6.55",
