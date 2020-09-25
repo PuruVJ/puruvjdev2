@@ -17,6 +17,7 @@
 
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
+  import { throttle } from "throttle-debounce";
   import { fadeIn, fadeOut } from "../../components/fade";
   import LikeButton from "../../components/LikeButton.svelte";
   import { formatDate } from "../../helpers/format-date";
@@ -105,8 +106,9 @@
   <link rel="canonical" href="https://puruvj.dev/blog/{id}" />
 </svelte:head>
 
-<svelte:body on:scroll={handleProgressBar} />
+<svelte:body on:scroll={throttle(10, false, handleProgressBar)} />
 
+<LikeButton blogID={id} />
 <main in:fadeIn out:fadeOut>
   <div class="progress" aria-roledescription="progress">
     <div class="indicator" style="transform: scaleX({$readingProgress})" />
@@ -118,6 +120,4 @@
   <article id="blog-content">
     {@html body}
   </article>
-
-  <LikeButton blogID={id} />
 </main>

@@ -147,11 +147,7 @@
 
 {#if blogID in $emoStates}
   <div id="container" in:fadeIn>
-    <button
-      tabindex="1"
-      on:click={toggleLikes}
-      class:marked
-      class:dark={$theme === 'dark'}>
+    <button on:click={toggleLikes} class:marked class:dark={$theme === 'dark'}>
       <Icon size={30} path={marked ? mdiHeart : mdiHeartOutline} />
       <span>{$emoStates[blogID].likes}</span>
     </button>

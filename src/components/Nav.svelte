@@ -1,11 +1,16 @@
 <script lang="ts">
   import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
   import { theme } from "../stores/theme.store";
+  import { throttle } from "throttle-debounce";
 
   // The scroll from above
   let scrollY: number = 0;
 
   export let segment: string;
+
+  function handleScroll() {
+    scrollY = document.body.scrollTop;
+  }
 </script>
 
 <style lang="scss">
@@ -101,7 +106,7 @@
   }
 </style>
 
-<svelte:body on:scroll={() => (scrollY = document.body.scrollTop)} />
+<svelte:body on:scroll={throttle(50, false, handleScroll)} />
 
 <nav class:dark={$theme === 'dark'} class:shadow={scrollY > 2}>
   <ul>
