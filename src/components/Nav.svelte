@@ -137,6 +137,3 @@
   <span class="flex" />
   <ThemeSwitcher />
 </nav>
-
-<br />
-<br />
