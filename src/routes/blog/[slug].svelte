@@ -92,6 +92,9 @@
       transform-origin: 0 0;
     }
   }
+
+  // :global(#blog-content a:not(.heading-link)) {
+  // }
 </style>
 
 <svelte:head>
