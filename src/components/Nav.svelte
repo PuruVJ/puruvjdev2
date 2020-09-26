@@ -111,27 +111,20 @@
 <nav class:dark={$theme === 'dark'} class:shadow={scrollY > 2}>
   <ul>
     <li>
-      <a
-        tabindex="1"
-        rel="prefetch"
-        aria-current={segment === undefined && 'page'}
-        href=".">
+      <a rel="prefetch" aria-current={segment === undefined && 'page'} href=".">
         HOME
       </a>
     </li>
     <li>
       <a
         rel="prefetch"
-        tabindex="1"
         aria-current={segment && segment.startsWith('blog') && 'page'}
         href="blog">
         BLOG
       </a>
     </li>
     <li>
-      <a tabindex="1" aria-current={segment === 'work' && 'page'} href="works">
-        WORKS
-      </a>
+      <a aria-current={segment === 'work' && 'page'} href="works"> WORKS </a>
     </li>
   </ul>
   <span class="flex" />
