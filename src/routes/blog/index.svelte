@@ -52,6 +52,8 @@
     border-radius: 1rem;
     padding: 1rem 0.5rem;
 
+    font-weight: 400;
+
     &:hover,
     &:focus {
       background-color: rgba(var(--app-color-primary-rgb), 0.1);
