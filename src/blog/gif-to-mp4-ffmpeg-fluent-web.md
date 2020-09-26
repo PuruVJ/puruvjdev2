@@ -18,7 +18,7 @@ And it barely eats any CPU. Even the oldest of devices will play it easily
 
 You can convert a GIF to MP4 by running this command
 
-```shellscript
+```powershell
 ffmpeg -i harry-eats-cupcake.gif -pix_fmt yuv420p -c:v libx264 -movflags +faststart -filter:v crop='floor(in_w/2)*2:floor(in_h/2)*2' output.mp4
 ```
 
@@ -42,7 +42,7 @@ And there's also an amazing package called [fluent-ffmpeg](https://www.npmjs.com
 
 So let's download these. Make sure you have npm setup.
 
-```shellscript
+```powershell
 npm i -D @ffmpeg-installer/ffmpeg fluent-ffmpeg @ffprobe-installer/ffprobe
 ```
 
@@ -120,12 +120,12 @@ If you push this file to production, and try to view it on Android or IOS, you'l
 The code above doesn't encode the new MP4 video for maximum compatibility.
 
 The file you generated will work fine on a computer which comes with all kinds of codecs preinstalled. But your phone's browser won't be able to parse the video file.
- 
+
 # Solution
 
 Remember the code snippet on top? Here it is again 👇
 
-```shellscript
+```powershell
 ffmpeg -i harry-eats-cupcake.gif -pix_fmt yuv420p -c:v libx264 -movflags +faststart -filter:v crop='floor(in_w/2)*2:floor(in_h/2)*2' output.mp4
 ```
 
@@ -147,7 +147,7 @@ ffmpeg
   .noAudio()
   .output(`vidgif.mp4`)
   .on("end", () => {
-    console.log('Ended')
+    console.log("Ended");
   })
   .on("error", (e) => console.log(e))
   .run();
@@ -161,3 +161,44 @@ ffmpeg
 - compression ratio typically 10:1, pretty awesome. note that if original gif is < 512KB, convert as mp4 is less efficient.
 
 [Courtesy of this gist](https://gist.github.com/ingramchen/e2af352bf8b40bb88890fba4f47eccd0)
+
+# Complete Code
+
+JS:
+
+```js
+const ffmpegInstaller = require("@ffmpeg-installer/ffmpeg");
+const ffprobe = require("@ffprobe-installer/ffprobe");
+
+const ffmpeg = require("fluent-ffmpeg")()
+  .setFfprobePath(ffprobe.path)
+  .setFfmpegPath(ffmpegInstaller.path);
+
+ffmpeg
+  .input(gifPath)
+  .outputOptions([
+    "-pix_fmt yuv420p",
+    "-c:v libx264",
+    "-movflags +faststart",
+    "-filter:v crop='floor(in_w/2)*2:floor(in_h/2)*2'",
+  ])
+  .noAudio()
+  .output(`vidgif.mp4`)
+  .on("end", () => {
+    console.log("Ended");
+  })
+  .on("error", (e) => console.log(e))
+  .run();
+```
+
+HTML:
+
+```html
+<video autoplay loop muted playsinline>
+  <source src="vidgif.mp4" type="video/mp4" />
+  Your browser doesn't support HTML5 video playback.
+  <a href="harry-eats-cupcake.gif" target="_blank" rel="noopener"
+    >See the gif here</a
+  >
+</video>
+```

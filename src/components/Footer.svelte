@@ -1,5 +1,5 @@
 <script>
-  import { mdiGithub, mdiTwitter } from "@mdi/js";
+  import { mdiDevTo, mdiGithub, mdiTwitter } from "@mdi/js";
 
   import Icon from "./Icon.svelte";
 </script>
@@ -42,12 +42,19 @@
     margin: 0 4px;
   }
 
-  #twitter:hover {
+  #twitter:hover,
+  #twitter:focus {
     fill: #1da1f2;
   }
 
-  #github:hover {
+  #github:hover,
+  #github:focus {
     fill: #333;
+  }
+
+  #devto:hover,
+  #devto:focus {
+    fill: black;
   }
 </style>
 
@@ -57,6 +64,14 @@
   </div>
   <div class="social-links">
     <a
+      href="https://twitter.com/puruvjdev"
+      rel="noopener"
+      target="_blank"
+      id="twitter"
+      aria-label="Puru Vijay's Twitter Profile">
+      <Icon path={mdiTwitter} />
+    </a>
+    <a
       href="https://github.com/PuruVJ"
       rel="noopener"
       target="_blank"
@@ -65,12 +80,12 @@
       <Icon path={mdiGithub} />
     </a>
     <a
-      href="https://twitter.com/puruvjdev"
+      href="https://dev.to/puruvj"
       rel="noopener"
       target="_blank"
-      id="twitter"
-      aria-label="Puru Vijay's Twitter Profile">
-      <Icon path={mdiTwitter} />
+      id="devto"
+      aria-label="Puru Vijay's Dev.to Profile">
+      <Icon path={mdiDevTo} />
     </a>
   </div>
 </footer>
