@@ -57,6 +57,7 @@
   .info-section {
     display: flex;
     justify-content: space-between;
+    
 
     padding: 1rem;
   }
