@@ -12,5 +12,7 @@ jobs:
   first-job:
     name: Say hello
     steps:
-      - name: Print a greeting
-        run: echo "Hi from beyond"
+      - name: Show ASCII greeting
+        uses: mscoutermarsh/ascii-art-action@master
+        with:
+          text: "Puru V!"
