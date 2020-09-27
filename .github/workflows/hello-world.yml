@@ -4,14 +4,12 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: "*/1 * * * *" # every minute
+    - cron: "0 0 */1 * *" # At 00:00 on every day-of-month.
 
 jobs:
   first-job:
     runs-on: ubuntu-latest
-    name: Say hello
+    name: Prebuild stuff
     steps:
-      - name: Show ASCII greeting
-        uses: mscoutermarsh/ascii-art-action@master
-        with:
-          text: "Puru V!"
+      - name: Postbuild
+        runs: npm run postbuild
