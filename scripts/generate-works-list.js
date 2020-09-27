@@ -3,4 +3,4 @@ const {readFile} = require('fs').promises
 
 const worksFilePath = '../src/works.yaml';
 
-const worksFile = YAML.parse()
+const worksFile = YAML.parse() 
