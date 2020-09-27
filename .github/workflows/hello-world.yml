@@ -14,10 +14,16 @@ jobs:
         node-version: [12.x]
     name: Prebuild stuff
     steps:
-      - uses: actions/checkout@v2
       - name: Do stuff with Node ${{ matrix.node-version }}
-      - uses: actions/setup-node@v1
-      - with:
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: PostBuild
       - run: npm run postbuild
