@@ -12,4 +12,4 @@ jobs:
     name: Prebuild stuff
     steps:
       - name: Postbuild
-        runs: npm run postbuild
+        run: npm run postbuild
