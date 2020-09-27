@@ -111,8 +111,8 @@
 
 <svelte:body on:scroll={throttle(10, false, handleProgressBar)} />
 
-<LikeButton blogID={id} />
 <main in:fadeIn out:fadeOut>
+  <LikeButton blogID={id} />
   <div class="progress" aria-roledescription="progress">
     <div class="indicator" style="transform: scaleX({$readingProgress})" />
   </div>

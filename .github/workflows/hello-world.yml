@@ -1,0 +1,16 @@
+name: Hello World
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "*/1 * * * *" # every minute
+
+runs-on: ubuntu-latest
+
+jobs:
+  first-job:
+    name: Say hello
+    steps:
+      - name: Print a greeting
+        run: echo "Hi from beyond"
