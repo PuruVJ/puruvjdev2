@@ -6,10 +6,9 @@ on:
   schedule:
     - cron: "*/1 * * * *" # every minute
 
-runs-on: ubuntu-latest
-
 jobs:
   first-job:
+    runs-on: ubuntu-latest
     name: Say hello
     steps:
       - name: Show ASCII greeting
