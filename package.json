@@ -5,8 +5,10 @@
   "scripts": {
     "start": "sapper dev",
     "prebuild": "cd scripts && node blogs-list.js && node blog-md-html.js",
-    "build": "sapper export && npm run generate:sitemap",
-    "generate:sitemap": "cd scripts && node generate-sitemap.js && curl http://www.google.com/ping?sitemap=https://puruvj.dev/sitemap.xml"
+    "build": "sapper export",
+    "postbuild": "npm run g:sitemap",
+    "g:works": "cd scripts && node gw-thumbnail.js",
+    "g:sitemap": "cd scripts && node generate-sitemap.js && curl http://www.google.com/ping?sitemap=https://puruvj.dev/sitemap.xml"
   },
   "dependencies": {
     "@mdi/js": "^5.6.55",
@@ -16,6 +18,7 @@
     "lazysizes": "^5.2.2",
     "markdown-it-emoji": "^1.4.0",
     "polka": "next",
+    "puppeteer": "^5.3.1",
     "sirv": "^1.0.0",
     "throttle-debounce": "^2.3.0",
     "twemoji": "^13.0.1"
@@ -50,7 +53,6 @@
     "node-fetch": "^2.6.1",
     "node-pre-gyp": "0.12.0",
     "postcss": "^8.0.9",
-    "puppeteer": "^5.3.1",
     "reading-time": "^1.2.0",
     "resize-img": "^2.0.0",
     "rollup": "^2.3.4",

@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: "0 0 */1 * *" # At 00:00 on every day-of-month.
+    - cron: "30 5 */1 * *" # At 05:30 UTC on every day-of-month.
 
 jobs:
   build:
@@ -19,4 +19,4 @@ jobs:
         with:
           node-version: 12.x
       - uses: bahmutov/npm-install@v1
-      - run: npm run prebuild
+      - run: npm run g:works
