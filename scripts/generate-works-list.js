@@ -1,4 +1,4 @@
-const YAML = require("YAML");
+const YAML = require("yaml");
 const { optimizeBlogImages } = require("./optimize-images");
 const { readFile, writeFile } = require("fs").promises;
 
