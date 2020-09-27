@@ -1,5 +1,5 @@
 ---
-title: Split Array into n number of chunks
+title: Split Array into `n` number of chunks
 description: Split an array into `n` number of multiple arrays with JavaScript
 date: 27 sep, 2020 10:45 AM
 ---
