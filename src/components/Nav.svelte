@@ -124,7 +124,7 @@
       </a>
     </li>
     <li>
-      <a aria-current={segment === 'work' && 'page'} href="works"> WORKS </a>
+      <a aria-current={segment === 'works' && 'page'} href="works"> WORKS </a>
     </li>
   </ul>
   <span class="flex" />

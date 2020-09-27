@@ -12,6 +12,7 @@
   repo:
     url: https://github.com/puruvj/puruvjdev2
     type: github
+  image: puruvjdev2.png
 
 - title: Microsoft Todo Clone
   url: https://ms-todo.vercel.app
@@ -25,6 +26,7 @@
   repo:
     url: https://github.com/puruvj/ms-todo-clone
     type: github
+  image: ms-todo.png
 
 - title: Puru Eye Hospital
   url: https://purueyehospital.com
@@ -37,3 +39,4 @@
   repo:
     url: https://github.com/puruvj/peh-stencil
     type: github
+  image: peh.png

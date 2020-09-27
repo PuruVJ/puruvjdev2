@@ -14,32 +14,30 @@ const { optimizeGif, gifMarkup } = require("./gif-module");
  * Assuming the image is media folder in assets
  * @param {string} src
  */
-async function optimizeBlogImages(src) {
+async function optimizeBlogImages(src, returnMarkup = true) {
   // Start measuring
   console.log("Starting to retrieve/create image/data");
 
   // First off, don't optimize this image and save us some CPU time if it
   // already exists
   // First get the filename
-  const [filePath] = src.split("/").reverse();
+  const [filePath, baseFolder] = src.split("/").reverse();
   const [fileName] = filePath.split(".");
 
   const [format] = filePath.split(".").reverse();
-  const folderPath = `../static/media/${fileName}`;
+  const folderPath = `../static/${baseFolder}/${fileName}`;
 
   console.log(format);
-
-  const baseURL = "media";
 
   // The list of file paths to return
   const list = {
     large: {
-      webp: `${baseURL}/${fileName}/large.webp`,
-      org: `${baseURL}/${fileName}/large.${format}`,
+      webp: `${baseFolder}/${fileName}/large.webp`,
+      org: `${baseFolder}/${fileName}/large.${format}`,
     },
     small: {
-      webp: `${baseURL}/${fileName}/small.webp`,
-      org: `${baseURL}/${fileName}/small.${format}`,
+      webp: `${baseFolder}/${fileName}/small.webp`,
+      org: `${baseFolder}/${fileName}/small.${format}`,
     },
     aspectHTW: 1,
     color: [34, 34, 34],
@@ -73,7 +71,7 @@ async function optimizeBlogImages(src) {
     // Log the time
     console.log(`Finished.`);
     console.log();
-    return markup(list, format);
+    return returnMarkup ? markup(list, format) : list;
   }
 
   // Optimize if GIF
@@ -89,7 +87,7 @@ async function optimizeBlogImages(src) {
   // The image is optimizable. That means work, boys!
   // Let's try make the folder
   try {
-    await mkdir(`../static/media/${fileName}`);
+    await mkdir(`../static/${baseFolder}/${fileName}`);
   } catch (e) {}
 
   // Ok folder exists
@@ -167,7 +165,7 @@ async function optimizeBlogImages(src) {
   console.log();
 
   // Return the list
-  return markup(list, format);
+  return returnMarkup ? markup(list, format) : list;
 }
 
 function markup(list, format) {
@@ -205,5 +203,7 @@ function markup(list, format) {
   </figure>
   `;
 }
+
+optimizeBlogImages("../static/works/puruvjdev2.png");
 
 module.exports = { optimizeBlogImages };
