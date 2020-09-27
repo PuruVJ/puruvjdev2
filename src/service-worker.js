@@ -1,4 +1,4 @@
-import { timestamp, files, shell, routes } from "@sapper/service-worker";
+import { timestamp, files, shell } from "@sapper/service-worker";
 
 const ASSETS = `cache${timestamp}`;
 
@@ -11,7 +11,8 @@ const to_cache = shell
       file.endsWith(".css") ||
       file.endsWith(".html") ||
       file.endsWith(".js") ||
-      file.endsWith(".json")
+      file.endsWith(".json") ||
+      file.includes("not-found-")
   );
 const cached = new Set(to_cache);
 
