@@ -18,8 +18,11 @@
   import type { IWork } from "../interfaces/work.interface";
   import { mdiWeb, mdiGithub } from "@mdi/js";
   import Icon from "../components/Icon.svelte";
+  import { onMount } from "svelte";
 
   export let works: IWork[];
+
+  onMount(() => document.body.classList.add("background"));
 </script>
 
 <style lang="scss">
@@ -40,6 +43,8 @@
       0 17px 55px rgba(0, 0, 0, 0.07);
 
     border-radius: 1rem;
+
+    background-color: var(--app-color-shell);
   }
 
   .img-preview {
@@ -57,13 +62,12 @@
   .info-section {
     display: flex;
     justify-content: space-between;
-    
 
     padding: 1rem;
   }
 
   .title {
-    font-family: 'Fira Code', monospace;
+    font-family: "Fira Code", monospace;
     font-weight: 600;
   }
 
