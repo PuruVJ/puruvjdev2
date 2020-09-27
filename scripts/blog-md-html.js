@@ -157,7 +157,7 @@ const { seriesLinksPlugin } = require("./blog-plugins/series-links");
     html = document.body.innerHTML;
 
     // Calculate reading time
-    const reading_time = readingTime(html, { wordsPerMinute: 300 }).minutes;
+    const reading_time = readingTime(html, { wordsPerMinute: 400 }).minutes;
 
     await writeFile(
       `../static/blog/${fileName}.json`,
