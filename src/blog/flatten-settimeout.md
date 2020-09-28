@@ -35,9 +35,9 @@ setTimeout(() => {
 
 Now you can see for yourself, this code SMELLS. BAD.
 
-The moment I wrote it, I knew it wouldn't work in long-term. What if I needed to an extra step of waiting and doing a Task #4? Or reaaranging the order.
+The moment I wrote it, I knew it wouldn't work in long-term. What if I needed to an extra step of waiting and doing a Task #4? Or rearranging the order.
 
-So, I declared a utility function and it solved the problem compltely.
+So, I declared a utility function and it solved the problem completely.
 
 ```js
 /**
