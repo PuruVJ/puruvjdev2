@@ -1,5 +1,5 @@
 ---
-title: Simplify `setTimeout` using Promise
+title: Simplify code by promsifying `setTimeout`
 description: Simplify and clean your codebase by making setTimeout more idiomatic using Promises
 date: 28 Sep, 2020 2:34 PM
 cover_image: media/timer.jpg
