@@ -17,6 +17,7 @@
 
   img {
     height: 1em;
+    vertical-align: middle;
   }
 
   .copy-area {
