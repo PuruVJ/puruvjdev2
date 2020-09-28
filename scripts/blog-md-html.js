@@ -44,6 +44,8 @@ const { seriesLinksPlugin } = require("./blog-plugins/series-links");
   };
 
   md.renderer.rules.image = (tokens, idx, options, env, self) => {
+    console.log(tokens[idx].attrGet("alt"));
+
     tokens[idx].attrPush(["class", "feature-image"]);
     return defaultRender(tokens, idx, options, env, self);
   };

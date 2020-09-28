@@ -5,7 +5,7 @@ date: 28 Sep, 2020 2:34 PM
 cover_image: media/timer.jpg
 ---
 
-![](../../static/media/timer.jpg)
+![Alt text](../../static/media/timer.jpg)
 
 Recently, when I was working on my practice project [Microsoft Todo Clone](https://ms-todo.vercel.app), I needed to implement code like this:
 
