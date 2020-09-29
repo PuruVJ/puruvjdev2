@@ -87,7 +87,7 @@ It will return an error. Why?
 
 How do we resolve this (Pun intended 😎)?
 
-# Solution(s)
+# Solutions
 
 There can be many ways to solve this problem. I will share 2 here
 
