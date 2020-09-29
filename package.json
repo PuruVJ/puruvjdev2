@@ -33,6 +33,7 @@
     "@rollup/plugin-replace": "^2.2.0",
     "@rollup/plugin-typescript": "^6.0.0",
     "@tsconfig/svelte": "^1.0.10",
+    "@types/node": "^14.11.2",
     "@types/throttle-debounce": "^2.1.0",
     "color-thief-node": "^1.0.3",
     "fluent-ffmpeg": "^2.1.2",

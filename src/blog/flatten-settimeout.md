@@ -17,7 +17,7 @@ Recently, when I was working on my practice project [Microsoft Todo Clone](https
 #5 Do Task 3
 ```
 
-Notice `#2` and `#4`. They smell of setTimeout😖. setTimeout takes in a callback, meaning there will be an indentation. Whenever those appear, means the code's gonna get ugly.
+Notice `#2` and `#4`. They smell of `setTimeout` 😖. `setTimeout` takes in a callback, meaning there will be an indentation. Whenever those appear, means the code's gonna get ugly.
 
 So I wrote this code in JS
 
