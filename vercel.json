@@ -5,5 +5,10 @@
       "memory": 1024,
       "maxDuration": 10
     }
-  }
+  },
+
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/index.html" }
+  ]
 }
