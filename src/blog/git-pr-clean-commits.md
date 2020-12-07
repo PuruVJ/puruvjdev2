@@ -18,7 +18,7 @@ What is that?! How did it happen?!!
 
 Don't worry. Just read on.
 
-> Disclaimer: I'm not a git expert in any way. In fact I started using it to its full extent only 2 months back from now, in <mark>November, 2020</mark>. The explanation you read below may be (partially)incorrect, and if you find that, please inform me with a Direct Message on twitter [@puruvj](https://twitter.com/puruvj). You'll be doing a favour to the whole community as a whole. However be assured, the commands/steps below are tested to work well, and are correct.
+> Disclaimer: I'm not a git expert in any way. In fact I started using it to its full extent only 2 months back from now, in <mark>November, 2020</mark>. The explanation you read below may be (partially)incorrect, and if you find that, please inform me with a Direct Message on twitter [@puruvj](https://twitter.com/puruvj). You'll be doing a favour to the whole community. However be assured, the commands/steps below are tested to work well, and are correct.
 
 # Explanation
 
