@@ -1,7 +1,7 @@
 ---
 title: BLOG. EVERY. SINGLE. WEEK!!
 description: Just some random rant to make myself blog every week
-date: 9 Dec, 2020 7:30PM
+date: 9 Dec, 2020 7:30 PM
 ---
 
 BLOG. EVERY. SINGLE. WEEK!!
