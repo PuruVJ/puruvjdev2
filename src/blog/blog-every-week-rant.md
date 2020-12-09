@@ -18,4 +18,4 @@ I'm not consistent at all.
 
 So I'm putting this out there. A \[VERY] Public reminder for myself. Now that it is here, I'll be forced to write blog posts every week.
 
-![Ronaldo bracing himself](../../static/media/ronaldo-brace-yourself.gif))
+![Ronaldo bracing himself](../../static/media/ronaldo-brace-yourself.gif)
