@@ -7,12 +7,15 @@ mark {
 }
 
 .emoji {
-  display: inline-block;
+  /* display: inline-block; */
 
   height: 1em;
   width: 1em;
 
-  margin: 0;
+  margin: 0 0.05em 0 0.1em;
+  vertical-align: -0.1em;
+
+  /* margin: 0; */
 
   vertical-align: middle;
 }
@@ -66,7 +69,7 @@ code {
     font-size: calc(1.1 * 1.618rem);
   }
 
-  #blog-content h1{
+  #blog-content h1 {
     font-size: calc(1.1 * 2.618rem);
   }
 }
@@ -76,6 +79,7 @@ code {
   line-height: 1.618;
 }
 
+#blog-content h3 a,
 #blog-content h2 a,
 #blog-content h1 a {
   font-weight: 600;

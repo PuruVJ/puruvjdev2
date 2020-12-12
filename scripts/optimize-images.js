@@ -204,6 +204,4 @@ function markup(list, format) {
   `;
 }
 
-optimizeBlogImages("../static/works/puruvjdev2.png");
-
 module.exports = { optimizeBlogImages };

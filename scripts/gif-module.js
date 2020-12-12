@@ -1,16 +1,23 @@
-const ffmpegInstaller = require("@ffmpeg-installer/ffmpeg");
-const ffprobe = require("@ffprobe-installer/ffprobe");
-const { mkdir } = require("fs").promises;
+const { mkdir, writeFile } = require("fs").promises;
+const path = require("path");
+const cloudinary = require("cloudinary").v2;
+const fetch = require("node-fetch").default;
 
-const ffmpeg = require("fluent-ffmpeg")()
-  .setFfprobePath(ffprobe.path)
-  .setFfmpegPath(ffmpegInstaller.path);
+require("dotenv").config({
+  path: path.resolve(__dirname, "../.env"),
+});
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET_KEY,
+});
 
 /**
  * This function converts gif to video and returns the necessary markup
  * @param {string} fileName without extension
  */
-async function optimizeGif(fileName = "dumbledore-pretty-hard") {
+async function optimizeGif(fileName) {
   const folderPath = `../static/media/${fileName}`;
   const gifPath = `${folderPath}.gif`;
 
@@ -18,26 +25,24 @@ async function optimizeGif(fileName = "dumbledore-pretty-hard") {
     await mkdir(folderPath);
   } catch (e) {}
 
+  const res = await cloudinary.uploader.upload(gifPath, {
+    format: "mp4",
+    folder: "media",
+    transformation: {
+      quality: 80,
+    },
+    use_filename: true,
+    overwrite: true,
+  });
+
+  console.log(res.url);
+
+  const buffer = await fetch(res.url).then((res) => res.buffer());
+
+  await writeFile(folderPath + "/vidgif.mp4", buffer);
+
   console.log(`Starting gif conversion: ${fileName}`);
 
-  await new Promise((resolve) =>
-    ffmpeg
-      .input(gifPath)
-      .inputOption("-f gif")
-      .outputOptions([
-        "-pix_fmt yuv420p",
-        "-c:v libx264",
-        "-movflags +faststart",
-        "-filter:v crop='floor(in_w/2)*2:floor(in_h/2)*2'",
-      ])
-      .noAudio()
-      .output(`${folderPath}/vidgif.mp4`)
-      .on("end", () => {
-        resolve();
-      })
-      .on("error", (e) => console.log(e))
-      .run()
-  );
   console.log(`Done with GIF: ${fileName}`);
   console.log();
 }
