@@ -105,7 +105,7 @@ This section is dedicated to how to format using the Prettier CLI
 
 ## Installing the CLI
 
-There 2 ways to install the CLI
+There 2 ways to install the CLI 👉
 
 ### Global
 
