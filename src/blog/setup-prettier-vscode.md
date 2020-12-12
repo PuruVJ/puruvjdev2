@@ -27,6 +27,8 @@ If you're the only one involved in the project, sure go ahead and write unformat
 
 But if you are in a team or in some situation where multiple developers are collaborating on the code, you need to have properly formatted code, whether by yourself by hand, or by having it auto-formatted by the tooling.
 
+And it's better if it's auto-formatted.
+
 And it's good to have formatted code, even when you're on your own. Higher readability, Higher productivity.
 
 And this is where Prettier comes in.
