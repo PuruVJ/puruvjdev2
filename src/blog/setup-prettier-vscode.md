@@ -119,7 +119,7 @@ This approach is fine. However, if you're a new linux user and getting permissio
 
 ### Local
 
-Local here means you install prettier in the folder you're working on right now, and run it locally. This is actually the recommended way, and better than the global, in my opinion ¯\\\_(ツ)\_/¯
+Local here means you install prettier in the folder you're working on right now, and run it locally. This is actually the recommended way, and better than the global approach, in my opinion ¯\\\_(ツ)\_/¯
 
 ```powershell
 npm install --save-dev prettier
