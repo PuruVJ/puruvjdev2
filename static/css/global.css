@@ -66,10 +66,10 @@ h2 {
   font-size: 1.618rem;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   background-color: rgba(var(--app-color-dark-rgb), 0.1);
   width: 15px;
-}
+} */
 
 ::-webkit-scrollbar-thumb {
   background-color: rgba(var(--app-color-dark-rgb), 0.8);
