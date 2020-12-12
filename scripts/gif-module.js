@@ -53,7 +53,7 @@ function gifMarkup(fileName) {
   return `
   <div class="gif-vid-container">
     <video autoplay loop muted playsinline>
-      <source src="${baseForMarkup}/${fileName}.mp4" type="video/mp4">
+      <source src="${baseForMarkup}/vidgif.mp4" type="video/mp4">
       Your browser doesn't support HTML5 video playback. <a href="${baseForMarkup}.gif" target="_blank" rel="noopener">See the gif here</a>
     </video>
   </div>
