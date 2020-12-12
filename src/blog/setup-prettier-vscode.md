@@ -55,7 +55,7 @@ prettier --write "src/**/*.{html|css|js|json|jsx|tsx}"
 
 ## Why should I bother with the NPM package?
 
-VSCode extension is much easier and better in terms Developer Experience, but it can only format one file at a time. If you're adding prettier in a pre-existing large-enough project, you simply can't bother with opening every single file yourselves, and hitting the magic keys. You need to <mark>bulk-format</mark> them. That's where Prettier Node CLI comes in
+VSCode extension is much easier and better in terms of Developer Experience, but it can only format one file at a time. If you're adding prettier in a pre-existing large-enough project, you simply can't bother with opening every single file yourselves, and hitting the magic keys. You need to <mark>bulk-format</mark> them. That's where Prettier Node CLI comes in
 
 There's also the fact that VSCode is a memory hog, and adding extensions to it makes everything slower. You don't need to bother with this point if you have a 8 Gigs RAM, I5 CPU with blazing-fast SSD laptop, it can take any extension (These specs are just my laptop's specs, these are not hard limits in any way).
 
