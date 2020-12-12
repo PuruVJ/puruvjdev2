@@ -1,7 +1,7 @@
 ---
 title: Setting up auto-formatting in VSCode in 5 minutes
 description: Set up auto formatting in VSCode in just 5 minutes.
-date: 13 Dec, 2020 5:11 PM
+date: 14 Dec, 2020 5:11 PM
 cover_img: media/prettier-setup-ugly-vs-clean.jpg
 ---
 
