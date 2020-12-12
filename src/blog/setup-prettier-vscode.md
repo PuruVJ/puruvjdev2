@@ -37,7 +37,7 @@ Prettier is basically a tool that automatically formats the code you've written,
 
 ## So it's a VSCode extension?
 
-Off course, as the title says 😋
+Off course, as the title says 😋.
 
 It's a very good extension that saves you a lot of trouble. All you have to know is one shortcut key combo to automatically format the code, and boom, you're done.
 
@@ -55,9 +55,9 @@ prettier --write "src/**/*.{html|css|js|json|jsx|tsx}"
 
 ## Why should I bother with the NPM package?
 
-VSCode extension is much easier and better in terms of Developer Experience, but it can only format one file at a time. If you're adding prettier in a pre-existing large-enough project, you simply can't bother with opening every single file yourselves, and hitting the magic keys. You need to <mark>bulk-format</mark> them. That's where Prettier Node CLI comes in
+VSCode extension is much easier and better in terms of Developer Experience, but it can only format one file at a time. If you're adding prettier in a pre-existing large-enough project, you simply can't bother with opening every single file yourselves, and hitting the magic keys. You need to <mark>bulk-format</mark> them. That's where Prettier Node CLI comes in.
 
-There's also the fact that VSCode is a memory hog, and adding extensions to it makes everything slower. You don't need to bother with this point if you have a 8 Gigs RAM, I5 CPU with blazing-fast SSD laptop, it can take any extension (These specs are just my laptop's specs, these are not hard limits in any way).
+There's also the fact that VSCode is a memory hog, and adding extensions to it makes everything slower. You don't need to bother with this point if you have a 8 GB RAM, i5 CPU with blazing-fast SSD laptop, it can take any extension (These specs are just my laptop's specs, these are not hard limits in any way).
 
 But if you have a slow system and don't wanna add any extensions, No Problem 👍. You'll just need to learn to use the CLI. And it's simple enough. I'll cover that below.
 
