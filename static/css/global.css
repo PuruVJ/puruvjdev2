@@ -67,7 +67,7 @@ h2 {
 }
 
 ::-webkit-scrollbar {
-  background-color: rgba(var(--app-color-dark-rgb), 0);
+  background-color: transparent;
   width: 15px;
 }
 
