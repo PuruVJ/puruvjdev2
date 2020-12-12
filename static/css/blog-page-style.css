@@ -66,7 +66,7 @@ code {
     font-size: calc(1.1 * 1.618rem);
   }
 
-  #blog-content h1{
+  #blog-content h1 {
     font-size: calc(1.1 * 2.618rem);
   }
 }
@@ -76,6 +76,7 @@ code {
   line-height: 1.618;
 }
 
+#blog-content h3 a,
 #blog-content h2 a,
 #blog-content h1 a {
   font-weight: 600;
