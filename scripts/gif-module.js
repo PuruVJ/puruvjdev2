@@ -10,7 +10,7 @@ const ffmpeg = require("fluent-ffmpeg")()
  * This function converts gif to video and returns the necessary markup
  * @param {string} fileName without extension
  */
-async function optimizeGif(fileName = "dumbledore-pretty-hard") {
+async function optimizeGif(fileName) {
   const folderPath = `../static/media/${fileName}`;
   const gifPath = `${folderPath}.gif`;
 
@@ -31,7 +31,7 @@ async function optimizeGif(fileName = "dumbledore-pretty-hard") {
         "-filter:v crop='floor(in_w/2)*2:floor(in_h/2)*2'",
       ])
       .noAudio()
-      .output(`${folderPath}/vidgif.mp4`)
+      .output(`${folderPath}/${fileName}.mp4`)
       .on("end", () => {
         resolve();
       })
@@ -48,7 +48,7 @@ function gifMarkup(fileName) {
   return `
   <div class="gif-vid-container">
     <video autoplay loop muted playsinline>
-      <source src="${baseForMarkup}/vidgif.mp4" type="video/mp4">
+      <source src="${baseForMarkup}/${fileName}.mp4" type="video/mp4">
       Your browser doesn't support HTML5 video playback. <a href="${baseForMarkup}.gif" target="_blank" rel="noopener">See the gif here</a>
     </video>
   </div>
