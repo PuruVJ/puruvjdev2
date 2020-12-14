@@ -27,7 +27,7 @@ async function seriesLinksPlugin(document, seriesPosts, seriesName, currentID) {
           ? `<a rel="noopener" target="_blank" href="/blog/${id}">Part ${
               i + 1
             } - ${title}</a><br>`
-          : `<a> Part ${i + 1} - ${title} (You're reading it 😊)</a><br>`
+          : `<a> Part ${i + 1} - ${title} (You're reading it 😁)</a><br>`
       )
       .join("");
 
