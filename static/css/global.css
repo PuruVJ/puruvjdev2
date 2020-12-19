@@ -59,7 +59,7 @@ h3 {
 
   font-family: "Comfortaa", sans-serif;
   color: var(--app-color-dark);
-  line-height: 1.618;
+  line-height: 1.3;
 
   transition: color 200ms ease-in;
 }
@@ -90,7 +90,10 @@ h2 {
 }
 
 *::selection {
-  background-color: rgba(var(--app-color-primary-rgb), 0.3);
+  background-color: rgba(var(--app-color-primary-rgb), 1);
+  color: var(--app-color-primary-contrast);
+
+  border-radius: 0.3rem;
 }
 
 a[href] {

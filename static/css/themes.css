@@ -26,7 +26,7 @@ body.midday {
   --app-color-primary-rgb: 111, 73, 31;
   --app-color-primary-tint: #a99279;
   --app-color-primary-shade: #432c13;
-  --app-color-primary-contrast: #222428;
+  --app-color-primary-contrast: #fff;
 
   --app-color-dark: #222428;
   --app-color-dark-rgb: 34, 34, 34;

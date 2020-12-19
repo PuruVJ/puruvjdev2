@@ -4,7 +4,7 @@
   import Icon from "./Icon.svelte";
 </script>
 
-<style>
+<style lang="scss">
   footer {
     padding: 1rem;
 
@@ -38,24 +38,37 @@
     display: flex;
     align-items: center;
 
-    transition: fill 200ms ease-out;
+    transition: fill 120ms ease-out;
 
     margin: 0 4px;
+
+    transition: transform 200ms ease-in;
+
+    &:hover,
+    &:focus-visible {
+      transform: scale(1.2);
+    }
   }
 
-  #twitter:hover,
-  #twitter:focus {
-    fill: #1da1f2;
-  }
+  // #twitter:hover,
+  // #twitter:focus {
+  //   fill: #1da1f2;
+  // }
 
-  #github:hover,
-  #github:focus {
-    fill: #333;
-  }
+  // #github:hover,
+  // #github:focus {
+  //   fill: #333;
+  // }
 
-  #devto:hover,
-  #devto:focus {
-    fill: black;
+  // #devto:hover,
+  // #devto:focus {
+  //   fill: black;
+  // }
+
+  @media screen and (max-width: 600px) {
+    .copy-area {
+      font-size: 0.7rem;
+    }
   }
 </style>
 
