@@ -35,3 +35,17 @@ According to Github, the value provided by the pack is **12,000 USD** per studen
 ![Awestruck](../../static/media/free-github-student-po-awestruck.gif)
 
 Mind blowing isn't it? It's a great time to be a Student Developer.
+
+You also get Github Pro free in it until you're a student. It gets you the Pro badge on your github profile. I dunno how much good stuff you get from Github Pro, but the badge sure looks great 😉.
+
+Check out [my profile](https://github.com/PuruVJ) to see the pro badge.
+
+# How to get it?
+
+Head over to the website, [GitHub Student Developer Pack](https://education.github.com/pack).
+
+Here you'll find all the perks you get, and register to Github Student Pack here.
+
+This topic is way too big to cover myself, and I suggest you to head over to this Github Blog Post about [Student Developer Pack](https://github.blog/2019-07-30-how-to-get-the-github-student-developer-pack-without-a-student-id/). They have written it better than I ever could ¯\\\_(ツ)\_/¯
+
+Signing off!
