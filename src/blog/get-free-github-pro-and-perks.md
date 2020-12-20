@@ -2,7 +2,7 @@
 title: Free Github pro and Perks for Students
 description: Are you a student? Then you better enroll yourself into getting the Github Student Developer Pack. So many great perks. Find out more about it.
 date: 20 Dec, 2020, 9:28 AM
-cover_image: static/github-student-pack-study-table.jpg
+cover_image: media/github-student-pack-study-table.jpg
 published: true
 ---
 
