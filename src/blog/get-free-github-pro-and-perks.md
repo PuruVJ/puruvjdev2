@@ -46,6 +46,6 @@ Head over to the website, [GitHub Student Developer Pack](https://education.gith
 
 Here you'll find all the perks you get, and register to Github Student Pack here.
 
-This topic is way too big to cover myself, and I suggest you to head over to this Github Blog Post about [Student Developer Pack](https://github.blog/2019-07-30-how-to-get-the-github-student-developer-pack-without-a-student-id/). They have written it better than I ever could ¯\\\_(ツ)\_/¯
+This topic is way too big to cover myself, and I suggest you to head over to this [Github Blog Post about Student Developer Pack](https://github.blog/2019-07-30-how-to-get-the-github-student-developer-pack-without-a-student-id/). They have written it better than I ever could ¯\\\_(ツ)\_/¯
 
 Signing off!
