@@ -43,7 +43,8 @@ body.background {
 
 * {
   box-sizing: border-box;
-  transition: background 200ms ease-in, background-color 200ms ease-in;
+  transition: background var(--transition-duration) ease-in,
+    background-color var(--transition-duration) ease-in;
 }
 
 *,

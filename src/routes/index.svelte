@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
 
   import { fadeIn, fadeOut } from "../components/fade";
 
   import smoothscroll from "smoothscroll-polyfill";
+  import { waitFor } from "../helpers/utils";
 
   onMount(async () => {
     smoothscroll.polyfill();
@@ -11,6 +12,10 @@
     await import("lazysizes");
 
     document.body.classList.add("background");
+
+    await waitFor(150);
+
+    document.body.style.cssText = "--transition-duration: 200ms";
   });
 </script>
 

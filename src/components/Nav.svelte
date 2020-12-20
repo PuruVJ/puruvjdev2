@@ -34,7 +34,8 @@
 
     border-radius: 0 0 1rem 1rem;
 
-    transition: box-shadow 150ms ease-out, background-color 200ms ease-in;
+    transition: box-shadow 150ms ease-out,
+      background-color var(--transition-duration) ease-in;
 
     &.dark.shadow {
       background-color: #383a3e;
