@@ -6,19 +6,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="apple-touch-icon" href="/icons/favicon.png" />
 
-    <script>
-      // Get localstorage value
-      const localTheme = localStorage.getItem("theme");
-      const prefersTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches;
-
-      const theme = localTheme || prefersTheme ? "dark" : "light";
-
-      document.body.classList.add(theme);
-
-      localStorage.setItem("theme", theme);
-    </script>
-
     %sapper.base%
 
     <link rel="stylesheet" href="css/global.css" />
@@ -38,11 +25,6 @@
       href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&family=Fira+Code:wght@400&family=Quicksand:wght@400&display=swap"
     />
 
-    <!-- Sapper creates a <script> tag containing `src/client.js`
-	     and anything else it needs to hydrate the app and
-	     initialise the router -->
-    %sapper.scripts%
-
     <!-- Sapper generates a <style> tag containing critical CSS
 	     for the current page. CSS for the rest of the app is
 	     lazily loaded when it precaches secondary pages -->
@@ -58,6 +40,24 @@
     <!-- The application will be rendered inside this element,
 	     because `src/client.js` references it -->
     <div id="sapper">%sapper.html%</div>
+
+    <script>
+      // Get localstorage value
+      const localTheme = localStorage.getItem("theme");
+      const prefersTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches;
+
+      const theme = localTheme || prefersTheme ? "dark" : "light";
+
+      document.body.classList.add(theme);
+
+      localStorage.setItem("theme", theme);
+    </script>
+
+    <!-- Sapper creates a <script> tag containing `src/client.js`
+	     and anything else it needs to hydrate the app and
+	     initialise the router -->
+    %sapper.scripts%
 
     <link
       rel="stylesheet"
