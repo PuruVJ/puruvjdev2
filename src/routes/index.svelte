@@ -1,21 +1,17 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount } from 'svelte';
 
-  import { fadeIn, fadeOut } from "../components/fade";
+  import { fadeIn, fadeOut } from '../components/fade';
 
-  import smoothscroll from "smoothscroll-polyfill";
-  import { waitFor } from "../helpers/utils";
+  import smoothscroll from 'smoothscroll-polyfill';
+  import { waitFor } from '../helpers/utils';
 
   onMount(async () => {
     smoothscroll.polyfill();
 
-    await import("lazysizes");
+    await import('lazysizes');
 
-    document.body.classList.add("background");
-
-    await waitFor(150);
-
-    document.body.style.cssText = "--transition-duration: 200ms";
+    document.body.classList.add('background', 'animated');
   });
 </script>
 
@@ -56,7 +52,7 @@
   }
 
   #about-me {
-    font-family: "Fira Code", monospace;
+    font-family: 'Fira Code', monospace;
     font-weight: 550 !important;
   }
 
@@ -97,9 +93,7 @@
   <meta
     property="og:description"
     content="Read about web development, designing and programming on Puru Vijay's blog." />
-  <meta
-    property="og:image"
-    content="https://puruvj.dev/media/blog-social-intro.png" />
+  <meta property="og:image" content="https://puruvj.dev/media/blog-social-intro.png" />
   <meta property="og:url" content="https://puruvj.dev" />
 
   <link rel="canonical" href="https://puruvj.dev/" />
@@ -111,9 +105,7 @@
   <section class="puru-intro">
     <!-- svelte-ignore a11y-img-redundant-alt -->
     <div class="photo-area">
-      <figure>
-        <img src="./photos/puru-profile.jpg" alt="Puru Vijay Profile Photo" />
-      </figure>
+      <figure><img src="./photos/puru-profile.jpg" alt="Puru Vijay Profile Photo" /></figure>
     </div>
 
     <div id="written">

@@ -1,9 +1,11 @@
 <script>
-  import Footer from "../components/Footer.svelte";
-  import Nav from "../components/Nav.svelte";
-  import { BUILD } from "../constants";
-  import { stores } from "@sapper/app";
-  import { theme } from "../stores/theme.store";
+  import Footer from '../components/Footer.svelte';
+  import Nav from '../components/Nav.svelte';
+  import { BUILD } from '../constants';
+  import { stores } from '@sapper/app';
+  import { theme } from '../stores/theme.store';
+  import { onMount } from 'svelte';
+  import { waitFor } from '../helpers/utils';
 
   const { page } = stores();
 
@@ -17,7 +19,13 @@
       return;
     }
 
-    return void document.body.scrollTo({ top: 0, behavior: "smooth" });
+    return void document.body.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  onMount(async () => {
+    await waitFor(200);
+
+    document.body.style.setProperty('--transition-duration', '200ms');
   });
 
   export let segment;
