@@ -10,8 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vercel/node": "^1.8.3",
-    "firebase-admin": "^9.2.0",
-    "github-api": "^3.3.0"
+    "@vercel/node": "^1.8.5",
+    "firebase-admin": "^9.4.2"
   }
 }

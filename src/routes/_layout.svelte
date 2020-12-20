@@ -41,7 +41,7 @@
 
 <Nav {segment} />
 
-<main style="margin-top: 60px">
+<main style="margin-top: 3.75rem">
   <slot />
 </main>
 

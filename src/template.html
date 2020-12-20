@@ -6,6 +6,19 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="apple-touch-icon" href="/icons/favicon.png" />
 
+    <script>
+      // Get localstorage value
+      const localTheme = localStorage.getItem("theme");
+      const prefersTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches;
+
+      const theme = localTheme || prefersTheme ? "dark" : "light";
+
+      document.body.classList.add(theme);
+
+      localStorage.setItem("theme", theme);
+    </script>
+
     %sapper.base%
 
     <link rel="stylesheet" href="css/global.css" />

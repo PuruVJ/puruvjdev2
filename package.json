@@ -17,6 +17,7 @@
     "jsdom": "^16.4.0",
     "lazysizes": "^5.2.2",
     "node-fetch": "^2.6.1",
+    "smoothscroll-polyfill": "^0.4.4",
     "throttle-debounce": "^2.3.0",
     "twemoji": "^13.0.1"
   },

@@ -3,7 +3,11 @@
 
   import { fadeIn, fadeOut } from "../components/fade";
 
+  import smoothscroll from "smoothscroll-polyfill";
+
   onMount(async () => {
+    smoothscroll.polyfill();
+
     await import("lazysizes");
 
     document.body.classList.add("background");
@@ -56,6 +60,11 @@
     color: var(--app-color-primary);
   }
 
+  h1,
+  h2 {
+    line-height: 1.618;
+  }
+
   @media screen and (max-width: 600px) {
     .puru-intro {
       flex-direction: column;
@@ -105,8 +114,11 @@
     <div id="written">
       <h1>Hi, I'm <mark>Puru</mark></h1>
       <h2 id="about-me">
-        I am a <mark>self-taught fullstack web developer</mark> based in India. I
-        make <mark>blazing fast and performant</mark> web apps. Like this blog.
+        I am a
+        <mark>self-taught fullstack web developer</mark>
+        based in India. I make
+        <mark>blazing fast and performant</mark>
+        web apps. Like this blog.
       </h2>
     </div>
   </section>

@@ -60,6 +60,12 @@
     }
   }
 
+  h1,
+  h2,
+  h3 {
+    line-height: 1.618;
+  }
+
   .series {
     color: rgba(var(--app-color-dark-rgb), 0.6);
 
