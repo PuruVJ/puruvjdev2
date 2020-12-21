@@ -15,7 +15,7 @@
   "redirects": [
     { "source": "/view-source", "destination": "https://github.com/puruvj/puruvjdev2" },
     { "source": "/twitter", "destination": "https://twitter.com/puruvjdev" },
-    { "source": "/github", "destination": "https://github.com/puruvj" }
+    { "source": "/github", "destination": "https://github.com/puruvj" },
     { "source": "/devto", "destination": "https://dev.to/puruvj" }
   ]
 }
