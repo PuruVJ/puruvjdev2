@@ -9,13 +9,10 @@
 
   "routes": [
     { "handle": "filesystem" },
+    { "src": "/view-source", "status": 307, "dest": "https://github.com/puruvj/puruvjdev2" },
+    { "src": "/twitter", "status": 307, "dest": "https://twitter.com/puruvjdev" },
+    { "src": "/github", "status": 307, "dest": "https://github.com/puruvj" },
+    { "src": "/devto", "status": 307, "dest": "https://dev.to/puruvj" },
     { "src": "/(.*)", "status": 404, "dest": "404/index.html" }
-  ],
-
-  "redirects": [
-    { "source": "/view-source", "destination": "https://github.com/puruvj/puruvjdev2" },
-    { "source": "/twitter", "destination": "https://twitter.com/puruvjdev" },
-    { "source": "/github", "destination": "https://github.com/puruvj" },
-    { "source": "/devto", "destination": "https://dev.to/puruvj" }
   ]
 }
