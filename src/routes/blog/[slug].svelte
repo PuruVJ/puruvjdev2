@@ -27,44 +27,6 @@
   export let blogData: IBlog;
   let { title, body, date, description, cover_image, id, reading_time } = blogData;
 
-  let jsonLD = {
-    '@context': 'http://schema.org',
-    '@type': 'BlogPosting',
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://puruvj.dev/blog/${id}`,
-    },
-    headline: title,
-    image: {
-      '@type': 'ImageObject',
-      url: `https://puruvj.dev/${cover_image}`,
-    },
-    datePublished: `${new Date(date).getFullYear()}-${new Date(date).getMonth() + 1}-${new Date(
-      date
-    ).getDate()}`,
-    dateModified: `${new Date(date).getFullYear()}-${new Date(date).getMonth() + 1}-${new Date(
-      date
-    ).getDate()}`,
-    author: {
-      '@type': 'Person',
-      name: 'Puru Vijay',
-    },
-    publisher: {
-      '@type': 'Person',
-      name: 'Puru Vijay',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://puruvj.dev/icons/logo-512.png',
-        width: 512,
-        height: 512,
-      },
-    },
-    description,
-    articleBody: body,
-  };
-
-  // let height: number = 0;
-
   function handleProgressBar() {
     let height = document.body.scrollHeight - document.documentElement.clientHeight;
     const currentY = document.body.scrollTop;
@@ -81,6 +43,45 @@
   onDestroy(() => {
     $readingProgress = 0;
   });
+
+  const ldFormattedDate = `${new Date(date).getFullYear()}-${new Date(date).getMonth() + 1}-${new Date(
+      date
+    ).getDate()}`;
+
+  const jsonLD = {
+    '@context': 'http://schema.org',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://puruvj.dev/blog/${id}`,
+    },
+    headline: title,
+    image: {
+      '@type': 'ImageObject',
+      url: `https://puruvj.dev/${cover_image}`,
+    },
+    datePublished: ldFormattedDate,
+    dateModified: ldFormattedDate,
+   author: {
+      '@type': 'Person',
+      name: 'Puru Vijay',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Puru Vijay',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://puruvj.dev/icons/logo-512.png',
+        width: 512,
+        height: 512,
+      },
+    },
+    description  ,
+    articleBody: body,
+  };
+
+    const ldMarkup = '<script type="application/ld+json">' +JSON.stringify(jsonLD) + '</script>`;
+
 </script>
 
 <style lang="scss">
@@ -134,6 +135,8 @@
   <meta property="og:url" content="https://puruvj.dev/blog/{id}" />
 
   <link rel="canonical" href="https://puruvj.dev/blog/{id}" />
+
+  {@html ldMarkup}
 </svelte:head>
 
 <svelte:body on:scroll={throttle(10, false, handleProgressBar)} />
@@ -149,5 +152,3 @@
     {@html body}
   </article>
 </main>
-
-{@html ''}
