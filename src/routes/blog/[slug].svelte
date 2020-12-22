@@ -43,45 +43,6 @@
   onDestroy(() => {
     $readingProgress = 0;
   });
-
-  const ldFormattedDate = `${new Date(date).getFullYear()}-${new Date(date).getMonth() + 1}-${new Date(
-      date
-    ).getDate()}`;
-
-  const jsonLD = {
-    '@context': 'http://schema.org',
-    '@type': 'BlogPosting',
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://puruvj.dev/blog/${id}`,
-    },
-    headline: title,
-    image: {
-      '@type': 'ImageObject',
-      url: `https://puruvj.dev/${cover_image}`,
-    },
-    datePublished: ldFormattedDate,
-    dateModified: ldFormattedDate,
-   author: {
-      '@type': 'Person',
-      name: 'Puru Vijay',
-    },
-    publisher: {
-      '@type': 'Person',
-      name: 'Puru Vijay',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://puruvj.dev/icons/logo-512.png',
-        width: 512,
-        height: 512,
-      },
-    },
-    description  ,
-    articleBody: body,
-  };
-
-    const ldMarkup = '<script type="application/ld+json">' +JSON.stringify(jsonLD) + '</script>`;
-
 </script>
 
 <style lang="scss">
@@ -135,8 +96,6 @@
   <meta property="og:url" content="https://puruvj.dev/blog/{id}" />
 
   <link rel="canonical" href="https://puruvj.dev/blog/{id}" />
-
-  {@html ldMarkup}
 </svelte:head>
 
 <svelte:body on:scroll={throttle(10, false, handleProgressBar)} />
