@@ -9,37 +9,64 @@
 
       return { blogData: data };
     } catch {
-      this.error(404, "Not Found");
+      this.error(404, 'Not Found');
       return;
     }
   }
 </script>
 
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
-  import { throttle } from "throttle-debounce";
-  import { fadeIn, fadeOut } from "../../components/fade";
-  import LikeButton from "../../components/LikeButton.svelte";
-  import { formatDate } from "../../helpers/format-date";
-  import type { IBlog } from "../../interfaces/blog.interface";
-  import { readingProgress } from "../../stores/progress.store";
+  import { onDestroy, onMount } from 'svelte';
+  import { throttle } from 'throttle-debounce';
+  import { fadeIn, fadeOut } from '../../components/fade';
+  import LikeButton from '../../components/LikeButton.svelte';
+  import { formatDate } from '../../helpers/format-date';
+  import type { IBlog } from '../../interfaces/blog.interface';
+  import { readingProgress } from '../../stores/progress.store';
 
   export let blogData: IBlog;
-  let {
-    title,
-    body,
-    date,
+  let { title, body, date, description, cover_image, id, reading_time } = blogData;
+
+  let jsonLD = {
+    '@context': 'http://schema.org',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://puruvj.dev/blog/${id}`,
+    },
+    headline: title,
+    image: {
+      '@type': 'ImageObject',
+      url: `https://puruvj.dev/${cover_image}`,
+    },
+    datePublished: `${new Date(date).getFullYear()}-${new Date(date).getMonth() + 1}-${new Date(
+      date
+    ).getDate()}`,
+    dateModified: `${new Date(date).getFullYear()}-${new Date(date).getMonth() + 1}-${new Date(
+      date
+    ).getDate()}`,
+    author: {
+      '@type': 'Person',
+      name: 'Puru Vijay',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Puru Vijay',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://puruvj.dev/icons/logo-512.png',
+        width: 512,
+        height: 512,
+      },
+    },
     description,
-    cover_image,
-    id,
-    reading_time,
-  } = blogData;
+    articleBody: body,
+  };
 
   // let height: number = 0;
 
   function handleProgressBar() {
-    let height =
-      document.body.scrollHeight - document.documentElement.clientHeight;
+    let height = document.body.scrollHeight - document.documentElement.clientHeight;
     const currentY = document.body.scrollTop;
     // console.log({ currentY, height, sh: document.body.scrollHeight });
 
@@ -47,8 +74,8 @@
   }
 
   onMount(async () => {
-    document.body.classList.remove("background");
-    await import("lazysizes");
+    document.body.classList.remove('background');
+    await import('lazysizes');
   });
 
   onDestroy(() => {
@@ -59,7 +86,7 @@
 <style lang="scss">
   p {
     margin: 0;
-    font-family: "Fira Code", monospace;
+    font-family: 'Fira Code', monospace;
     font-weight: bold;
     font-size: 1.2rem;
     color: var(--app-color-primary);
@@ -117,10 +144,10 @@
     <div class="indicator" style="transform: scaleX({$readingProgress})" />
   </div>
   <h1>{title}</h1>
-  <p>
-    {formatDate(date)} &bull; <span>{Math.ceil(reading_time)} min read</span>
-  </p>
+  <p>{formatDate(date)} &bull; <span>{Math.ceil(reading_time)} min read</span></p>
   <article id="blog-content">
     {@html body}
   </article>
 </main>
+
+{@html ''}

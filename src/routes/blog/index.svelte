@@ -1,6 +1,6 @@
 <script context="module">
   export async function preload() {
-    const res = await this.fetch("./data/blogs-list.json");
+    const res = await this.fetch('./data/blogs-list.json');
     const data = await res.json();
 
     return { blogsList: data };
@@ -8,13 +8,13 @@
 </script>
 
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { fadeIn, fadeOut } from "../../components/fade";
-  import { formatDate } from "../../helpers/format-date";
-  import type { IBlog } from "../../interfaces/blog.interface";
+  import { onMount } from 'svelte';
+  import { fadeIn, fadeOut } from '../../components/fade';
+  import { formatDate } from '../../helpers/format-date';
+  import type { IBlog } from '../../interfaces/blog.interface';
 
   onMount(() => {
-    document.body.classList.add("background");
+    document.body.classList.add('background');
   });
 
   export let blogsList: IBlog[];
@@ -27,7 +27,7 @@
 
   .description {
     color: var(--app-color-dark);
-    font-family: "Fira Code", monospace;
+    font-family: 'Fira Code', monospace;
   }
 
   p {
@@ -39,7 +39,7 @@
     justify-content: space-between;
 
     color: var(--app-color-primary);
-    font-family: "Fira Code", monospace;
+    font-family: 'Fira Code', monospace;
     margin-top: 0.3rem;
     font-weight: bold;
   }
@@ -69,10 +69,10 @@
     color: rgba(var(--app-color-dark-rgb), 0.6);
 
     letter-spacing: 1px;
-    font-family: "Fira Code", monospace;
+    font-family: 'Fira Code', monospace;
 
     mark {
-      font-family: "Quicksand", sans-serif;
+      font-family: 'Quicksand', sans-serif;
     }
   }
 </style>
@@ -88,9 +88,7 @@
   <meta
     property="og:description"
     content="Read about web development, designing and programming on Puru Vijay's blog." />
-  <meta
-    property="og:image"
-    content="https://puruvj.dev/media/blog-social-intro.png" />
+  <meta property="og:image" content="https://puruvj.dev/media/blog-social-intro.png" />
   <meta property="og:url" content="https://puruvj.dev/blog/" />
 
   <link rel="canonical" href="https://puruvj.dev/blog/" />
