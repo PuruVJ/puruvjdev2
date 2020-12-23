@@ -1,5 +1,5 @@
 ---
-title: Cleaning up stowaway git commits in Pull Requests
+title: Cleaning up tag-along git commits in Pull Requests
 description: It's easy to submit dirty PRs with unnecessary number of stowaway commits. Learn how to clean this up.
 date: Dec 7, 2020 3:43 PM
 published: true
@@ -30,7 +30,7 @@ There are 2 reasons why it happens:
 
 ## Making PRs from one single branch
 
-If you keep making PRs from one single branch, whether it be a new branch you created, or it be `main` or `master`, the previous commits will keep adding up, the files involved in each ones will keep piling up too. 
+If you keep making PRs from one single branch, whether it be a new branch you created, or it be `main` or `master`, the previous commits will keep adding up, the files involved in each ones will keep piling up too.
 
 For example, you intended to make a PR with only 2 file changes, but your PR **may** show 10, or 20, or 30, or however number of files all those previous commits included.
 
@@ -41,6 +41,7 @@ As you see in the photo above 👆, you will see some commits by a bot too. Some
 > If this explanation seems very incomplete or weird, is because of the fact that I don't know completely about these bot commits. Please do your own research about this if you can(and tell me too 😋).
 
 # How do I get rid of these stowaway commit?
+
 All you have to do is run these commands
 
 ```bash
@@ -57,4 +58,4 @@ git push --force
 
 # Caution
 
-Hard reset may delete your local commits or any changes, so better not run this cleanup. Make your (dirty) PR, implore the maintainer to merge, and then do this process with your main branch. 
+Hard reset may delete your local commits or any changes, so better not run this cleanup. Make your (dirty) PR, implore the maintainer to merge, and then do this process with your main branch.
