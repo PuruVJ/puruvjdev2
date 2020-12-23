@@ -11,7 +11,7 @@ cover_image: media/top-level-await-top-of-the-world.jpg
 
 # The Dark Times...
 
-There was an era, where if you tried to pull a stunt like this 👇 at the top of the document,
+There was an era, where if you tried to pull a stunt like this 👇 at the top level(i.e. not in any function or block),
 
 ```js
 const data = await fetch(URL);
