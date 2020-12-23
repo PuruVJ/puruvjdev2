@@ -87,7 +87,7 @@ But, there are certain requirements to use it.
 
 # Requirements
 
-It can be used only in an <mark>ES Modules</mark>.
+It can be used only in <mark>ES Modules</mark>.
 
 That is, in scripts that are marked as modules in your HTML or in your package.json in Node
 
