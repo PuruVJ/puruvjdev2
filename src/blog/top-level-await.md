@@ -68,7 +68,22 @@ const data = await fetch(URL);
 
 And it will work perfectly.
 
-But, there certain requirements to use it.
+And that second snippet, see this 👇
+
+```js
+const response = await fetch(URL);
+const jsonData = await response.json();
+
+const finalData = await processJsonData(jsonData);
+
+if (finalData.propA.propB === 'who-cares') {
+  // Do stuff
+}
+```
+
+Perfection 👌
+
+But, there are certain requirements to use it.
 
 # Requirements
 
@@ -90,7 +105,7 @@ In your `index.html`:
 
 ## NodeJS
 
-You need to have minimum of Node **13.9.0** for this feature to work. The current LTS is v14.15, and I recommend most users to always choose the LTS version. If you're reading this in 2025, and the LTS is v24, go for it, not 14.15. (I hope Node survives that long, what with Deno and Elsa being there now 😅)
+You need to have minimum of Node **13.9.0** for this feature to work. The current LTS is v14.15, and I recommend most users to always choose the LTS version. If you're reading this in 2025, and the LTS is v24, go for it, not 14.15. (I hope Node survives that long, what with [Deno](https://deno.land/) and [Elsa](https://github.com/elsaland/elsa) being there now 😅)
 
 > Note: I'm aware that you could use ES Modules long before 13.9.0 in NodeJS, but you had to pass the flag `--experimental-module`, as in `node index.js --experimental-module`, and these modules were highly experimental and unstable and subject to change then, so I didn't even bother with them.
 
