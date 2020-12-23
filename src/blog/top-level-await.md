@@ -1,6 +1,6 @@
 ---
 title: Top level Await is the GOAT 🥳
-description: Top level await is literally awesome. In every way. Read on to know why, how to use it, and its implications
+description: Top level await is literally the GOAT (Greatest of All Time). In every way. Read on to know why, how to use it, and its implications
 date: 28 Dec, 2020 8:51 AM
 cover_image: media/top-level-await-top-of-the-world.jpg
 ---
@@ -33,7 +33,7 @@ It was super frustrating. But what could you do then?
 })();
 ```
 
-> Not really a hack as far official spec is concerned, but to the code author, it definitely felt like one.
+> Not really a hack as far official spec is concerned, but to the code author, it definitely feels like one.
 
 Just look at the code. So many brackets, so much boilerplate. The last line with `})();` makes me nauseous even after 5 years of JS development. So many weird brackets!!
 
@@ -74,7 +74,7 @@ But, there certain requirements to use it.
 
 It can be used only in an <mark>ES Modules</mark>.
 
-That, in scripts that are marked as modules in your HTML or in your package.json in Node
+That is, in scripts that are marked as modules in your HTML or in your package.json in Node
 
 ## Browser
 
@@ -92,7 +92,7 @@ In your `index.html`:
 
 You need to have minimum of Node **13.9.0** for this feature to work. The current LTS is v14.15, and I recommend most users to always choose the LTS version. If you're reading this in 2025, and the LTS is v24, go for it, not 14.15. (I hope Node survives that long, what with Deno and Elsa being there now 😅)
 
-> Note: I'm aware that you could use ES Modules long before 13.9.0 in NodeJS, but you had to pass the flag `--experimental-module`, as in `node index.js --experimental-module`, and these were highly experimental and unstable and subject to change then, so I didn't even bother with them.
+> Note: I'm aware that you could use ES Modules long before 13.9.0 in NodeJS, but you had to pass the flag `--experimental-module`, as in `node index.js --experimental-module`, and these modules were highly experimental and unstable and subject to change then, so I didn't even bother with them.
 
 These below are some steps to get ES Modules in Node working. Note that these aren't the only methods for that. There total of 2 or 3 right now, but I will explore the most common one only.
 
@@ -114,7 +114,7 @@ npm -v
 
 npm should be higher than `6.14.8` at this point of time.
 
-But the Linux users might have some issues, as running `sudo apt install nodejs` downloads a super-old version of Node, and even without npm, that is (The Blasphemy 😳).
+But the Linux users might have some issues, as running `sudo apt install nodejs` downloads a super-old version of Node, and even without npm, that is (The Blasphemy 🥶).
 
 In that case i recommend you to install nodeJS and npm using this [very good article](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04).
 
@@ -124,6 +124,6 @@ After you have installed nvm, Run `nvm install --lts` to install the latest LTS 
 
 It's slightly longer method, but much less painful, both in short and long term
 
-## 1st step
+## Step 1
 
 Create `package.json`
