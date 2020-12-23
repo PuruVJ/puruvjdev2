@@ -33,7 +33,7 @@ It was super frustrating. But what could you do then?
 })();
 ```
 
-> Not really a hack as far official spec is concerned, but to the code author, it definitely feels like one.
+> Not really a hack as far as official spec is concerned, but to the code author, it definitely feels like one.
 
 Just look at the code. So many brackets, so much boilerplate. The last line with `})();` makes me nauseous even after 5 years of JS development. So many weird brackets!!
 
