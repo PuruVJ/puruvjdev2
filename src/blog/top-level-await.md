@@ -56,9 +56,9 @@ This code gets messier. And that code above is still very clean. Wait till you t
 
 # A New Hope
 
-> If you're wondering why I'm using Star Wars related words a lot, Mandalorian episode 16 dropped a few days ago, and literally, God appeared 😭. I'm still shaking from how good that episode was.
+> If you're wondering why I'm using Star Wars related words a lot, Mandalorian episode 16 dropped a few days ago, and literally, \*\*\*\*\*\*\*\*\*\*\*\*\*\* appeared 😭. I'm still shaking from how good that episode was.
 
-In comes Top Level await, ~~slashing his lightsaber into droids~~, taking the pains of IIFE hacks away.
+In comes Top Level await, ~~slashing droids with his lightsaber~~, taking the pains of IIFE hacks away.
 
 Using it is as simple as the first code snippet on top:
 
