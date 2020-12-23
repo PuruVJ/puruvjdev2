@@ -114,7 +114,7 @@ npm -v
 
 npm should be higher than `6.14.8` at this point of time.
 
-But the Linux users might have some issues, as running `sudo apt install nodejs` downloads a super-old version of Node, and even without npm, that is (The Blasphemy 🥶).
+But the Linux users might have some issues, as running `sudo apt install nodejs` downloads a super-old version of Node, and even without npm, that is (The Blasphemy 😤).
 
 In that case i recommend you to install nodeJS and npm using this [very good article](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04).
 
