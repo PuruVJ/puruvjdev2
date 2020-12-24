@@ -1,5 +1,5 @@
 ---
-title: Top level Await is AWESOME!! 🥳
+title: Top level Await is AWESOME!! 😍
 description: Top level await is literally the GOAT (Greatest of All Time). In every way. Read on to know why, how to use it, and its implications
 date: 28 Dec, 2020 8:51 AM
 cover_image: media/top-level-await-top-of-the-world.jpg
