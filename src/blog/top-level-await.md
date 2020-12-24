@@ -316,3 +316,5 @@ See how simple and idiomatic it is?
 Top Level Await is an awesome addition to JavaScript, and is here to stay. Heck, even Darth Vader agrees
 
 ![Darth Vader: The force is strong with this one](../../static/media/top-level-await-force-strong-darth-vader.gif)
+
+Signing off! 😁
