@@ -1,5 +1,5 @@
 ---
-title: Top level Await is the GOAT 🥳
+title: Top level Await is AWESOME!! 🥳
 description: Top level await is literally the GOAT (Greatest of All Time). In every way. Read on to know why, how to use it, and its implications
 date: 28 Dec, 2020 8:51 AM
 cover_image: media/top-level-await-top-of-the-world.jpg
@@ -11,7 +11,7 @@ cover_image: media/top-level-await-top-of-the-world.jpg
 
 # The Dark Times...
 
-There was an era, where if you tried to pull a stunt like this 👇 at the top level(i.e. not in any function or block),
+There was an era, where if you tried to pull a stunt like this 👇 at the top level(i.e. not in any `async` function),
 
 ```js
 const data = await fetch(URL);
@@ -111,7 +111,7 @@ You need to have minimum of Node **13.9.0** for this feature to work. The curren
 
 These below are some steps to get ES Modules in Node working. Note that these aren't the only methods for that. There total of 2 or 3 right now, but I will explore the most common one only.
 
-## Step 0
+### Step 0
 
 Have npm installed. If you already have node installed, you need not worry, you already have it.
 
@@ -139,6 +139,180 @@ After you have installed nvm, Run `nvm install --lts` to install the latest LTS 
 
 It's slightly longer method, but much less painful, both in short and long term
 
-## Step 1
+### Step 1
 
 Create `package.json`
+
+Most Node projects will already have the `package.json` ready, but in case you don't, make one. It's as simple as typing this command:
+
+```bash
+npm init -y
+```
+
+This should output a file of this format. Values may be different, but format stays the same:
+
+```json
+{
+  "name": "snippets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "promise-arr.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+
+### Step 2
+
+Add `"type": module"` in the JSON file. Like this:
+
+```diff
+{
+  "name": "snippets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "promise-arr.js",
++ "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+
+And you're good to go!
+
+# Use Cases
+
+Here are some common use cases for top level await:
+
+> Note: These use cases are quite simple, and will be most probably composed inside functions, where you can already use `async`. The most use of top level await would be to consume these higher order functions in the main code.
+
+## Timer
+
+Whenever I jump onto any project, I carry some utility functions with me. 1 such utility functions is the simpler alternative to using the ugly `setTimeout`, and it gets rids of some weird use cases that comes witn `setTimeout`. It's the `waitFor` utility function:
+
+```js
+/**
+ * @param {number} time Time to wait for in milliseconds
+ */
+function waitFor(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+```
+
+I use it simply as:
+
+```js
+doTask1();
+
+await waitFor(200);
+
+doTask2();
+
+await waitFor(200);
+
+doTask3();
+```
+
+I can use it directly in modules with top level await like this:
+
+```js
+import { waitFor } from '../utils.js';
+
+console.log(1);
+
+// Wait for 200ms
+await waitFor(200);
+
+console.log(2);
+```
+
+I have written a blog post about this utility function too. [Check it out here](https://puruvj.dev/blog/flatten-settimeout)
+
+## Dependency fallbacks
+
+Let's say you're using your own remote server for importing Modules directly. You have come up with some superb optimization algorithms to make those imports from remote server even faster than locally bundled imports, and are willing to rely more on that server.
+
+But it's **your** server. You have to maintain it. 24/7!! What if it goes down? It would be a huge bummer then, wouldn't it?
+
+So you come with a clever solution: Import from your own server, but if it fails, import from <mark>unpkg</mark>. Seems smart. So you write this code:
+
+```js
+try {
+  import jquery from 'https://my-server.com/api/jquery.js';
+} catch {
+  import jquery from 'https://unpkg.com/jquery@3.3.1/dist/jquery.js';
+}
+
+const $ = jquery.default;
+```
+
+Ahem! One catch here. This code is invalid. You can't use `import package from "somewhere"` inside any block. It has to be used in the top level only (This seems like the inverse problem of Top Level Await, isn't it 🤔).
+
+Luckily, we can use the dynamic `import` statement, which can be used anywhere.
+
+So our new code becomes.
+
+```js
+let jquery;
+
+try {
+  jquery = await import('https://my-server.com/api/jquery.js');
+} catch {
+  jquery = await import('https://unpkg.com/jquery@3.3.1/dist/jquery.js');
+}
+
+const $ = jquery.default;
+```
+
+That's it! See, we used await without any async function wrapping it. It's on the top-most level. The code will wait for the `import` in the `try` block to resolve, then if it fails, will go fetch from `unpkg`, and waiting while it happens, but not stopping the execution altogether.
+
+## Internationalization (i18n)
+
+> Had to search Google for the spelling of this word 😅
+
+Say you have some JS files in which you're storing common strings for different languages.
+
+Now you wish to access those strings right on top, without any other wrapper or function. You can do it simply like this:
+
+```js
+const strings = await import(`../i18n/${navigator.language}`);
+
+paragraph.innerHTML = strings.paraGraph;
+```
+
+See how simple it is?
+
+And most bundlers like Webpack/Rollup will recognize that you're trying to fetch some files from the `../i18n` folder, so they'll just create separate, individual bundles of the files in the `../i18n` folder, and you can import the right, optimized bundle.
+
+> This has traditionally been done with JSON files and `fetch`ing them, but these dynamic imports open up new possibilities
+
+## Resource initialization
+
+Let's consider a backend-related example for this. Say you have a Database implementation with lots of initialization code. Well, you'd need to initialize your database someway, and most of these databases take some amount of time, so they're always callback or promise based. Let's assume, in our case, the database instance is promise based (You can convert callback based functions to promises in NodeJS too, using `require('util').promisify`).
+
+So you initialize it:
+
+```js
+import { dbInstance } from '../db';
+
+const connection = await dbInstance();
+
+// Now we can simply pass the database instance to the function below
+const userData = await getUserData(connection);
+```
+
+See how simple and idiomatic it is?
+
+# Conclusion
+
+Top Level Await is an awesome addition to JavaScript, and is here to stay. Heck, even Darth Vader agrees
+
+![Darth Vader: The force is strong with this one](../../static/media/top-level-await-force-strong-darth-vader.gif)
