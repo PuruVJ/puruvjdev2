@@ -196,7 +196,7 @@ Here are some common use cases for top level await:
 
 ## Timer
 
-Whenever I jump onto any project, I carry some utility functions with me. One such utility functions is the simpler alternative to using the ugly `setTimeout`, and it gets rids of some weird use cases that comes witn `setTimeout`. It's the `waitFor` utility function:
+Whenever I jump onto any project, I carry some utility functions with me. One such utility functions is the simpler alternative to using the ugly `setTimeout`, and it gets rids of some weird use cases that comes with `setTimeout`. It's the `waitFor` utility function:
 
 ```js
 /**
