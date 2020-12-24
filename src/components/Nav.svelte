@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
-  import { theme } from "../stores/theme.store";
-  import { throttle } from "throttle-debounce";
+  import ThemeSwitcher from '../components/ThemeSwitcher.svelte';
+  import { theme } from '../stores/theme.store';
+  import { throttle } from 'throttle-debounce';
 
   // The scroll from above
   let scrollY: number = 0;
@@ -19,7 +19,7 @@
     align-items: center;
     grid-template-columns: auto 1fr auto;
 
-    font-family: "Quicksand", monospace;
+    font-family: 'Quicksand', monospace;
     font-size: 1.2rem;
 
     background: var(--app-color-shell);
@@ -34,16 +34,14 @@
 
     border-radius: 0 0 1rem 1rem;
 
-    transition: box-shadow 150ms ease-out,
-      background-color var(--transition-duration) ease-in;
+    transition: box-shadow 150ms ease-out, background-color var(--transition-duration) ease-in;
 
     &.dark.shadow {
       background-color: #383a3e;
     }
 
     &.shadow {
-      box-shadow: 0 3.4px 6.3px rgba(0, 0, 0, 0.099),
-        0 27px 50px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 3.4px 6.3px rgba(0, 0, 0, 0.099), 0 27px 50px rgba(0, 0, 0, 0.1);
     }
   }
 
@@ -74,7 +72,7 @@
 
     &:hover,
     &:focus,
-    &[aria-current="page"] {
+    &[aria-current='page'] {
       &::after {
         transform: scaleX(1);
       }
@@ -82,7 +80,7 @@
   }
 
   a::after {
-    content: "";
+    content: '';
 
     position: absolute;
     bottom: 0;
@@ -105,28 +103,25 @@
       width: 95%;
     }
   }
+
+  @media screen and (max-width: 405px) {
+    li {
+      margin: 0.6rem 0.4rem;
+    }
+  }
 </style>
 
 <svelte:body on:scroll={throttle(50, false, handleScroll)} />
 
 <nav class:dark={$theme === 'dark'} class:shadow={scrollY > 2}>
   <ul>
+    <li><a rel="prefetch" aria-current={segment === undefined && 'page'} href="."> HOME </a></li>
     <li>
-      <a rel="prefetch" aria-current={segment === undefined && 'page'} href=".">
-        HOME
-      </a>
-    </li>
-    <li>
-      <a
-        rel="prefetch"
-        aria-current={segment && segment.startsWith('blog') && 'page'}
-        href="blog">
+      <a rel="prefetch" aria-current={segment && segment.startsWith('blog') && 'page'} href="blog">
         BLOG
       </a>
     </li>
-    <li>
-      <a aria-current={segment === 'works' && 'page'} href="works"> WORKS </a>
-    </li>
+    <li><a aria-current={segment === 'works' && 'page'} href="works"> WORKS </a></li>
   </ul>
   <span class="flex" />
   <ThemeSwitcher />
