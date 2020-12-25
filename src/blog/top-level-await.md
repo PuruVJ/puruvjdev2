@@ -109,7 +109,7 @@ You need to have minimum of Node **13.9.0** for this feature to work. The curren
 
 > Note: I'm aware that you could use ES Modules long before 13.9.0 in NodeJS, but you had to pass the flag `--experimental-module`, as in `node index.js --experimental-module`, and these modules were highly experimental and unstable and subject to change then, so I didn't even bother with them.
 
-These below are some steps to get ES Modules in Node working. Note that these aren't the only methods for that. There total of 2 or 3 right now, but I will explore the most common one only.
+These below are some steps to get ES Modules in Node working. Note that these aren't the only methods for that. There are total of 2 or 3 right now, but I will explore the most common one only.
 
 ### Step 0
 
