@@ -81,7 +81,7 @@ if (finalData.propA.propB === 'who-cares') {
 }
 ```
 
-Perfection 👌
+Perfection 👌.
 
 But, there are certain requirements to use it.
 
