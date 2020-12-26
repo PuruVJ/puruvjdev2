@@ -43,16 +43,15 @@
 
     <script>
       // Get localstorage value
-      const localTheme = localStorage.getItem("theme");
+      const localTheme = localStorage.getItem('theme');
       console.log(localTheme);
-      const prefersTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches;
+      const prefersTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-      const theme = localTheme || (prefersTheme ? "dark" : "light");
+      const theme = localTheme || (prefersTheme ? 'dark' : 'light');
 
       document.body.classList.add(theme);
 
-      localStorage.setItem("theme", theme);
+      localStorage.setItem('theme', theme);
     </script>
 
     <!-- Sapper creates a <script> tag containing `src/client.js`
@@ -69,18 +68,26 @@
 
     <!-- Add Clarity Analytics -->
     <script>
-      (function (c, l, a, r, i, t, y) {
-        c[a] =
-          c[a] ||
-          function () {
-            (c[a].q = c[a].q || []).push(arguments);
-          };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "3wckntiebu");
+      // (function (c, l, a, r, i, t, y) {
+      //   c[a] =
+      //     c[a] ||
+      //     function () {
+      //       (c[a].q = c[a].q || []).push(arguments);
+      //     };
+      //   t = l.createElement(r);
+      //   t.async = 1;
+      //   t.src = "https://www.clarity.ms/tag/" + i;
+      //   y = l.getElementsByTagName(r)[0];
+      //   y.parentNode.insertBefore(t, y);
+      // })(window, document, "clarity", "script", "3wckntiebu");
     </script>
+
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "43888bfb37f14b82bff732e582b86ccb"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
   </body>
 </html>
