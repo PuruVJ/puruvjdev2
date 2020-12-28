@@ -1,5 +1,5 @@
-@import "./themes.css";
-@import "./blog-page-style.css";
+@import './themes.css';
+@import './blog-page-style.css';
 
 body {
   margin: 0;
@@ -8,8 +8,8 @@ body {
   min-height: 100%;
 
   font-size: 1rem;
-  font-family: "Quicksand", "Segoe UI", Helvetica, Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Quicksand', 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
   line-height: 1.618;
   font-variant-numeric: tabular-nums;
 
@@ -58,7 +58,7 @@ h2,
 h3 {
   margin: 0;
 
-  font-family: "Comfortaa", sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   color: var(--app-color-dark);
   line-height: 1.3;
 
@@ -91,8 +91,8 @@ h2 {
 }
 
 *::selection {
-  background-color: rgba(var(--app-color-primary-rgb), 1);
-  color: var(--app-color-primary-contrast);
+  background-color: rgba(var(--app-color-primary-rgb), 0.4);
+  /* color: var(--app-color-primary-contrast); */
 
   border-radius: 0.3rem;
 }
