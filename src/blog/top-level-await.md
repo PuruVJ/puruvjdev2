@@ -105,7 +105,7 @@ In your `index.html`:
 
 ## NodeJS
 
-You need to have minimum of Node **13.9.0** for this feature to work. The current LTS is v14.15, and I recommend most users to always choose the LTS version. If you're reading this in 2025, and the LTS is v24, go for it, not 14.15. (I hope Node survives that long, what with [Deno](https://deno.land/) and [Elsa](https://github.com/elsaland/elsa) being there now 😅)
+You need to have minimum of Node **14.8.0** for this feature to work. Modules were available in 13.9.0, but the top level await was unlocked at 14.8.0 only. The current LTS is v14.15, and I recommend most users to always choose the LTS version. If you're reading this in 2025, and the LTS is v24, go for it, not 14.15. (I hope Node survives that long, what with [Deno](https://deno.land/) and [Elsa](https://github.com/elsaland/elsa) being there now 😅)
 
 > Note: I'm aware that you could use ES Modules long before 13.9.0 in NodeJS, but you had to pass the flag `--experimental-module`, as in `node index.js --experimental-module`, and these modules were highly experimental and unstable and subject to change then, so I didn't even bother with them.
 
