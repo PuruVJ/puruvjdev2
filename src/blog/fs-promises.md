@@ -261,3 +261,80 @@ const { writeFileSync, createReadStream, createWriteStream } = require('fs');
 We are importing the promise based functions, as well as some functions from regular `fs`, like streams. Now you can directly use it down in your main logic, but sometimes when the code in the file gets big enough, and I'm not exactly using await with the promise-based versions, it can get pretty confusing which method is coming from where, so I have to scroll all the way to the top to see the imports.
 
 This may not seem like a big problem, but I challenge you to write this code and comeback to it after 6 months. You'll be in the same dilemma 😂
+
+## Importing as namespace
+
+This is my most preferred method.
+
+```js
+const fs = require('fs');
+const fsp = fs.promises; // 👈 This line
+
+...
+
+await fsp.writeFile();
+
+fs.createReadStream();
+```
+
+## ES Imports
+
+Now that we can use ES Imports in Node(with some extra tweaking), let's consider the Modular version
+
+```js
+import { promises as fsp } from 'fs';
+
+async function main() {
+  const data = await fsp.readFile('user-data.json');
+
+  // Extract
+  const { username, password } = JSON.parse(data);
+
+  // Let's encrypt
+  const encryptedPassword = encrypt(password);
+
+  const finalObject = { username, password: encryptedPassword };
+
+  // Let's write to another file
+  await fsp.writeFile('user-data-final.json', JSON.stringify(finalObject));
+
+  console.log('Successful');
+}
+
+try {
+  main();
+} catch (e) {
+  console.error(e);
+}
+```
+
+Also, if your node version is more than <mark>v14.8.0</mark>, you can also directly use top level await (I have an article about it, [right here](https://puruvj.dev/blog/top-level-await)).
+
+```js
+import { promises as fsp } from 'fs';
+
+try {
+  const data = await fsp.readFile('user-data.json');
+
+  // Extract
+  const { username, password } = JSON.parse(data);
+
+  // Let's encrypt
+  const encryptedPassword = encrypt(password);
+
+  const finalObject = { username, password: encryptedPassword };
+
+  // Let's write to another file
+  await fsp.writeFile('user-data-final.json', JSON.stringify(finalObject));
+
+  console.log('Successful');
+} catch (e) {
+  console.error(e);
+}
+```
+
+Even smaller!!
+
+# Conclusion
+
+Hope you got some good insights from this blog post.
