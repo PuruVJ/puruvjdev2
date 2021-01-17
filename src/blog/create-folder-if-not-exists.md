@@ -33,7 +33,7 @@ try {
 
 ## Why wrap it in try-catch?
 
-Remember: We're trying to create a folder if it doesn't exists. That means there's a fair chance it may already exists, in which case mkdir will throw an error, and will stop the rest of code from executing. We don't want that now, do we.
+Remember: We're trying to create a folder if it doesn't exists. That means there's a fair chance it may already exists, in which case mkdir will throw an error, and will stop the rest of code from executing. We don't want that now, do we? 😉
 
 So if `mkdir` works perfectly, good, means the folder didn't exist, so it was created. But if it throws error, try catch will simply catch the error, ignore it, and move on to the rest of the code.
 
