@@ -1,5 +1,5 @@
 name: Rebuild blog for homepage ranking
-on: [push]
+on:
   schedule:
     # https://crontab.guru/every-hour
     - cron: 0 0 * * *
