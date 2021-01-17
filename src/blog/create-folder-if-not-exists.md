@@ -11,7 +11,7 @@ Here's a very simple trick to create a folder if it doesn't exists (Or ensure if
 1. NodeJS >= v10 LTS.
 2. Working knowledge of `promises` and `async await`.
 
-That's it! 😊
+That's it 😊
 
 # TLDR Code:
 
