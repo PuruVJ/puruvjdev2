@@ -59,6 +59,9 @@
   }
 
   .blog-link {
+    --bgc-opacity: 0;
+    background-color: rgba(var(--app-color-primary-rgb), var(--bgc-opacity));
+
     display: block;
 
     transition: background-color var(--transition-duration) ease-out,
@@ -70,12 +73,17 @@
     font-weight: 400;
 
     &.show-more {
-      background-color: rgba(var(--app-color-primary-rgb), 0.075);
+      --bgc-opacity: 0.15;
+
+      &:hover,
+      &:focus {
+        --bgc-opacity: 0.3;
+      }
     }
 
     &:hover,
     &:focus {
-      background-color: rgba(var(--app-color-primary-rgb), 0.1);
+      --bgc-opacity: 0.1;
     }
 
     &:focus-visible {
