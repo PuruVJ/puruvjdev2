@@ -2,7 +2,7 @@ name: Rebuild blog for homepage ranking
 on:
   schedule:
     # https://crontab.guru/every-hour
-    - cron: 0 0 * * *
+    - cron: 0 */6 * * *
 
 jobs:
   merge_schedule:
