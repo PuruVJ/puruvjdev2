@@ -1,7 +1,7 @@
 ---
 title: NodeJS Create folder if not exists in 3 lines - No dependencies
 description: The simplest and dependency-free way to create a folder in NodeJS if it doesn't exist
-date: 18 Jan, 2021 2:38 PM
+date: 18 Jan, 2021 2:38 AM
 ---
 
 Here's a very simple trick to create a folder if it doesn't exists (Or ensure if a folder exists) in NodeJS. **Just 3 lines, no dependencies**
