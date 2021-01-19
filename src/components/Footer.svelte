@@ -36,9 +36,6 @@
   </div>
 </footer>
 
-<!-- Twitter -->
-
-<!-- rgba(29,161,242,1.00) -->
 <style lang="scss">
   footer {
     padding: 1rem;
