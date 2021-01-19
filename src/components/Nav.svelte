@@ -13,6 +13,22 @@
   }
 </script>
 
+<svelte:body on:scroll={throttle(50, false, handleScroll)} />
+
+<nav class:dark={$theme === 'dark'} class:shadow={scrollY > 2}>
+  <ul>
+    <li><a rel="prefetch" aria-current={segment === undefined && 'page'} href="."> HOME </a></li>
+    <li>
+      <a rel="prefetch" aria-current={segment && segment.startsWith('blog') && 'page'} href="blog">
+        BLOG
+      </a>
+    </li>
+    <li><a aria-current={segment === 'works' && 'page'} href="works"> WORKS </a></li>
+  </ul>
+  <span class="flex" />
+  <ThemeSwitcher />
+</nav>
+
 <style lang="scss">
   nav {
     display: grid;
@@ -63,7 +79,7 @@
     --color: var(--app-color-primary);
     --color-rgb: var(--app-color-primary-rgb);
 
-    font-weight: bold;
+    font-weight: 600;
     color: var(--color);
 
     position: relative;
@@ -110,19 +126,3 @@
     }
   }
 </style>
-
-<svelte:body on:scroll={throttle(50, false, handleScroll)} />
-
-<nav class:dark={$theme === 'dark'} class:shadow={scrollY > 2}>
-  <ul>
-    <li><a rel="prefetch" aria-current={segment === undefined && 'page'} href="."> HOME </a></li>
-    <li>
-      <a rel="prefetch" aria-current={segment && segment.startsWith('blog') && 'page'} href="blog">
-        BLOG
-      </a>
-    </li>
-    <li><a aria-current={segment === 'works' && 'page'} href="works"> WORKS </a></li>
-  </ul>
-  <span class="flex" />
-  <ThemeSwitcher />
-</nav>
