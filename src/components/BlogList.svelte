@@ -10,9 +10,11 @@
 
 {#each blogsList as { title, id, description, date, series, seriesIndex }}
   <a class="blog-link" rel="prefetch" href="blog/{id}" aria-label={title}>
-    <span class="series"
-      >{#if series}<mark>SERIES</mark> {series}{/if}</span
-    >
+    <span class="series">
+      {#if series}
+        <mark>SERIES</mark> {series}
+      {/if}
+    </span>
     <h2 class="title">{series ? `Part ${seriesIndex} - ` : ''}{title}</h2>
     <p class="description">{description}</p>
     <p class="more-info"><span /><span>{formatDate(date)}</span></p>
