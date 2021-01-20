@@ -171,7 +171,7 @@
     :global(& > svg) {
       --size: 100%;
       width: var(--size);
-      // height: var(--size);
+      height: auto;
       min-height: 0;
     }
   }
