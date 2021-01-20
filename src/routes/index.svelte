@@ -82,7 +82,7 @@
   <div class="hr"><WavyHr style="fill: transparent" /></div>
   <br /><br />
   <section class="contact-me">
-    <div>
+    <div class="cm-svg">
       <ContactMeSvg />
     </div>
     <div>
@@ -167,7 +167,7 @@
       // transition-delay: -100ms;
     }
 
-    :global(& > svg) {
+    .cm-svg :global(svg) {
       --size: 100%;
       width: var(--size);
       height: auto;
