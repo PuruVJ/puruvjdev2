@@ -150,10 +150,9 @@
   }
 
   .contact-me {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     justify-items: stretch;
-
-    flex-direction: row;
 
     & > div {
       display: flex;
@@ -193,7 +192,7 @@
     }
 
     .contact-me {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       gap: 2rem;
     }
   }
