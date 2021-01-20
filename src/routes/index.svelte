@@ -77,13 +77,12 @@
   </section>
   <br /><br />
   <!-- TODO -->
-  <!-- 
   <div class="hr"><WavyHr style="fill: transparent" /></div>
   <br /><br />
 
   <section>
     <h1>Contact me</h1>
-  </section> -->
+  </section>
 </main>
 
 <style lang="scss">

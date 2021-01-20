@@ -1,16 +1,30 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount } from 'svelte';
+  import { fadeIn, fadeOut } from '../components/fade';
+  import NotFoundSvg from '../components/NotFoundSVG.svelte';
+
+  const dev = process.env.NODE_ENV === 'development';
 
   export let status;
   export let error;
 
-  const dev = process.env.NODE_ENV === "development";
-
-  import { fadeOut, fadeIn } from "../components/fade";
-  import { theme } from "../stores/theme.store";
-
-  onMount(() => void document.body.classList.add("background"));
+  onMount(() => void document.body.classList.add('background'));
 </script>
+
+<svelte:head>
+  <title>{status}</title>
+</svelte:head>
+
+<main in:fadeIn out:fadeOut>
+  <h1>
+    <span style="color: var(--app-color-primary)">{status}</span> - {error.message}
+  </h1>
+  <NotFoundSvg />
+
+  {#if dev && error.stack}
+    <pre>{error.stack}</pre>
+  {/if}
+</main>
 
 <style lang="scss">
   main {
@@ -23,10 +37,14 @@
     height: 100%;
   }
 
-  img {
+  main :global(svg) {
     width: 100%;
     max-width: 40rem;
     height: auto;
+  }
+
+  main :global(path) {
+    transition: fill var(--transition-duration) ease-in;
   }
 
   @media screen and (min-width: 600px) {
@@ -35,18 +53,3 @@
     }
   }
 </style>
-
-<svelte:head>
-  <title>{status}</title>
-</svelte:head>
-
-<main in:fadeIn out:fadeOut>
-  <h1>
-    <span style="color: var(--app-color-primary)">{status}</span> - {error.message}
-  </h1>
-  <img src="art/not-found-{$theme}.svg" alt={error.message} />
-
-  {#if dev && error.stack}
-    <pre>{error.stack}</pre>
-  {/if}
-</main>
