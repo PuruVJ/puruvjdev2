@@ -11,6 +11,8 @@
   import smoothscroll from 'smoothscroll-polyfill';
   import { onMount } from 'svelte';
   import BlogList from '../components/BlogList.svelte';
+  import ContactMeLink from '../components/ContactMeLink.svelte';
+  import ContactMeSvg from '../components/ContactMeSVG.svelte';
   import { fadeIn, fadeOut } from '../components/fade';
   import WavyHr from '../components/WavyHR.svelte';
   import type { IBlog } from '../interfaces/blog.interface';
@@ -79,9 +81,13 @@
   <!-- TODO -->
   <div class="hr"><WavyHr style="fill: transparent" /></div>
   <br /><br />
-
-  <section>
-    <h1>Contact me</h1>
+  <section class="contact-me">
+    <div>
+      <ContactMeSvg />
+    </div>
+    <div>
+      <ContactMeLink />
+    </div>
   </section>
 </main>
 
@@ -143,6 +149,33 @@
     justify-content: center;
   }
 
+  .contact-me {
+    display: flex;
+    justify-items: stretch;
+
+    flex-direction: row;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex: 1;
+    }
+
+    :global(path, rect) {
+      transition: fill 200ms ease-in;
+      // transition-delay: -100ms;
+    }
+
+    :global(& > svg) {
+      --size: 100%;
+      width: var(--size);
+      // height: var(--size);
+      min-height: 0;
+    }
+  }
+
   @media screen and (max-width: 600px) {
     .puru-intro {
       flex-direction: column;
@@ -157,6 +190,11 @@
       max-width: 100%;
 
       margin-top: 2rem;
+    }
+
+    .contact-me {
+      flex-direction: column;
+      gap: 2rem;
     }
   }
 </style>
