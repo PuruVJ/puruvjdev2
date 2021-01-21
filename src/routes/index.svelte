@@ -8,7 +8,6 @@
 </script>
 
 <script lang="ts">
-  import smoothscroll from 'smoothscroll-polyfill';
   import { onMount } from 'svelte';
   import BlogList from '../components/BlogList.svelte';
   import ContactMeLink from '../components/ContactMeLink.svelte';
@@ -20,8 +19,6 @@
   export let blogsList: IBlog[];
 
   onMount(async () => {
-    smoothscroll.polyfill();
-
     await import('lazysizes');
 
     document.body.classList.add('background', 'animated');
