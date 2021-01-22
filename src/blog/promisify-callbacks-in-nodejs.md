@@ -64,4 +64,68 @@ I guess this twitter meme is on point 👇
 
 # Enter promises
 
-Promises radicalized the whole scene. They made our code even cleaner. They follow a much simpler tructure
+Promises radicalized the whole scene. They made our code even cleaner. They follow a much simpler structure. No need for all that indentation inside indentation inside indentation. Max to max 1 level of indentation is needed
+
+```js
+const finalData = fetch('https://api.example/com')
+  .then((req) => req.json())
+  .then((data) => cleanUpData(data))
+  .then((data) => doEpicShit(data));
+```
+
+Using the `.then` pattern made life super easy.
+
+And then came <mark>async/await</mark>. Above code became even simpler:
+
+```js
+const req = await fetch('https://api.example.com');
+const data = await req.json();
+const finalData = cleanUpData(data);
+
+doEpicShit(finalData);
+```
+
+So flat 😇
+
+# Callback to Promise
+
+Converting callbacks to promises in NodeJS is very simple. If you're using `fs.readdir`.
+
+We'll redefine it:
+
+```js
+const readdirPromise = (folderPath) =>
+  new Promise((resolve, reject) => {
+    return fs.readdir(folderPath, (err, filenames) =>
+      err != null ? reject(err) : resolve(filenames)
+    );
+  });
+```
+
+Just do it for every single function 😉
+
+**NOTE**: The above part was a joke. You don't need to redefine every single callback function like that.
+
+## Serious way...
+
+Since Node 8, there's been a built-in helper function into Node, called `promisify`. It's the easiest way to promisify your callbacks. Check it out 👇
+
+```js
+const { promisify } = require('util');
+
+const callbackP = promisify(callback);
+
+await callbackP();
+```
+
+That's it. Just pass your callback to `promisify`, and it will magically be `.then`able and `await`able.
+
+# About filesystem API...
+
+Most of the time, you'll end up needing promisification for the `fs` API in NodeJS. But there's a good news. `fs` **already ships with promise based version of its functions**.
+
+Check out my article out to know more: [Simple code with fs.promises and async await](https://puruvj.dev/blog/fs-promises).
+
+Hope you got something good out of it 😇.
+
+Thank you for reading.
