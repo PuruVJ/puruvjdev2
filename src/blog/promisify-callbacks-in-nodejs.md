@@ -58,7 +58,7 @@ fs.readdir(source, function (err, files) {
 
 Oh boy, my eyes bleed 🙈
 
-I guess this twitter meme is on point 👇
+I guess this twitter meme was on point 👇
 
 ![Goku pushing callbacks](../../static/media/promisify-callbacks-in-nodejs-goku-meme.gif)
 
