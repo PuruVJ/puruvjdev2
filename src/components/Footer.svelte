@@ -10,7 +10,7 @@
   </div>
   <div class="social-links">
     <a
-      href="https://twitter.com/puruvjdev2"
+      href="https://twitter.com/puruvjdev"
       rel="noopener"
       target="_blank"
       id="twitter"
