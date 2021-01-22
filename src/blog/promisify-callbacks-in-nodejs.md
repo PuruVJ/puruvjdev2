@@ -124,7 +124,7 @@ That's it. Just pass your callback to `promisify`, and it will magically be `.th
 
 Most of the time, you'll end up needing promisification for the `fs` API in NodeJS. But there's a good news. `fs` **already ships with promise based version of its functions**.
 
-Check out my article out to know more: [Simple code with fs.promises and async await](https://puruvj.dev/blog/fs-promises).
+Check out my article to know this uncanny art: [Simple code with fs.promises and async await](https://puruvj.dev/blog/fs-promises).
 
 Hope you got something good out of it 😇.
 
