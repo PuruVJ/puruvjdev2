@@ -2,7 +2,7 @@
 title: Bye bye Callbacks, hello Promises in NodeJS
 description: Completely get rid of callbacks in NodeJS and replace them with the great Promises.
 date: 25 Jan 2021 12:00 AM
-cover_img: media/promisify-callbacks-in-nodejs-promises-everywhere.jpg
+cover_image: media/promisify-callbacks-in-nodejs-promises-everywhere.jpg
 ---
 
 ![Promise, promises everywhere](../../static/media/promisify-callbacks-in-nodejs-promises-everywhere.jpg)
