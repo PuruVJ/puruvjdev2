@@ -6,24 +6,43 @@
       const data = await res.json();
 
       return { works: data };
-    } catch {
-      this.error(500, "Unable to load");
+    } catch (e) {
+      this.error(500, 'Unable to load');
       return;
     }
   }
 </script>
 
 <script lang="ts">
-  import { fadeIn, fadeOut } from "../components/fade";
-  import type { IWork } from "../interfaces/work.interface";
-  import { mdiWeb, mdiGithub } from "@mdi/js";
-  import Icon from "../components/Icon.svelte";
-  import { onMount } from "svelte";
+  import { fadeIn, fadeOut } from '../components/fade';
+  import type { IWork } from '../interfaces/work.interface';
+  import { mdiWeb, mdiGithub } from '@mdi/js';
+  import Icon from '../components/Icon.svelte';
+  import { onMount } from 'svelte';
 
   export let works: IWork[];
 
-  onMount(() => document.body.classList.add("background"));
+  onMount(() => document.body.classList.add('background'));
 </script>
+
+<svelte:head>
+  <title>Works // Puru Vijay</title>
+</svelte:head>
+
+<main in:fadeIn out:fadeOut>
+  {#each works as { title, image, url, repo }}
+    <section>
+      <div class="img-preview"><img src={image.small.webp} alt={title} /></div>
+      <div class="info-section">
+        <div class="title">{title}</div>
+        <div class="icons">
+          <a rel="noopener" target="_blank" href={url}><Icon path={mdiWeb} /></a>
+          <a rel="noopener" target="_blank" href={repo.url}><Icon path={mdiGithub} /></a>
+        </div>
+      </div>
+    </section>
+  {/each}
+</main>
 
 <style lang="scss">
   main {
@@ -36,11 +55,10 @@
     display: flex;
     flex-direction: column;
 
-    box-shadow: 0 0.3px 1.1px rgba(0, 0, 0, 0.017),
-      0 0.8px 2.5px rgba(0, 0, 0, 0.024), 0 1.3px 4.3px rgba(0, 0, 0, 0.03),
-      0 2.1px 6.9px rgba(0, 0, 0, 0.035), 0 3.3px 10.6px rgba(0, 0, 0, 0.04),
-      0 5.1px 16.6px rgba(0, 0, 0, 0.046), 0 8.5px 27.5px rgba(0, 0, 0, 0.053),
-      0 17px 55px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 0.3px 1.1px rgba(0, 0, 0, 0.017), 0 0.8px 2.5px rgba(0, 0, 0, 0.024),
+      0 1.3px 4.3px rgba(0, 0, 0, 0.03), 0 2.1px 6.9px rgba(0, 0, 0, 0.035),
+      0 3.3px 10.6px rgba(0, 0, 0, 0.04), 0 5.1px 16.6px rgba(0, 0, 0, 0.046),
+      0 8.5px 27.5px rgba(0, 0, 0, 0.053), 0 17px 55px rgba(0, 0, 0, 0.07);
 
     border-radius: 1rem;
 
@@ -67,7 +85,7 @@
   }
 
   .title {
-    font-family: "Fira Code", monospace;
+    font-family: 'Fira Code', monospace;
     font-weight: 600;
   }
 
@@ -75,24 +93,3 @@
     fill: var(--app-color-dark);
   }
 </style>
-
-<svelte:head>
-  <title>Works // Puru Vijay</title>
-</svelte:head>
-
-<main in:fadeIn out:fadeOut>
-  {#each works as { title, image, url, repo }}
-    <section>
-      <div class="img-preview"><img src={image.small.webp} alt={title} /></div>
-      <div class="info-section">
-        <div class="title">{title}</div>
-        <div class="icons">
-          <a rel="noopener" target="_blank" href={url}><Icon
-              path={mdiWeb} /></a>
-          <a rel="noopener" target="_blank" href={repo.url}><Icon
-              path={mdiGithub} /></a>
-        </div>
-      </div>
-    </section>
-  {/each}
-</main>

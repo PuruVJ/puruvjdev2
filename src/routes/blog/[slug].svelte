@@ -8,7 +8,7 @@
       const data = await res.json();
 
       return { blogData: data };
-    } catch {
+    } catch (e) {
       this.error(404, 'Not Found');
       return;
     }
@@ -44,6 +44,32 @@
     $readingProgress = 0;
   });
 </script>
+
+<svelte:head>
+  <title>{title} // Puru Vijay</title>
+  <meta name="description" content={description} />
+
+  <meta property="og:title" content="{title} // Puru Vijay" />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://puruvj.dev/{cover_image}" />
+  <meta property="og:url" content="https://puruvj.dev/blog/{id}" />
+
+  <link rel="canonical" href="https://puruvj.dev/blog/{id}" />
+</svelte:head>
+
+<svelte:body on:scroll={throttle(10, false, handleProgressBar)} />
+
+<main in:fadeIn out:fadeOut>
+  <LikeButton blogID={id} />
+  <div class="progress" aria-roledescription="progress">
+    <div class="indicator" style="transform: scaleX({$readingProgress})" />
+  </div>
+  <h1>{title}</h1>
+  <p>{formatDate(date)} &bull; <span>{Math.ceil(reading_time)} min read</span></p>
+  <article id="blog-content">
+    {@html body}
+  </article>
+</main>
 
 <style lang="scss">
   p {
@@ -85,29 +111,3 @@
   // :global(#blog-content a:not(.heading-link)) {
   // }
 </style>
-
-<svelte:head>
-  <title>{title} // Puru Vijay</title>
-  <meta name="description" content={description} />
-
-  <meta property="og:title" content="{title} // Puru Vijay" />
-  <meta property="og:description" content={description} />
-  <meta property="og:image" content="https://puruvj.dev/{cover_image}" />
-  <meta property="og:url" content="https://puruvj.dev/blog/{id}" />
-
-  <link rel="canonical" href="https://puruvj.dev/blog/{id}" />
-</svelte:head>
-
-<svelte:body on:scroll={throttle(10, false, handleProgressBar)} />
-
-<main in:fadeIn out:fadeOut>
-  <LikeButton blogID={id} />
-  <div class="progress" aria-roledescription="progress">
-    <div class="indicator" style="transform: scaleX({$readingProgress})" />
-  </div>
-  <h1>{title}</h1>
-  <p>{formatDate(date)} &bull; <span>{Math.ceil(reading_time)} min read</span></p>
-  <article id="blog-content">
-    {@html body}
-  </article>
-</main>
