@@ -13,7 +13,7 @@ So, I guess you read the [super]clickbaity title, and couldn't resist it, huh? W
 
 # History lesson 😴
 
-NodeJS initially shipped with callbacks for it's amazing asynchronous model which made it an overnight star in the first place. And callbacks were cool. You could read a huge file, and write the code in such a way to simply wait for the response to come out. This applied to database reads, XHR calls(ajax). This model was groundbreaking when it came out.
+NodeJS initially shipped with callbacks for its amazing asynchronous model which made it an overnight star in the first place. And callbacks were cool. You could read a huge file, and write the code in such a way to simply wait for the response to come out. This applied to database reads, XHR calls(ajax). This model was groundbreaking when it came out.
 
 Callbacks follow this pattern 👇
 
