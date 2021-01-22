@@ -10,7 +10,7 @@
   </div>
   <div class="social-links">
     <a
-      href="/twitter"
+      href="https://twitter.com/puruvjdev2"
       rel="noopener"
       target="_blank"
       id="twitter"
@@ -18,7 +18,7 @@
       <Icon path={mdiTwitter} />
     </a>
     <a
-      href="/github"
+      href="https://github.com/puruvj"
       rel="noopener"
       target="_blank"
       id="github"
@@ -26,7 +26,7 @@
       <Icon path={mdiGithub} />
     </a>
     <a
-      href="/devto"
+      href="https://dev.to/puruvj"
       rel="noopener"
       target="_blank"
       id="devto"
