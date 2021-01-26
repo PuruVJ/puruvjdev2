@@ -38,7 +38,7 @@ And most of all, it must a conscious design. I will later elaborate what I mean 
 
 > A fast site is a good site. A slow site is no site.
 >
-> ~ Me :grin:
+> ~ Me 😁
 
 No, literally. No one's gonna wait 2 minutes for your blog post to show up. They'll <s>definitely</s> probably leave your site. Plus you'll be doing your users with expensive data plans a big favour (Can tell from experience).
 
@@ -97,7 +97,7 @@ A secondary color wasn't required, as my site is quite minimalistic.
 
 ## Fonts
 
-Remember that joke about color palette I just mentioned? Well it applies to selecting fonts too. So after 1 more hour :confused:, I found the best fonts(Note that I changed one font after I had launched the site).
+Remember that joke about color palette I just mentioned? Well it applies to selecting fonts too. So after 1 more hour 😅, I found the best fonts(Note that I changed one font after I had launched the site).
 
 - **Comfortaa** for headings
 - **Quicksand** for blog body
@@ -146,11 +146,11 @@ Transitions and animations can increase the emotional appeal of a site. They ele
 
 ## Style Scrollbars
 
-Styling scrollbars is very easy. You just have to copy the code from StackOverflow and edit it(Cuz honestly, who can remember all those huge selectors :smirk:).
+Styling scrollbars is very easy. You just have to copy the code from StackOverflow and edit it(Cuz honestly, who can remember all those huge selectors 😏).
 
 Scrollbars as-of-now are editable only in Webkit based browsers, meaning Chromium-based browsers(Chrome, Brave, Edgium, Opera) and Safari only. Firefox, IE and legacy Edge don't support styling of scrollbars.
 
-> In my opinion, Firefox is not an issue. Their scrollbars look dope as hell :sunglasses:
+> In my opinion, Firefox is not an issue. Their scrollbars look dope as hell 😎
 
 Scrollbars occupy very little real-estate on a page, but when done correctly, can take the look, authenticity and integrity of your site to the next level. A well designed site with default scrollbars just don't do it for anyone, whereas those slick curved transparent scrollbars just do it for everyone.
 
