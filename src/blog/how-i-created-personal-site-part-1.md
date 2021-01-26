@@ -89,7 +89,7 @@ There is a running joke in our industry that it takes 1 day to design the layout
 
 It's a little exaggerated, but kinda true. Choosing a color palette is quite difficult, for most designers.
 
-So after 3 hours, I found a perfect color palette. Mostly white background(Duh! :roll_eyes:) with the primary color <mark>#6002ee</mark>. This for **light mode**.
+So after 3 hours, I found a perfect color palette. Mostly white background(Duh! 🙄) with the primary color <mark>#6002ee</mark>. This for **light mode**.
 
 For **dark mode**, the background is **#222428**(which is also the text color in light mode) and <mark>#714cfe</mark>.
 
