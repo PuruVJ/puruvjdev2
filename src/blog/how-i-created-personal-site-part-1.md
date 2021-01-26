@@ -3,7 +3,7 @@ title: Tech Stack & Design
 date: 27 June, 2020 9:50
 description: In this post, I delve into the details of the design part of how I built my personal site with StencilJS and what did I use to do so.
 cover_image: media/brick-wall.jpg
-series: "How I created my personal site"
+series: 'How I created my personal site'
 ---
 
 ![](../../static/media/brick-wall.jpg)
@@ -62,6 +62,8 @@ So the stack I decided to use for this site is:
 - [Vercel(formerly Zeit)](https://vercel.com) for the hosting
 - [ShikiJS](https://github.com/octref/shiki) for code syntax highlighting at build-time.
 - No design library! I designed everything from scratch. No bootstrap, no Materialize, nothing, nada!
+
+> NOTE!!: I've moved my blog over from StencilJS to Svelte. This isn't to say StencilJS is a wrong choice to build blogs or apps. It's just I had too much free time on my hand 😅
 
 ## Why not Gatsby/Next with React
 
@@ -161,5 +163,9 @@ Lemme explain. When you're reading, you're scrolling vertically. Desktops are wi
 This make our subconscious mind relate that site with closeness and suffocation. No one likes small and suffocated spaces.
 
 Rather, use a sidebar. And a narrow one if possible. Like this blog you're reading.
+
+> If you're reading this right now, you'll notice that this blog **does not** have a sidebar, rather a narrow topbar. I've moved over from sidebar to topbar, simply because the topbar looks better for my own blog and allows the theme switcher to be placed there too.
+>
+> That doesn't mean a sidebar isn't a good UI pattern. It's still very good, for it provides users with more area to read. However a narrow and undistracting top bar isn't a bad choice either
 
 {{ series-links }}
