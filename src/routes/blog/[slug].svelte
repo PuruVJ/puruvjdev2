@@ -65,7 +65,7 @@
     <div class="indicator" style="transform: scaleX({$readingProgress})" />
   </div>
   <h1>{title}</h1>
-  <p>{formatDate(date)} &bull; <span>{Math.ceil(reading_time)} min read</span></p>
+  <p><time>{formatDate(date)}</time> &bull; <span>{Math.ceil(reading_time)} min read</span></p>
   <article id="blog-content">
     {@html body}
   </article>

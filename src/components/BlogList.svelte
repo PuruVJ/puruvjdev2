@@ -17,7 +17,7 @@
     </span>
     <h2 class="title">{series ? `Part ${seriesIndex} - ` : ''}{title}</h2>
     <p class="description">{description}</p>
-    <p class="more-info"><span /><span>{formatDate(date)}</span></p>
+    <p class="more-info"><span /><time>{formatDate(date)}</time></p>
   </a>
 {/each}
 
