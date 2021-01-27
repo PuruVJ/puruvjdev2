@@ -13,11 +13,17 @@ What I can say is that you are gonna enjoy the hell out of this article. Me bein
 
 # Disclaimer
 
+This isn't an extensive article about TypeScript or a Getting Started with TypeScript. This is just me fanboying about it and writing about the features I truly truly love of it.
+
 I come from a JavaScript and PHP background, so I don't have any statically typed language experience from before like C, Java, or C++. Some things that I might find great or magical about TypeScript, might be super normal or even a bit irritating if you're coming from one of these classic typed languages. This article is just a huge opinion. Opinions differ. So I implore you to just ignore that part and move on.
 
 # What is TypeScript?
 
-In case you aren't familiar with TypeScript, it simply adds <mark>static type checking</mark> to your code, and that's what makes all the difference in the world. Check out this snippet
+In case you aren't familiar with TypeScript, it simply adds <mark>static type checking</mark> to your code, and that's what makes all the difference in the world.
+
+Official Definition:
+
+> TypeScript is a superset developed and maintained by Microsoft. It is a strict syntactical superset of JavaScript and adds optional static typing to the language. TypeScript is designed for the development of large applications and transcompiles to JavaScript.
 
 ```js
 function sum(a, b) {
@@ -60,7 +66,7 @@ This saved us in the end, but what if it was much more complex codebase, and a d
 
 This where TypeScript comes in handy. Consider the above code's equivalent in TypeScript:
 
-```js
+```ts
 function sum(a: number, b: number) {
   return a + b;
 }
@@ -78,3 +84,109 @@ We added the type `number` to out parameters in `sum` function, used `as` keywor
 ![Weird input sum values error](../../static/media/declaring-my-undying-love-for-typescript-code-sample-2.gif)
 
 See, Typescript is giving us an error that we can't put a `string` where a `number` was expected. It took the guessing game out of the equation completely, and saved us a lot of time later when the we would be looking in the whole codebase for the issue.
+
+# Only specific values allowed
+
+You can limit the values a variable can be, using <mark>String Literal Types</mark>:
+
+```ts
+const x: 'hello' | 'hi' | 'hola' | 'namaste' = 'hello';
+```
+
+You try to put any other value in `x`, TypeScript will throw an error, and just won't compile your code.
+
+This feature helps a load, especially when I'm building error handling logic in React forms. I can simply make a map of all kinds of error codes and their messages, and limit it using TypeScript
+
+```ts
+type TLoginError =
+  | 'user-not-found'
+  | 'wrong-password'
+  | 'network-request-failed'
+  | 'too-many-requests';
+
+const loginErrorMessages: { [error in TLoginError]: string } = {
+  'network-request-failed': `Network request failed. Try to log in again.`,
+  'user-not-found': 'Email not found in our database',
+  'wrong-password': 'Email and Password do not match',
+  'too-many-requests': 'Too many login attempts. Try again in a minute',
+};
+```
+
+`loginErrorMessages` won't take a property other than those specified in the type `TLoginError`. I can't stress enough how important that feature was when I was building an app.
+
+You can specifies numbers only too
+
+```ts
+type FontWeights = 100 | 200 | 300 | 400 | 500 | 600 | 700;
+```
+
+Not to mention their use in limiting Arrays to accept only a small set of values.
+
+```ts
+const searchFilters = ('name' | 'email' | 'phone' | 'designation')[] = [];
+```
+
+I actually used this snippet in a search feature I built for a Dashboard app.
+
+## Template Literal Types 💪
+
+Think of typings for Tailwind color palette.
+
+Let's limit ourselves to just 5 main colors, and 4 shades for the next example.
+
+```ts
+type ColorPalette =
+  // Blue
+  | 'blue-100'
+  | 'blue-300'
+  | 'blue-500'
+  | 'blue-700'
+
+  // Green
+  | 'green-100'
+  | 'green-300'
+  | 'green-500'
+  | 'green-700'
+
+  // Yellow
+  | 'yellow-100'
+  | 'yellow-300'
+  | 'yellow-500'
+  | 'yellow-700'
+
+  // Red
+  | 'red-100'
+  | 'red-300'
+  | 'red-500'
+  | 'red-700'
+
+  // Cyan
+  | 'cyan-100'
+  | 'cyan-300'
+  | 'cyan-500'
+  | 'cyan-700';
+```
+
+OMG!! We already had to declare `20` different color shade types here. And this is with a limited palette. Tailwind's actual palette has `22` colors, and `10` color shades. That's a whopping <mark>220</mark> string literals. We can't define all 220 of those can we?
+
+But we can use this nifty new feature called `Template Literal Types`. This feature shipped in TypeScript `4.1.0`, and was a total game changer when it dropped. It allowed us to apply dynamic behavior in your literal types.
+
+See 👇
+
+```ts
+type Color = 'blue' | 'green' | 'yellow' | 'red' | 'cyan';
+
+type Shade = 100 | 300 | 500 | 700;
+
+type ColorPalette = `${Color}-${Shade}`;
+```
+
+Now `ColorPalette` contains all the combinations that can come from crossing all these values from these 2 types. See for yourself 👇
+
+![Template literal types demo](../../static/media/declaring-my-undying-love-for-typescript-template-literal-type.gif)
+
+This here is pure 🦄
+
+# Tuples FTW!
+
+# It is futuristic
