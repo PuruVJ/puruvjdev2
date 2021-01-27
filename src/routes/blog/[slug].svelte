@@ -27,6 +27,8 @@
   export let blogData: IBlog;
   let { title, body, date, description, cover_image, id, reading_time } = blogData;
 
+  const browserTitle = title.replace(/<img.*?alt="(.*?)"[^\>]+>/g, '$1');
+
   function handleProgressBar() {
     let height = document.body.scrollHeight - document.documentElement.clientHeight;
     const currentY = document.body.scrollTop;
@@ -46,10 +48,10 @@
 </script>
 
 <svelte:head>
-  <title>{title} // Puru Vijay</title>
+  <title>{browserTitle} // Puru Vijay</title>
   <meta name="description" content={description} />
 
-  <meta property="og:title" content="{title} // Puru Vijay" />
+  <meta property="og:title" content="{browserTitle} // Puru Vijay" />
   <meta property="og:description" content={description} />
   <meta property="og:image" content="https://puruvj.dev/{cover_image}" />
   <meta property="og:url" content="https://puruvj.dev/blog/{id}" />
