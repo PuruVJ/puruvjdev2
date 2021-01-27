@@ -64,7 +64,7 @@
   <div class="progress" aria-roledescription="progress">
     <div class="indicator" style="transform: scaleX({$readingProgress})" />
   </div>
-  <h1>{title}</h1>
+  <h1>{@html title}</h1>
   <p><time>{formatDate(date)}</time> &bull; <span>{Math.ceil(reading_time)} min read</span></p>
   <article id="blog-content">
     {@html body}

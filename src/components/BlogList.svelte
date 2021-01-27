@@ -15,7 +15,7 @@
         <mark>SERIES</mark> {series}
       {/if}
     </span>
-    <h2 class="title">{series ? `Part ${seriesIndex} - ` : ''}{title}</h2>
+    <h2 class="title">{series ? `Part ${seriesIndex} - ` : ''}{@html title}</h2>
     <p class="description">{description}</p>
     <p class="more-info"><span /><time>{formatDate(date)}</time></p>
   </a>
@@ -35,6 +35,13 @@
 
     display: flex;
     align-items: center;
+
+    :global(.emoji) {
+      margin: 0 0.75rem;
+
+      height: 1.2em;
+      width: 1.2em;
+    }
   }
 
   .end {
