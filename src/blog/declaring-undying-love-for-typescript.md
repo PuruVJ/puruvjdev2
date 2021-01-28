@@ -302,6 +302,14 @@ Proof it works: ![Intersection types work](../../static/media/declaring-my-undyi
 
 What all you can do with this is limitless. You can mix and match these types for all kinds of different requirements.
 
-# I <mark>Pick</mark> you. And you're out
+> Note: If 2 types contain same property(in this case `id`), their types must same too, or TypeScript will error out
 
-If the heading didn't make any sense, this part is about the ``
+# I <mark>Pick</mark> you
+
+If the heading didn't make any sense, this part is about the `Pick` helper type, which helps you pick specific properties from an interface.
+
+Let's continue the above example only. Let's say we want to create only want `id`, `gender`, `name`, an
+
+```ts
+
+```
