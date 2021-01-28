@@ -240,4 +240,68 @@ For example, look at Optional chaining. I've been using it for over a year in Ty
 
 Same was the case with Classes, ES6 Proxies, Spread operator, Destructing. You name it.
 
-# Intersection save labour
+# Intersection types save labour
+
+In MySQL, you split up related data into different tables. For example,
+
+Instead of a single table containing all the fields
+
+```js
+| id | name | email | username | password | gender | dob | acc_created | last_seen |
+```
+
+We split it up into Many tables containing atomic data
+
+`login_info`:
+
+```js
+| id | email | username | password |
+```
+
+`personalInfo`:
+
+```js
+| id | name | gender | dob |
+```
+
+`account_details`:
+
+```js
+| id | account_created | last_seen |
+```
+
+And then we join all these together in the query when we need all the data.
+
+We can do a similar thing in TypeScript:
+
+```ts
+type LoginFields = {
+  id: number;
+  email: string;
+  username: string;
+  password: string;
+};
+
+type PersonalFields = {
+  id: number;
+  name: string;
+  gender: 'male' | 'female' | 'non-binary' | 'prefer-not-to-say';
+  dob: Date;
+};
+
+type AccountDetails = {
+  id: number;
+  accountCreated: Date;
+  lastSeen: Date;
+};
+
+type User = LoginFields & PersonalFields & AccountDetails;
+```
+
+Proof it works: ![Intersection types work](../../static/media/declaring-my-undying-love-for-typescript-intersection-type.gif)
+
+What all you can do with this is limitless. You can mix and match these types for all kinds of different requirements.
+
+# I <mark>Pick</mark> you. And you're out
+
+If the heading didn't make any sense, this part is about the ``
