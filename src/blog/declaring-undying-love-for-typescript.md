@@ -239,3 +239,5 @@ For example, look at Optional chaining. I've been using it for over a year in Ty
 > Refresher: Optional chaining removes the need for checking for properties in an object before using them. `x && x.y && x.y.z && x.y.z()` simply becomes `x?.y?.z.()` using Optional Chaining.
 
 Same was the case with Classes, ES6 Proxies, Spread operator, Destructing. You name it.
+
+# Intersection save labour
