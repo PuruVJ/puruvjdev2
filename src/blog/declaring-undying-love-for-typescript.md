@@ -308,7 +308,7 @@ What all you can do with this is limitless. You can mix and match these types fo
 
 If the heading didn't make any sense, this part is about the `Pick` helper type, which helps you pick specific properties from an interface.
 
-Let's continue the above example only. Let's say we want to create only want `id`, `gender`, `name`, an
+Let's continue the above example only. Let's say we want to create a type with only `id`, `gender`, `name`, and these properties should match those in the original `User` type.
 
 ```ts
 
