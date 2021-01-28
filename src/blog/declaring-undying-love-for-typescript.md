@@ -185,8 +185,57 @@ Now `ColorPalette` contains all the combinations that can come from crossing all
 
 ![Template literal types demo](../../static/media/declaring-my-undying-love-for-typescript-template-literal-type.gif)
 
-This here is pure 🦄
+This here is pure magic 🦄
 
 # Tuples FTW!
 
+> A tuple is a collection which is ordered and unchangeable.
+
+Tuples in TypeScript are super amazing. They help a lot when working with Arrays. Consider this
+
+```ts
+type Coordinates = [number, number];
+
+function getLocation(coords: Coordinates) {
+  const [x, y] = coords;
+
+  /** Logic */
+}
+```
+
+Now coords can only be given values that are of <mark>number</mark> type, and only **2 values**. No less than 2, no more.
+
+Another example:
+
+```ts
+type Grid = [[number, number], [number, number]];
+
+const x: Grid = [
+  [1, 2],
+  [3, 4],
+]; // ✅ Correct
+
+const y: Grid = [[1, 2], 3]; // ❌ ERROR
+```
+
+Main use of Tuples is in limiting the **types**, as well as the number of items it can take.
+
+And the types don't have to be same, you can mix and match these as much as you wish
+
+```ts
+type UserData = [string, number, number, string, UserRole];
+```
+
+So useful!
+
 # It is futuristic
+
+TypeScript is always ahead of JavaScript. Every feature that comes to JavaScript, already gets implemented into TypeScript months, even years before it first shows up in JavaScript the first time.
+
+Generally, any feature proposal in <mark>ECMAScript</mark> that reaches Stage 3 or 4, it gets implemented into TypeScript. You can start using the feature directly, and TypeScript will just polyfill it to work in browsers.
+
+For example, look at Optional chaining. I've been using it for over a year in TypeScript before it officially dropped in Chrome.
+
+> Refresher: Optional chaining removes the need for checking for properties in an object before using them. `x && x.y && x.y.z && x.y.z()` simply becomes `x?.y?.z.()` using Optional Chaining.
+
+Same was the case with Classes, ES6 Proxies, Spread operator, Destructing. You name it.
