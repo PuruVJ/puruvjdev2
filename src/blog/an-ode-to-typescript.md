@@ -81,14 +81,14 @@ We added the type `number` to out parameters in `sum` function, used `as` keywor
 
 ![Weird input sum values error](../../static/media/declaring-my-undying-love-for-typescript-code-sample-2.gif)
 
-See, Typescript is giving us an error that we can't put a `string` where a `number` was expected. It took the guessing game out of the equation completely, and saved us a lot of time later when the we would be looking in the whole codebase for the issue.
+Typescript is giving us an error that we can't put a `string` where a `number` was expected. It took the guessing game out of the equation completely, and saved us a lot of time later when the we would be looking in the whole codebase for the issue.
 
 # Only specific values allowed
 
-You can limit the values a variable can be, using <mark>String Literal Types</mark>:
+You can limit the values a variable can have, using <mark>String Literal Types</mark>:
 
 ```ts
-const x: 'hello' | 'hi' | 'hola' | 'namaste' = 'hello';
+const x: 'hello' | 'hi' | 'hola' | 'namaste' = 'namaste';
 ```
 
 You try to put any other value in `x`, TypeScript will throw an error, and just won't compile your code.
@@ -112,7 +112,7 @@ const loginErrorMessages: { [error in TLoginError]: string } = {
 
 `loginErrorMessages` won't take a property other than those specified in the type `TLoginError`. I can't stress enough how important that feature was when I was building an app.
 
-You can specifies numbers only too
+You can specify numbers also
 
 ```ts
 type FontWeights: 100 | 200 | 300 | 400 | 500 | 600 | 700;
