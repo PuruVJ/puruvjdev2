@@ -26,8 +26,6 @@ type AccountDetails = {
 
 type User = LoginFields & PersonalFields & AccountDetails;
 
-const user: User = {
-  gender: '',
-};
+type FewUserFields = Pick<User, 'id' | 'gender' | 'name'>;
 
 export {};

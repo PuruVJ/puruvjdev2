@@ -1,5 +1,5 @@
 ---
-title: '"declare"ing my undying ❤ love for TypeScript'
+title: 'An Ode to TypeScript 🤩'
 description: TypeScript is cool. Super cool. It's made us Web Dev's life super easy. Read me being a fanboy about it.
 date: 1 Feb, 2021
 cover_image: media/declaring-my-undying-love-for-typescript-sun-love.jpg
@@ -321,3 +321,37 @@ type FewUserFields = {
 Hmm. That's not good. Lots of duplication.
 
 To prevent this duplication, we'll directly pick from the original object.
+
+TypeScript provides a helper type <mark>Pick</mark>, which does exactly this.
+
+```ts
+type FewUserFields = Pick<User, 'id' | 'gender' | 'name'>;
+```
+
+Here's the proof 👇
+
+![Pick type helper demo](../../static/media/declaring-my-undying-love-for-typescript-code-sample-pick-helper-type.gif)
+
+See?! The fields are here, just how they were in the original object. It's so much better than duplicating. Whenever you change the these types in the original source, this type will also update itself, because it's just referencing the original one.
+
+This type is super handy everywhere. In fact, [styled-components](https://styled-components.com/), a styling library for React uses it heavily, too heavily in fact 👇
+
+![Styled Components usage of Pick](../../static/media/declaring-my-undying-love-for-typescript-pick-styled-components.png)
+
+Just see how many `Pick`s there are. If you have used this library in TypeScript, you have hands-on experience of how good styled-components with TS experience is. A lot of it is possible due to `Pick` only.
+
+# An ode to Intellisense
+
+And finally, the <mark>Intellisense</mark>
+
+I know, it's kinda late talking about intellisense, considering that is the most popular and well-known feature of TypeScript. But that's why it deserves this section at the end, the most important section of any article. It's **Gratitude Time**!!
+
+In late 2015, VSCode dropped into the Web Dev Scene. At that time, I had just started into development, around 6 months before, and been using <mark>Microsoft Webmatrix</mark> IDE (@ me on my Twitter [@puruvjdev](https://twitter.com/puruvjdev) if you remember that editor). Microsoft decided to kill it in favour of VSCode, so I installed VSCode. At the time I was primarily in PHP land, and VSCode was never near good enough as Webmatrix was at doing PHP stuff, not to mention it didn't have built-in Database manager, so I thought it was trash and moved on to other editors like Atom, or Brackets(Ah! Brackets was so good 😍😍). Then I slowly moved over to more of front-end, and felt that Brackets wasn't enough for that, so I decided to move back to VSCode.
+
+And boy, was I blown away completely 🤯
+
+This was in mid-2016s. VSCode hadn't been there for more than 8 months at most, yet I was blown away by how good it's <mark>Intellisense</mark> was in JS files. It was butter smooth!!. It's like it would read my mind whenever I wanted to do anything. I had seen first-class autocompletion and code suggestions in `Brackets`, but what VSCode offered was something even more stronger.
+
+For starters, it showed the right kind of suggestions in the right kind of files. In Brackets and Webmatrix, code suggestions were all over the place. As in, it would show me suggestions for CSS when I was writing HTML. And I wasn't in a `style` tag.
+
+With VSCode, no problem. I would only see any CSS suggestions inside a `style` tag, and that was just as good as the intellisense in CSS files.
