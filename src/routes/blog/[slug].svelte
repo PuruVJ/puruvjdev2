@@ -86,6 +86,7 @@
 
   #blog-content {
     font-size: 1.3rem;
+    font-weight: 500;
   }
 
   div.progress {
