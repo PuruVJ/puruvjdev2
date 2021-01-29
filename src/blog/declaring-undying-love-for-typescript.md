@@ -117,7 +117,7 @@ const loginErrorMessages: { [error in TLoginError]: string } = {
 You can specifies numbers only too
 
 ```ts
-type FontWeights = 100 | 200 | 300 | 400 | 500 | 600 | 700;
+type FontWeights: 100 | 200 | 300 | 400 | 500 | 600 | 700;
 ```
 
 Not to mention their use in limiting Arrays to accept only a small set of values.
@@ -311,5 +311,13 @@ If the heading didn't make any sense, this part is about the `Pick` helper type,
 Let's continue the above example only. Let's say we want to create a type with only `id`, `gender`, `name`, and these properties should match those in the original `User` type.
 
 ```ts
-
+type FewUserFields = {
+  id: number;
+  gender: 'male' | 'female' | 'non-binary' | 'prefer-not-to-say';
+  name: string;
+};
 ```
+
+Hmm. That's not good. Lots of duplication.
+
+To prevent this duplication, we'll directly pick from the original object.
