@@ -1,5 +1,5 @@
 ---
-title: 'An Ode to TypeScript 🤩'
+title: 'An Ode ❤ to TypeScript '
 description: TypeScript is cool. Super cool. It's made us Web Dev's life super easy. Read me being a fanboy about it.
 date: 1 Feb, 2021
 cover_image: media/declaring-my-undying-love-for-typescript-sun-love.jpg
@@ -238,9 +238,9 @@ For example, look at Optional chaining. I've been using it for over a year in Ty
 
 > Refresher: Optional chaining removes the need for checking for properties in an object before using them. `x && x.y && x.y.z && x.y.z()` simply becomes `x?.y?.z.()` using Optional Chaining.
 
-Same was the case with Classes, ES6 Proxies, Spread operator, Destructing. You name it.
+Same was the case with Classes, ES6 Proxies, Spread operator, Destructuring. You name it.
 
-# Intersection types save labour
+# Intersection types save effort
 
 In MySQL, you split up related data into different tables. For example,
 
@@ -302,7 +302,7 @@ Proof it works: ![Intersection types work](../../static/media/declaring-my-undyi
 
 What all you can do with this is limitless. You can mix and match these types for all kinds of different requirements.
 
-> Note: If 2 types contain same property(in this case `id`), their types must same too, or TypeScript will error out
+> Note: If 2 types contain same property(in this case `id`), their types must be same too, or TypeScript will error out
 
 # I <mark>Pick</mark> you
 
@@ -346,12 +346,22 @@ And finally, the <mark>Intellisense</mark>
 
 I know, it's kinda late talking about intellisense, considering that is the most popular and well-known feature of TypeScript. But that's why it deserves this section at the end, the most important section of any article. It's **Gratitude Time**!!
 
-In late 2015, VSCode dropped into the Web Dev Scene. At that time, I had just started into development, around 6 months before, and been using <mark>Microsoft Webmatrix</mark> IDE (@ me on my Twitter [@puruvjdev](https://twitter.com/puruvjdev) if you remember that editor). Microsoft decided to kill it in favour of VSCode, so I installed VSCode. At the time I was primarily in PHP land, and VSCode was never near good enough as Webmatrix was at doing PHP stuff, not to mention it didn't have built-in Database manager, so I thought it was trash and moved on to other editors like Atom, or Brackets(Ah! Brackets was so good 😍😍). Then I slowly moved over to more of front-end, and felt that Brackets wasn't enough for that, so I decided to move back to VSCode.
+In late 2015, VSCode dropped into the Web Dev Scene. At that time, I had just started into development, around 6 months before, and been using <mark>Microsoft Webmatrix</mark> IDE (@ me on my Twitter [@puruvjdev](https://twitter.com/puruvjdev) if you remember that editor). Microsoft decided to kill it in favour of VSCode, so I installed VSCode. At the time I was primarily in PHP land, and VSCode was never near good enough as Webmatrix was at doing PHP stuff, not to mention it didn't have built-in Database manager, so I thought it was trash and moved on to other editors like <mark>AtomM/mark, or <mark>Brackets</mark>(Ah! Brackets was so good 😍😍). Then I slowly moved over to more of front-end, and felt that Brackets wasn't enough for that, so I decided to move back to VSCode.
 
 And boy, was I blown away completely 🤯
 
-This was in mid-2016s. VSCode hadn't been there for more than 8 months at most, yet I was blown away by how good it's <mark>Intellisense</mark> was in JS files. It was butter smooth!!. It's like it would read my mind whenever I wanted to do anything. I had seen first-class autocompletion and code suggestions in `Brackets`, but what VSCode offered was something even more stronger.
+This was in mid-2016s. VSCode hadn't been there for more than 8 months at most, yet I was blown away by how good it's <mark>Intellisense</mark> was in JS files. It was butter smooth!!. It's like it would read my mind whenever I wanted to do anything. I had seen first-class autocompletion and code suggestions in <mark>Brackets</mark>, but what VSCode offered was something even more stronger.
 
 For starters, it showed the right kind of suggestions in the right kind of files. In Brackets and Webmatrix, code suggestions were all over the place. As in, it would show me suggestions for CSS when I was writing HTML. And I wasn't in a `style` tag.
 
-With VSCode, no problem. I would only see any CSS suggestions inside a `style` tag, and that was just as good as the intellisense in CSS files.
+With VSCode, no problem. I would only see any CSS suggestions inside a `style` tag, and that was just as good as the intellisense in CSS files(which means insanely good).
+
+Well, back to TypeScript. The biggest and the most impactful contribution of TypeScript I believe is in it's integration with VSCode. Most of the time, my only need for TypeScript is just its type-checking aspects. I don't want it to modify my code and apply the polyfilling magic. I just want it to catch silly errors while I'm writing the code, so I can spend my precious time catching the errors that really matter.
+
+And that's why its integration with VSCode is so important. If it was one of those tools where the only way you can use its checking was by using the terminal only, it wouldn't take off as well. But instead, you get error reporting as you type. No extra commands, no rote memorization, nothing, nada. Just start writing, and TypeScript, your loyal friend, will guide you.
+
+# The end
+
+I hope you got something good out of this article. I hope this comes useful one day(by that, I mean you convincing your team to move over to TypeScript 😁).
+
+Signing off!
