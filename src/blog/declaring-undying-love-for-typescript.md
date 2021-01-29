@@ -1,6 +1,6 @@
 ---
 title: 'An Ode ❤ to TypeScript '
-description: TypeScript is cool. Super cool. It's made us Web Dev's life super easy. Read me being a fanboy about it.
+description: TypeScript is cool. Super cool. It's made us Web Dev's life super easy. Read me being a total fanboy about it.
 date: 1 Feb, 2021
 cover_image: media/declaring-my-undying-love-for-typescript-sun-love.jpg
 ---
@@ -12,8 +12,6 @@ Alrighty! So, a fair warning before you jump on to the rest of the article: You 
 What I can say is that you are gonna enjoy the hell out of this article. Me being a huge fanboy about TypeScript might just make your day.
 
 # Disclaimer
-
-This isn't an extensive article about TypeScript or a Getting Started with TypeScript. This is just me fanboying about it and writing about the features I truly truly love of it.
 
 I come from a JavaScript and PHP background, so I don't have any statically typed language experience from before like C, Java, or C++. Some things that I might find great or magical about TypeScript, might be super normal or even a bit irritating if you're coming from one of these classic typed languages. This article is just a huge opinion. Opinions differ. So I implore you to just ignore that part and move on.
 
