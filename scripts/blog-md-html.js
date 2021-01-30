@@ -136,7 +136,7 @@ const { seriesLinksPlugin } = require('./blog-plugins/series-links');
 
       attributes.title = `(Part ${seriesPostsList.findIndex(({ id }) => id === fileName) + 1}) ${
         attributes.title
-      } - ${series}`;
+      }`;
     }
 
     // Emojis

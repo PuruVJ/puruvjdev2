@@ -65,7 +65,7 @@ const val1 = +document.querySelector('#input1').value;
 
 This `+` will convert the incoming value from the input to number, if it can, otherwise it will turn it into `NaN`. Luckily in out case, it will convert those values to `2` and `8` as numbers, respectively, and we'll get the correct answer, `10`
 
-This saved us in the end, but what if it was much more complex codebase, and a dev forgot to fix it, and shipped it to production? Ooh, whatever would happened, it would make headlines in HackerNews and Twitter 😈.
+This saved us in the end, but what if it was a much more complex codebase, and a dev forgot to fix it, and shipped it to production? Ooh, whatever would happened, it would make headlines in HackerNews and Twitter 😈.
 
 This where TypeScript comes in handy. Consider the above code's equivalent in TypeScript:
 
