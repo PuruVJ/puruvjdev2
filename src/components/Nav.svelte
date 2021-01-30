@@ -2,6 +2,7 @@
   import ThemeSwitcher from '../components/ThemeSwitcher.svelte';
   import { theme } from '../stores/theme.store';
   import { throttle } from 'throttle-debounce';
+  import { onMount } from 'svelte';
 
   // The scroll from above
   let scrollY: number = 0;
@@ -11,6 +12,10 @@
   function handleScroll() {
     scrollY = document.body.scrollTop;
   }
+
+  onMount(() => {
+    handleScroll();
+  });
 </script>
 
 <svelte:body on:scroll={throttle(50, false, handleScroll)} />

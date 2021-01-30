@@ -10,7 +10,7 @@ series: 'Get to know TypeScript'
 
 {{ series-links }}
 
-Alrighty! So, a fair warning before you jump on to the rest of the article: You probably won't learn any TypeScript related thing in this article. You may or you may not, I can't really say.
+Alrighty! So, a fair warning before you jump on to the rest of the article: This is not an extensive article about TypeScript or a Getting Started guide. It assumes you already know some TypeScript or JavaScript at least.
 
 What I can say is that you are gonna enjoy the hell out of this article. Me being a huge fanboy about TypeScript might just make your day.
 
