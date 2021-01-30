@@ -25,7 +25,7 @@
   import { readingProgress } from '../../stores/progress.store';
 
   export let blogData: IBlog;
-  let { title, body, date, description, cover_image, id, reading_time } = blogData;
+  let { title, body, date, description, cover_image, id, reading_time, series } = blogData;
 
   const browserTitle = title.replace(/<img.*?alt="(.*?)"[^\>]+>/g, '$1');
 
@@ -66,6 +66,11 @@
   <div class="progress" aria-roledescription="progress">
     <div class="indicator" style="transform: scaleX({$readingProgress})" />
   </div>
+  <span class="series">
+    {#if series}
+      <mark>SERIES</mark> {series}
+    {/if}
+  </span>
   <h1>{@html title}</h1>
   <p><time>{formatDate(date)}</time> &bull; <span>{Math.ceil(reading_time)} min read</span></p>
   <article id="blog-content">
@@ -108,6 +113,19 @@
 
       transform: scaleX(0);
       transform-origin: 0 0;
+    }
+  }
+
+  .series {
+    font-size: 1.5rem;
+
+    color: rgba(var(--app-color-dark-rgb), 0.6);
+
+    letter-spacing: 1px;
+    font-family: 'Fira Code', monospace;
+
+    mark {
+      font-family: 'Quicksand', sans-serif;
     }
   }
 
