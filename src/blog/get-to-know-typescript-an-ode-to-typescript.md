@@ -3,9 +3,12 @@ title: 'An Ode ❤ to TypeScript '
 description: TypeScript is cool. Super cool. It's made us Web Dev's life super easy. Read me being a total fanboy about it.
 date: 1 Feb, 2021
 cover_image: media/declaring-my-undying-love-for-typescript-sun-love.jpg
+series: 'Get to know TypeScript'
 ---
 
 ![Love sunset](../../static/media/declaring-my-undying-love-for-typescript-sun-love.jpg)
+
+{{ series-links }}
 
 Alrighty! So, a fair warning before you jump on to the rest of the article: You probably won't learn any TypeScript related thing in this article. You may or you may not, I can't really say.
 
@@ -363,3 +366,5 @@ And that's why its integration with VSCode is so important. If it was one of tho
 I hope you got something good out of this article. I hope this comes useful one day(by that, I mean you convincing your team to move over to TypeScript 😁).
 
 Signing off!
+
+{{ series-links }}
