@@ -61,6 +61,8 @@ It's easy to fix it. We just have to put a `+` sign in our values:
 const val1 = +document.querySelector('#input1').value;
 ```
 
+> Refresher: If the above code seems weird to you because of adding the `+`, the reason is that `+` forces JavaScript to convert the string attached to it to a number. Why? Because +_EXPRESSION_ is interpreted as `0 +EXPRESSION`. JS tries to add 0 to the `EXPRESSION`. So let's say we entered `81` as the value, and we end up with `+'81'`. JS tries to convert `'81'` to a number. And JS succeeds at doing so. So we end up with `+81`, which is simply `81`
+
 This `+` will convert the incoming value from the input to number, if it can, otherwise it will turn it into `NaN`. Luckily in out case, it will convert those values to `2` and `8` as numbers, respectively, and we'll get the correct answer, `10`
 
 This saved us in the end, but what if it was much more complex codebase, and a dev forgot to fix it, and shipped it to production? Ooh, whatever would happened, it would make headlines in HackerNews and Twitter 😂.
