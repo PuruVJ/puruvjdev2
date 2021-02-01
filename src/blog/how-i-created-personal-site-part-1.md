@@ -3,7 +3,7 @@ title: Tech Stack & Design
 date: 27 June, 2020 9:50
 description: In this post, I delve into the details of the design part of how I built my personal site with StencilJS and what did I use to do so.
 cover_image: media/brick-wall.jpg
-series: "How I created my personal site"
+series: 'How I created my personal site'
 ---
 
 ![](../../static/media/brick-wall.jpg)
@@ -38,7 +38,7 @@ And most of all, it must a conscious design. I will later elaborate what I mean 
 
 > A fast site is a good site. A slow site is no site.
 >
-> ~ Me :grin:
+> ~ Me 😁
 
 No, literally. No one's gonna wait 2 minutes for your blog post to show up. They'll <s>definitely</s> probably leave your site. Plus you'll be doing your users with expensive data plans a big favour (Can tell from experience).
 
@@ -62,6 +62,8 @@ So the stack I decided to use for this site is:
 - [Vercel(formerly Zeit)](https://vercel.com) for the hosting
 - [ShikiJS](https://github.com/octref/shiki) for code syntax highlighting at build-time.
 - No design library! I designed everything from scratch. No bootstrap, no Materialize, nothing, nada!
+
+> NOTE!!: I've moved my blog over from StencilJS to Svelte. This isn't to say StencilJS is a wrong choice to build blogs or apps. It's just I had too much free time on my hand 😅
 
 ## Why not Gatsby/Next with React
 
@@ -87,7 +89,7 @@ There is a running joke in our industry that it takes 1 day to design the layout
 
 It's a little exaggerated, but kinda true. Choosing a color palette is quite difficult, for most designers.
 
-So after 3 hours, I found a perfect color palette. Mostly white background(Duh! :roll_eyes:) with the primary color <mark>#6002ee</mark>. This for **light mode**.
+So after 3 hours, I found a perfect color palette. Mostly white background(Duh! 🙄) with the primary color <mark>#6002ee</mark>. This for **light mode**.
 
 For **dark mode**, the background is **#222428**(which is also the text color in light mode) and <mark>#714cfe</mark>.
 
@@ -95,7 +97,7 @@ A secondary color wasn't required, as my site is quite minimalistic.
 
 ## Fonts
 
-Remember that joke about color palette I just mentioned? Well it applies to selecting fonts too. So after 1 more hour :confused:, I found the best fonts(Note that I changed one font after I had launched the site).
+Remember that joke about color palette I just mentioned? Well it applies to selecting fonts too. So after 1 more hour 😅, I found the best fonts(Note that I changed one font after I had launched the site).
 
 - **Comfortaa** for headings
 - **Quicksand** for blog body
@@ -144,11 +146,11 @@ Transitions and animations can increase the emotional appeal of a site. They ele
 
 ## Style Scrollbars
 
-Styling scrollbars is very easy. You just have to copy the code from StackOverflow and edit it(Cuz honestly, who can remember all those huge selectors :smirk:).
+Styling scrollbars is very easy. You just have to copy the code from StackOverflow and edit it(Cuz honestly, who can remember all those huge selectors 😏).
 
 Scrollbars as-of-now are editable only in Webkit based browsers, meaning Chromium-based browsers(Chrome, Brave, Edgium, Opera) and Safari only. Firefox, IE and legacy Edge don't support styling of scrollbars.
 
-> In my opinion, Firefox is not an issue. Their scrollbars look dope as hell :sunglasses:
+> In my opinion, Firefox is not an issue. Their scrollbars look dope as hell 😎
 
 Scrollbars occupy very little real-estate on a page, but when done correctly, can take the look, authenticity and integrity of your site to the next level. A well designed site with default scrollbars just don't do it for anyone, whereas those slick curved transparent scrollbars just do it for everyone.
 
@@ -161,5 +163,9 @@ Lemme explain. When you're reading, you're scrolling vertically. Desktops are wi
 This make our subconscious mind relate that site with closeness and suffocation. No one likes small and suffocated spaces.
 
 Rather, use a sidebar. And a narrow one if possible. Like this blog you're reading.
+
+> If you're reading this right now, you'll notice that this blog **does not** have a sidebar, rather a narrow topbar. I've moved over from sidebar to topbar, simply because the topbar looks better for my own blog and allows the theme switcher to be placed there too.
+>
+> That doesn't mean a sidebar isn't a good UI pattern. It's still very good, for it provides users with more area to read. However a narrow and undistracting top bar isn't a bad choice either
 
 {{ series-links }}

@@ -1,11 +1,10 @@
-const { readdir, readFile, writeFile } = require("fs").promises;
-const fm = require("front-matter");
+const { readdir, readFile, writeFile } = require('fs').promises;
+const twemoji = require('twemoji');
+const fm = require('front-matter');
 
 (async () => {
   // Let's get all the files list
-  const filesList = (await readdir("../src/blog/")).filter((file) =>
-    file.endsWith(".md")
-  );
+  const filesList = (await readdir('../src/blog/')).filter((file) => file.endsWith('.md'));
 
   /**
    * @type {{[blogID: string] : {id: string, date: Date}[]}}
@@ -16,9 +15,9 @@ const fm = require("front-matter");
     const filePath = `../src/blog/${file}`;
 
     // Data
-    const data = await readFile(filePath, "utf-8");
+    const data = await readFile(filePath, 'utf-8');
 
-    const fileName = file.split(".")[0];
+    const fileName = file.split('.')[0];
 
     // Get the metadata inside the markdown
     let {
@@ -39,15 +38,15 @@ const fm = require("front-matter");
   // The final list of data
   let finaldata = [];
 
-  console.log("--------- Generating blogs list -----------");
+  console.log('--------- Generating blogs list -----------');
 
   for (let file of filesList) {
     const filePath = `../src/blog/${file}`;
 
     // Data
-    const data = await readFile(filePath, "utf-8");
+    const data = await readFile(filePath, 'utf-8');
 
-    const fileName = file.split(".")[0];
+    const fileName = file.split('.')[0];
 
     // Get the metadata inside the markdown
     const {
@@ -65,7 +64,10 @@ const fm = require("front-matter");
     // Let's push
     published &&
       finaldata.push({
-        title,
+        title: twemoji.parse(title, {
+          ext: '.svg',
+          folder: 'svg',
+        }),
         description,
         date,
         id: fileName,
@@ -82,7 +84,7 @@ const fm = require("front-matter");
   });
 
   // Write data
-  await writeFile("../static/data/blogs-list.json", JSON.stringify(finaldata));
+  await writeFile('../static/data/blogs-list.json', JSON.stringify(finaldata));
 
-  console.log("---------- Generated ------------");
+  console.log('---------- Generated ------------');
 })();
