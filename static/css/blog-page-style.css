@@ -62,7 +62,7 @@ code {
   background-color: rgba(var(--app-color-dark-rgb), 0.1);
   padding: 4px 4px;
   border-radius: 4px;
-  font-family: "Fira Code", monospace;
+  font-family: 'Fira Code', monospace;
   font-size: 1rem;
 }
 
@@ -74,6 +74,10 @@ code {
   #blog-content h1 {
     font-size: calc(1.1 * 2.618rem);
   }
+}
+
+#blog-content strong {
+  font-weight: 700;
 }
 
 #blog-content h2 {
@@ -92,7 +96,7 @@ code {
 #blog-content h1::before,
 #blog-content h3::before {
   display: block;
-  content: " ";
+  content: ' ';
   margin-top: -3.2rem;
   height: 3.2rem;
   visibility: hidden;
@@ -119,7 +123,7 @@ code {
   margin: 0;
   padding-left: 1rem;
   border-left: solid 4px var(--app-color-primary);
-  font-family: "Fira Code", monospace;
+  font-family: 'Fira Code', monospace;
   border-radius: 0 8px 8px 0;
   background-color: rgba(var(--app-color-dark-rgb), 0.05);
 }

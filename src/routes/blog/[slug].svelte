@@ -25,7 +25,9 @@
   import { readingProgress } from '../../stores/progress.store';
 
   export let blogData: IBlog;
-  let { title, body, date, description, cover_image, id, reading_time } = blogData;
+  let { title, body, date, description, cover_image, id, reading_time, series } = blogData;
+
+  const browserTitle = title.replace(/<img.*?alt="(.*?)"[^\>]+>/g, '$1');
 
   function handleProgressBar() {
     let height = document.body.scrollHeight - document.documentElement.clientHeight;
@@ -46,10 +48,10 @@
 </script>
 
 <svelte:head>
-  <title>{title} // Puru Vijay</title>
+  <title>{browserTitle} // Puru Vijay</title>
   <meta name="description" content={description} />
 
-  <meta property="og:title" content="{title} // Puru Vijay" />
+  <meta property="og:title" content="{browserTitle} // Puru Vijay" />
   <meta property="og:description" content={description} />
   <meta property="og:image" content="https://puruvj.dev/{cover_image}" />
   <meta property="og:url" content="https://puruvj.dev/blog/{id}" />
@@ -64,8 +66,13 @@
   <div class="progress" aria-roledescription="progress">
     <div class="indicator" style="transform: scaleX({$readingProgress})" />
   </div>
-  <h1>{title}</h1>
-  <p>{formatDate(date)} &bull; <span>{Math.ceil(reading_time)} min read</span></p>
+  <span class="series">
+    {#if series}
+      <mark>SERIES</mark> {series}
+    {/if}
+  </span>
+  <h1>{@html title}</h1>
+  <p><time>{formatDate(date)}</time> &bull; <span>{Math.ceil(reading_time)} min read</span></p>
   <article id="blog-content">
     {@html body}
   </article>
@@ -84,6 +91,7 @@
 
   #blog-content {
     font-size: 1.3rem;
+    font-weight: 500;
   }
 
   div.progress {
@@ -105,6 +113,19 @@
 
       transform: scaleX(0);
       transform-origin: 0 0;
+    }
+  }
+
+  .series {
+    font-size: 1.3rem;
+
+    color: rgba(var(--app-color-dark-rgb), 0.6);
+
+    letter-spacing: 1px;
+    font-family: 'Fira Code', monospace;
+
+    mark {
+      font-family: 'Quicksand', sans-serif;
     }
   }
 
