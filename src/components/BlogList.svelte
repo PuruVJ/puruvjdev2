@@ -15,7 +15,7 @@
         <mark>SERIES</mark> {series}
       {/if}
     </span>
-    <h2 class="title">{series ? `Part ${seriesIndex} - ` : ''}{@html title}</h2>
+    <h2 class="title">{@html title}</h2>
     <p class="description">{description}</p>
     <p class="more-info"><span /><time>{formatDate(date)}</time></p>
   </a>
