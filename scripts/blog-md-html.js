@@ -134,9 +134,7 @@ const { seriesLinksPlugin } = require('./blog-plugins/series-links');
 
       ({ document } = await seriesLinksPlugin(document, seriesPostsList, series, fileName));
 
-      attributes.title = `(Part ${seriesPostsList.findIndex(({ id }) => id === fileName) + 1}) ${
-        attributes.title
-      }`;
+      attributes.title = `${attributes.title}`;
     }
 
     // Emojis
