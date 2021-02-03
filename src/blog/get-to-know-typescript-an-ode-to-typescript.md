@@ -122,7 +122,7 @@ const loginErrorMessages: { [error in TLoginError]: string } = {
 You can specify numbers also
 
 ```ts
-type FontWeights: 100 | 200 | 300 | 400 | 500 | 600 | 700;
+type FontWeights = 100 | 200 | 300 | 400 | 500 | 600 | 700;
 
 const fontWeight: FontWeights = 200;
 ```
@@ -130,7 +130,7 @@ const fontWeight: FontWeights = 200;
 Not to mention their use in limiting Arrays to accept only a small set of values.
 
 ```ts
-const searchFilters = ('name' | 'email' | 'phone' | 'designation')[] = [];
+const searchFilters: ('name' | 'email' | 'phone' | 'designation')[] = [];
 ```
 
 I actually used this snippet in a search feature I built for a Dashboard app.
