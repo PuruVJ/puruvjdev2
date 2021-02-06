@@ -250,10 +250,232 @@ document.querySelector('#submit').addEventListener('click', () => {
 });
 ```
 
-So let's convert it step by step into its JSDoc equivalent.
+So let's convert it into its JSDoc equivalent.
 
-### sum function
+```js
+/**
+ * @param {number} a
+ * @param {number} b
+ */
+function sum(a, b) {
+  return a + b;
+}
 
-First function we encounter here is
+document.querySelector('#submit').addEventListener('click', () => {
+  /** @type {HTMLInputElement} */
+  const el1 = document.querySelector('#input1');
+
+  /** @type {HTMLInputElement} */
+  const el2 = document.querySelector('#input2');
+
+  const val1 = el1.value;
+  const val2 = el2.value;
+
+  console.log(sum(val1, val2));
+});
+```
+
+1. `sum` function is simple enough. It has two parameters of type `number`, so we use `@param {number}`
+
+2. In TS, we can simply wrap a value in parenthesis and assert its type, like `(document.querySelector('#input1') as HTMLInputElement)`. But there's no way to do that in JSDoc. We'd have to break that value as a separate variable and type it using `@type`. Look at variable `el1` and `el2`. I have broke down these elements from the `val1` and `val2` variables, so I could type them.
+
+3. `val1` and `val2` are simply `el1.value` and `el2.value`. VSCode's in-built TypeScript now knows its dealing with an Input element selector, so it will provide us the right autocompletion.
+
+## Something's missing...
+
+If you copy the above code and paste it into your own VSCode, you'll notice it'll not show any errors.
+
+It should show errors, because unlike the original(TypeScript) version, `val1` and `val2` are not preceded by `+`, the operator to convert these values to numbers. So if these are still strings, why aren't we getting any error?
+
+JavaScript is a very relaxed language. It will allow anything to slip by. That's its strength for a beginner, but a huge pain for an expert trying to build real apps. VSCode has to respect that lax nature for JS files, because in that case, a lot of working code will be seen as incorrect by TypeScript. So VSCode is very lax about JS files. Using JSDoc, it will provide you the intellisense, but it won't perform any hard checking.
+
+You can do something like this 👇
+
+```js
+let data = { name: 'Puru' };
+
+data = '😉';
+```
+
+This is a crime in TypeScript, but valid in JavaScript.
+
+## Enable TypeScript level strict checking in JS files
+
+You can enable strict checking in JS files by simply adding one comment at the top of the JS file
+
+```js
+// @ts-check
+```
+
+That's it. This is our signal to VSCode to bring all of TypeScript into the battle. Now your code will be type checked as if it was TypeScript itself.
+
+But without any extra tooling/compile step 😎.
+
+# Serious TypeScript stuff
+
+TypeScript is much more than just `number` and `string` and `boolean`. It has interfaces, Union Types, intersection types, helper types, declarations, and just so much more. How can we take full advantage of all these robust practices, while in JS files?
+
+Declare `d.ts` files.
+
+## d.ts rocks!!
+
+In case you're not familiar with them, `d.ts` are <mark>TypeScript Declaration files</mark>, and their sole purpose is to keep Declarations in them. For example, you have a function in a JS file.
+
+```js
+export function sum(a, b) {
+  return a + b;
+}
+```
+
+You can Type this function's parameters' types and return types inside a `d.ts` file:
+
+```ts
+export function sum(a: number, b: number): number;
+```
+
+There!! Now whenever you import and use `sum` function, you'll automatically get intellisense as if the original function was written in TypeScript itself.
+
+But sometimes this isn't enough. Just typing the parameters and return type just isn't enough. For a great Developer Experience, you'd wanna type the internal variables of your functions too, as if even one variable is missing typing, all the other variables depending on it become useless for TypeScript.
+
+And you also wanna use advanced TypeScript features too.
+
+So here's a best-of-both-worlds alternative.
+
+# Declare types in d.ts, import in JSDoc
+
+Yup. You can import TypeScript types/interfaces from a d.ts file. Into your JSDoc. See how:
+
+So let's say we're building an app that uses <mark>Twitter API</mark> to get data. But Twitter API response is so huge, that you can get lost in debugging errors, if you don't have a set structure of what data can come back.
+
+So let's declare the return type of data that might come back:
+
+```ts
+export interface IncludesMedia {
+  height: number;
+  width: number;
+  type: 'photo' | 'video' | 'animated_gif';
+  url: string;
+  preview_image_url: string;
+  media_key: string;
+}
+
+export interface ConversationIncludes {
+  media?: IncludesMedia[];
+  users: User[];
+}
+
+export interface Mention {
+  start: number;
+  end: number;
+  username: string;
+}
+
+export interface Hashtag {
+  start: number;
+  end: number;
+  tag: string;
+}
+
+export interface EntityUrl {
+  start: number;
+  end: number;
+  /** format: `https://t.co/[REST]` */
+  url: string;
+  expanded_url: string;
+  /** The possibly truncated URL */
+  display_url: string;
+  status: number;
+  title: string;
+  description: string;
+  unwound_url: string;
+  images?: {
+    url: string;
+    height: number;
+    width: number;
+  }[];
+}
+
+export interface Attachments {
+  poll_id?: string[];
+  media_keys?: string[];
+}
+
+export interface User {
+  username: string;
+  description: string;
+  profile_image_url: string;
+  verified: boolean;
+  location: string;
+  created_at: string;
+  name: string;
+  protected: boolean;
+  id: string;
+  url?: string;
+  public_metrics: {
+    followers_count: number;
+    following_count: number;
+    tweet_count: number;
+    listed_count: number;
+  };
+  entities?: {
+    url?: {
+      urls: EntityUrl[];
+    };
+    description?: {
+      urls?: EntityUrl[];
+      mentions?: Mention[];
+      hashtags?: Hashtag[];
+    };
+  };
+}
+
+export interface ConversationResponseData {
+  conversation_id: string;
+  id: string;
+  text: string;
+  author_id: string;
+  created_at: string;
+  in_reply_to_user_id: string;
+  public_metrics: {
+    retweet_count: number;
+    reply_count: number;
+    like_count: number;
+    quote_count: number;
+  };
+  entities?: {
+    mentions?: Mention[];
+    hashtags?: Hashtag[];
+    urls?: EntityUrl[];
+  };
+  referenced_tweets?: {
+    type: 'retweeted' | 'quoted' | 'replied_to';
+    id: string;
+  }[];
+  attachments?: Attachments;
+}
+
+/**
+ * Types from response after cleanup
+ */
+export interface ConversationResponse {
+  data: ConversationResponseData[];
+  includes: ConversationIncludes;
+  meta: {
+    newest_id: string;
+    oldest_id: string;
+    result_count: number;
+  };
+  errors?: any;
+}
+```
+
+> These types I actually wrote, from scratch, for an open source project I work on, [Twindle](https://github.com/twindle-co/twindle). It's an awesome project, do check it out sometime.
+
+Don't worry, you don't have to wrap your head around these types completely. Just notice 2 facts here:
+
+1. We're declaring interfaces
+2. We're exporting them all
+
+Now we're gonna use these types directly in JSDoc.
 
 {{ series-links }}
