@@ -41,7 +41,7 @@ Yeah, I got it dude/tte, I can use a boilerplate from npm that will set up the r
 
 But it doesn't get rid of the added complexity that is the dependencies, watch step and build step.
 
-For modern Web App development, it's all fine. You already have a dev server running. Throwing in a few more plugins won't make much difference. And tools like [Snowpack](https://www.snowpack.dev/) and [Vite](https://vitejs.dev/) completely get rid of complexities by collapsing layers(That is, they come with all the right **batteries included**, so you don't have to do any config work yourselves. If that piqued your interest, check out this amazing article by [Shawn "swyx" wang](https://twitter.com/swyx) about [Collapsing Layers](https://www.swyx.io/collapsing-layers/))
+For modern Web App development, it's all fine. You already have a dev server running. Throwing in a few more plugins won't make much difference. And tools like [Snowpack](https://www.snowpack.dev/) and [Vite](https://vitejs.dev/) completely get rid of complexities by collapsing layers(That is, they come with all the right **batteries included**, so you don't have to do any config work yourselves. If that piqued your interest, check out this amazing article by [Shawn "swyx" Wang](https://twitter.com/swyx) about [Collapsing Layers](https://www.swyx.io/collapsing-layers/))
 
 The problem comes when you're trying to build your own library to be published on npm. And by library here, I refer to a **non-UI library**(Not Component libraries, for example).
 
@@ -188,7 +188,7 @@ That's it. And there's a very high probability that you, the reader have both of
 
 ## But still, why? How credible is it?
 
-I'll answer that with [Rich harris](https://twitter.com/Rich_Harris/), creator of <mark>Svelte</mark> and <mark>Rollup</mark>'s tweet about this exact thing:
+I'll answer that with [Rich Harris](https://twitter.com/Rich_Harris/), creator of <mark>Svelte</mark> and <mark>Rollup</mark>'s tweet about this exact thing:
 
 ![Rich Harris's tweet](../../static/media/using-ts-without-ts-rich-harris-tweet.png)
 
