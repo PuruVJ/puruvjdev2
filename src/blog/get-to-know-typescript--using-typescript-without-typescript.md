@@ -200,7 +200,7 @@ And let's have Preact's creator [Jason Miller's](https://twitter.com/_developit)
 
 > [Source](https://twitter.com/_developit/status/1323790213597061120)
 
-With these 2 tech giants endorsing it, and mine having had a good experience with this technique, I think it's credible enough.
+With these 2 tech giants endorsing it, and me having had a good experience with this technique, I think it's credible enough.
 
 # Using TypeScript in JavaScript files
 
