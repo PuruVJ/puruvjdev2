@@ -186,6 +186,22 @@ There's a way to use TypeScript within JavaScript files. And the only tooling it
 
 That's it. And there's a very high probability that you, the reader have both of these already installed, if you're reading this blog post.
 
+## But still, why? How credible is it?
+
+I'll answer that with [Rich harris](https://twitter.com/Rich_Harris/), creator of <mark>Svelte</mark> and <mark>Rollup</mark>'s tweet about this exact thing:
+
+![Rich Harris's tweet](../../static/media/using-ts-without-ts-rich-harris-tweet.png)
+
+> ![Source](https://twitter.com/Rich_Harris/status/1323758415504646144)
+
+And let's have Preact's creator [Jason Miller's](https://twitter.com/_developit) opinion too:
+
+![Jason Miller's tweet](../../static/mediausing-ts-without-ts-developit-tweet.png)
+
+> ![Source](https://twitter.com/_developit/status/1323790213597061120)
+
+With these 2 tech giants endorsing it, and mine having had a good experience with this technique, I think it's credible enough.
+
 # Using TypeScript in JavaScript files
 
 VSCode has JSDoc built right into it.
@@ -477,5 +493,77 @@ Don't worry, you don't have to wrap your head around these types completely. Jus
 2. We're exporting them all
 
 Now we're gonna use these types directly in JSDoc.
+
+So let's open up `index.js`, and start typing:
+
+```js
+// @ts-check
+
+const req = await fetch('TWITTER_API_URL');
+
+/** @type {import('./twitter.d').ConversationResponse} */
+const data = await req.json();
+```
+
+What is that `import` doing in a comment, you may ask? That import works very similarly to a dynamic `import`, only difference is that here it's importing all the exported types from our declaration file, assuming that file lies in the same directory as index.js file.
+
+Next, we're using the `ConversationResponse` interface from the imported file. Now our `data` variable has perfect types, and will offer autocompletion and errors during typing.
+
+And all this is happening in VSCode. VSCode's built-in TypeScript is making a typings map from the comments and offering an experience similar akin to using TypeScript itself.
+
+And the best part, VSCode will show you autocomplete for the exported types from the module you imported. What are we devs without that hot autocomplete 🤓?
+
+# Mix n Match
+
+You're not just limited to interfaces. You can use type aliases, classes, all imported from the d.ts file. And not just that, you can use all kinds of type helpers and operators in JSDoc.
+
+```ts
+// Partial of imported type
+/** @type {Partial<import('./twitter.d').ConversationResponse>} */
+
+// Pick types
+/** @type {Pick<import('./twitter.d').ConversationResponse>, 'data' | 'includes'>} */
+
+// Union types
+/** @type {number | string} */
+
+// Tuple types
+/** @type {[[number, number], [number, number]]} */
+```
+
+And a lot more!
+
+# Clean comments
+
+You can keep your JSDoc `@type`s clean by not having those `import` statements everywhere. You can create a JSDoc alias for these types at the top level of your apps, and directly use them(And the autocomplete will work in recommending those too). We'll use JSDoc's `@typedef` syntax here.
+
+> `@typedef` is used to declare complex types under a single alias. Think of it as a toned down version of `type` or `interface`.
+
+Let's a create a `types.js` file in top level directory of project, and the code follows:
+
+```js
+/**
+ * @typedef {import(../../twitter.d).ConversationResponse} ConversationResponse
+ */
+```
+
+That's it. Using it is now very clean. The above code of fetching from twitter API becomes simpler:
+
+```js
+// @ts-check
+
+const req = await fetch('TWITTER_API_URL');
+
+/** @type {ConversationResponse} */
+const data = await req.json();
+```
+
+We got entirely rid of the `import` here. Much cleaner.
+
+And yes, **VSCode shows autocomplete for this type alias, so you don't have to remember the complete word.**
+
+That's it folks!! Hope you got something out of it!
+
+Signing off!!
 
 {{ series-links }}
