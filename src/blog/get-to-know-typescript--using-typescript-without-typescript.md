@@ -192,13 +192,13 @@ I'll answer that with [Rich harris](https://twitter.com/Rich_Harris/), creator o
 
 ![Rich Harris's tweet](../../static/media/using-ts-without-ts-rich-harris-tweet.png)
 
-> ![Source](https://twitter.com/Rich_Harris/status/1323758415504646144)
+> [Source](https://twitter.com/Rich_Harris/status/1323758415504646144)
 
 And let's have Preact's creator [Jason Miller's](https://twitter.com/_developit) opinion too:
 
-![Jason Miller's tweet](../../static/mediausing-ts-without-ts-developit-tweet.png)
+![Jason Miller's tweet](../../static/media/using-ts-without-ts-developit-tweet.png)
 
-> ![Source](https://twitter.com/_developit/status/1323790213597061120)
+> [Source](https://twitter.com/_developit/status/1323790213597061120)
 
 With these 2 tech giants endorsing it, and mine having had a good experience with this technique, I think it's credible enough.
 
