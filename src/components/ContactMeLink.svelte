@@ -3,7 +3,7 @@
   import Icon from './Icon.svelte';
 </script>
 
-<a href="https://forms.gle/RYjPdxbGGZJPqn5M9" target="_blank" rel="noopener noreferrer">
+<a href="https://bh0r2vt8n2f.typeform.com/to/tVdjlnjE" target="_blank" rel="noopener noreferrer">
   <span>Contact Me</span>
   <Icon path={mdiOpenInNew} />
 </a>
