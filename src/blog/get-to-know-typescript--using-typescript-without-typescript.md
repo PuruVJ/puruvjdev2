@@ -1,7 +1,7 @@
 ---
 title: Using TypeScript without TypeScript 😎
 description: Wanna use TypeScript but don't want all the compiler and tooling overhead? Read on to know how.
-date: 8 Feb 2021
+date: 12 Feb 2021
 published: true
 series: 'Get to know TypeScript'
 ---
