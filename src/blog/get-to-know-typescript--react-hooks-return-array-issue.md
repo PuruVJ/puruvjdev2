@@ -97,31 +97,13 @@ Before I jump into the explanation, here's the final solution directly.
 
 Make this function's return type a <mark>Tuple</mark>(See the section below for the explanation).
 
-```diff
+```ts
 import { useState, useEffect } from 'react';
 
 type TTheme = 'light' | 'dark';
 
-- export function useTheme() {
-+ export function useTheme(): [string, React.Dispatch<React.SetStateAction<string>>] {
-  // Media query
-  const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  const localValue = localStorage.getItem('theme:type') as TTheme;
-
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    setTheme(localValue || systemTheme);
-  }, []);
-
-  useEffect(() => {
-    document.body.dataset.theme = theme;
-
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  return [theme, setTheme];
-}
+export function useTheme(): [string, React.Dispatch<React.SetStateAction<string>>] {
+...
 ```
 
 This will return a Tuple instead of an Array, so every element will have its own separate type. The error will be resolved
@@ -130,30 +112,15 @@ This will return a Tuple instead of an Array, so every element will have its own
 
 This is the less verbose way, and I prefer this one over the 1st one.
 
-```diff
+```ts
 import { useState, useEffect } from 'react';
 
 type TTheme = 'light' | 'dark';
 
 export function useTheme() {
-  // Media query
-  const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  const localValue = localStorage.getItem('theme:type') as TTheme;
+  ...
 
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    setTheme(localValue || systemTheme);
-  }, []);
-
-  useEffect(() => {
-    document.body.dataset.theme = theme;
-
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
--  return [theme, setTheme];
-+  return [theme, setTheme] as const;
+  return [theme, setTheme] as const;
 }
 ```
 
