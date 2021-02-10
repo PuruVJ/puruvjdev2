@@ -16,7 +16,7 @@ Don't worry. I haven't gone crazy, and neither will you after reading this 😉
 
 # Why is this so long? 🤔
 
-This article is around 20 minutes long. The reason it's so long is because it delves into why you should consider this approach, and has explanations for a lot of broad topics
+This article is around 20 minutes long. The reason it's so long is because it delves deep into why you should consider this approach, and has explanations for a lot of broad topics.
 
 With that out of the way, let's begin.
 
@@ -565,6 +565,38 @@ const data = await req.json();
 We got entirely rid of the `import` here. Much cleaner.
 
 And yes, **VSCode shows autocomplete for this type alias, so you don't have to remember the complete word.**
+
+# Lastly, <mark>Generics</mark>
+
+This topic might be the most searched for topic, because not many answers are there for using Generics in JSDoc. So let's see how to do this.
+
+So let's say we have a generic function 👇
+
+```ts
+function getDataFromServer<T>(url: string, responseType: T): Promise<T> {
+  // Do epic shit
+}
+```
+
+To convert this to JSDoc, lemme introduce you to anew JSDoc thing, `@template`. We'll use this to define the generic type `T`, then use it around.
+
+```js
+/**
+ * @template T
+ * @param {string} url
+ * @param {T} responseType
+ * @returns {Promise<T>}
+ */
+function getDataFromServer(url, responseType) {
+  // Do epic shit
+}
+```
+
+This works. But there are 2 caveats.
+
+1. `@template` is non-standard. It's not specified on JSDoc's own [documentation](https://jsdoc.app/). It's used internally in Google's <mark>Closure Compiler</mark>'s source code. Apparently VSCode supports it for now, so its not a problem for us.
+
+2. No type Narrowing. You can't specify a generic type as `T extends Array` or something. No narrowing possible in JSDoc.
 
 That's it folks!! Hope you got something out of it!
 
