@@ -20,36 +20,19 @@ It's clearly visible that `state` is a value, and `setState` is a function. When
 But the issue happens when you're trying to make your own hook that returns an array, very similar in structure to `useState`. Let's see an example:
 
 ```js
-import { useState, useEffect } from 'react';
-
-type TTheme = 'light' | 'dark';
+import { useState } from 'react';
 
 export function useTheme() {
-  // Media query
-  const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  const localValue = localStorage.getItem('theme:type') as TTheme;
-
   const [theme, setTheme] = useState('light');
 
-  useEffect(() => {
-    setTheme(localValue || systemTheme);
-  }, []);
+  // Do epic stuff here
 
-  useEffect(() => {
-    document.body.dataset.theme = theme;
-
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
+  // Return the 2 state variables
   return [theme, setTheme];
 }
 ```
 
-This hook here does very simple thing. Looks for stored theme in localStorage. If it's not there, it fall backs to device preference. When it has decided what theme to use, it sets local state variable `theme` to that value for future use in the first `useEffect` hook. The first `useEffect` has an empty array as the dependency list, so it basically acts like a `componentDidMount` in this case.
-
-Our 2nd `useEffect` basically watches the `theme` variable, and reacts by appending `data-theme="{theme}"` on `<body>`, so that CSS can use that to change the actual theme. Lastly it stores the current preference in localStorage, so it can be picked off when user visits the site again.
-
-Lastly we're returning an array of `[theme, setTheme]`, so we can utilise the theme and change it from anywhere. All fine.
+Here we have a `useTheme` hook, which manages our theme switching magic. Here, we declare state variables, `theme`, with its setter `useTheme`. Then we do some Web dev kung fu in using these 2 variables. Lastly we're returning an array of `[theme, setTheme]`, so we can utilise the theme and change it from anywhere. All fine.
 
 **Until you try to use this hook 😈**
 
