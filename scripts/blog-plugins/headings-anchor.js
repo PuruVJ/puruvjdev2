@@ -10,8 +10,8 @@ async function headingsWithAnchorsPlugin(document, fileName) {
   const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
 
   for (let heading of headings) {
-    const headingVal = htmlToText(heading.innerHTML);
-    const slug = slugify(headingVal);
+    const headingVal = heading.innerHTML;
+    const slug = slugify(htmlToText(headingVal));
 
     heading.innerHTML = `<a class="heading-link" href="blog/${fileName}#${slug}">#</a>${headingVal}`;
     heading.id = slug;
