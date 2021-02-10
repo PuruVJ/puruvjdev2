@@ -14,6 +14,10 @@ Before starting, I wanna get this outta the way: If your reaction on reading the
 
 Don't worry. I haven't gone crazy, and neither will you after reading this 😉
 
+# Why is this so long? 🤔
+
+This article is around 20 minutes long. The reason it's so long is because it delves into why you should consider this approach, and has explanations for a lot of broad topics
+
 With that out of the way, let's begin.
 
 Lemme break it down
@@ -242,7 +246,7 @@ function square(a: number): number;
 
 And you get this additional description whenever you use this function.
 
-If you wanna type a variables rather than a parameter, that's possible too.
+If you wanna type a variable rather than a parameter, that's possible too.
 
 ```js
 /** @type {string} */
@@ -351,7 +355,7 @@ export function sum(a: number, b: number): number;
 
 There!! Now whenever you import and use `sum` function, you'll automatically get intellisense as if the original function was written in TypeScript itself.
 
-But sometimes this isn't enough. Just typing the parameters and return type just isn't enough. For a great Developer Experience, you'd wanna type the internal variables of your functions too, as if even one variable is missing typing, all the other variables depending on it become useless for TypeScript.
+But sometimes this isn't enough. Just typing the parameters and return type just isn't enough. For a great Developer Experience, you'd wanna type the internal variables of your functions too, because if even one variable is missing typing, all the other variables depending on it become useless for TypeScript.
 
 And you also wanna use advanced TypeScript features too.
 
