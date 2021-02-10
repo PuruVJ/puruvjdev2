@@ -87,6 +87,74 @@ And when you hover over `useTheme`, you find that it returns an Array of the typ
 
 ![What the hell is going on](../../static/media/segregate-array-return-types-react-confusion.gif)
 
-This is weird. This Array type assumes both
+This is weird. How can we have TypeScript separate the types for each item?
+
+# (TLDR) Solution
+
+Before I jump into the explanation, here's the final solution directly.
+
+## Option 1
+
+Make this function's return type a <mark>Tuple</mark>(See the section below for the explanation).
+
+```diff
+import { useState, useEffect } from 'react';
+
+type TTheme = 'light' | 'dark';
+
+- export function useTheme() {
++ export function useTheme(): [string, React.Dispatch<React.SetStateAction<string>>] {
+  // Media query
+  const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const localValue = localStorage.getItem('theme:type') as TTheme;
+
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    setTheme(localValue || systemTheme);
+  }, []);
+
+  useEffect(() => {
+    document.body.dataset.theme = theme;
+
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  return [theme, setTheme];
+}
+```
+
+This will return a Tuple instead of an Array, so every element will have its own separate type. The error will be resolved
+
+## Option 2
+
+This is the less verbose way, and I prefer this one over the 1st one.
+
+```diff
+import { useState, useEffect } from 'react';
+
+type TTheme = 'light' | 'dark';
+
+export function useTheme() {
+  // Media query
+  const systemTheme: TTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const localValue = localStorage.getItem('theme:type') as TTheme;
+
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    setTheme(localValue || systemTheme);
+  }, []);
+
+  useEffect(() => {
+    document.body.dataset.theme = theme;
+
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+-  return [theme, setTheme];
++  return [theme, setTheme] as const;
+}
+```
 
 {{ series-links }}
