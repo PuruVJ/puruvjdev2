@@ -13,7 +13,7 @@ const { seriesLinksPlugin } = require('./blog-plugins/series-links');
 (async () => {
   // Shiki instance
   const highlighter = await shiki.getHighlighter({
-    theme: 'nord',
+    theme: 'material-theme-ocean',
   });
 
   // Prepare md for shiki
