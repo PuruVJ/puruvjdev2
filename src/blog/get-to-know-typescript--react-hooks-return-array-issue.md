@@ -162,4 +162,10 @@ const coordinates: [number, number] = [23.4, 43.67];
 
 Simple, right :)
 
+# Conclusion
+
+So this is the end of this article. Hope you got something good away from it.
+
+Signing off.
+
 {{ series-links }}
