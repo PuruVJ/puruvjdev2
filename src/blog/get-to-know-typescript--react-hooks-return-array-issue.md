@@ -124,4 +124,42 @@ export function useTheme() {
 }
 ```
 
+`as const` here might look weird, but it's perfectly valid. In this case, it makes TypeScript infer the array being returned as a `readonly` tuple. This will work perfectly.
+
+# Explanation
+
+I owe you an explanation. So let's look at tuples.
+
+## Tuples in TypeScript
+
+Tuples look exactly like Arrays. Here's an Array:
+
+```ts
+[2, 'hello', true];
+```
+
+And here's a tuple:
+
+```ts
+[2, 'hello', true];
+```
+
+The difference between the two? 1st one's type, as inferred by TypeScript, is `(number | string | boolean)[]`, while second one's type inference is `[number, string, boolean]`. In the Array example, TypeScript is assigning the same type to every single item, because technically, that's the definition of an Array.
+
+> An array is a data structure that contains a group of elements. **Typically these elements are all of the same data type, such as an integer or string.**
+
+All are of same types. That's why TypeScript assigns same type to every single element, by combining all possible types from the array elements using union type operator(`|`).
+
+Tuples, on the other hand, are ordered pair. That means, in the order you define the types, that's the order you enter them into a tuple. So TypeScript infers them correctly, based on the array index.
+
+## Defining a tuple type
+
+This is simple. Just specify the types in the order they appear.
+
+```ts
+const coordinates: [number, number] = [23.4, 43.67];
+```
+
+Simple, right :)
+
 {{ series-links }}
