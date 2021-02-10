@@ -32,7 +32,7 @@ pre.shiki {
   margin: 1.5rem 0;
 }
 
-pre code {
+pre.shiki code {
   font-size: inherit;
   border-radius: inherit;
   overflow: inherit;
@@ -40,13 +40,13 @@ pre code {
   padding: 0;
 }
 
-pre::-webkit-scrollbar {
+pre.shiki::-webkit-scrollbar {
   background-color: rgba(244, 244, 244, 0.1);
   width: 15px;
   border-radius: 0 0 0.6rem 0.6rem;
 }
 
-pre::-webkit-scrollbar-thumb {
+pre.shiki::-webkit-scrollbar-thumb {
   background-color: rgba(244, 244, 244, 0.8);
   border: 3px solid transparent;
   border-radius: 8px;
@@ -54,7 +54,7 @@ pre::-webkit-scrollbar-thumb {
   transition: all 200ms;
 }
 
-pre::-webkit-scrollbar-thumb:hover {
+pre.shiki::-webkit-scrollbar-thumb:hover {
   background-color: rgba(244, 244, 244, 1);
 }
 
