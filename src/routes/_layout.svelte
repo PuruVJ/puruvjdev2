@@ -43,7 +43,7 @@
   {#if BUILD.isDev}
     <link rel="icon" href="./icons/favicon-dev.svg" />
   {:else}
-    <link rel="icon" href="./icons/favicon-{$theme}.svg" />
+    <link rel="icon" href="./icons/favicon-{$theme}.png" />
   {/if}
 </svelte:head>
 

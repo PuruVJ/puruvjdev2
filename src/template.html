@@ -45,7 +45,6 @@
     <script>
       // Get localstorage value
       const localTheme = localStorage.getItem('theme');
-      console.log(localTheme);
       const prefersTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
       const theme = localTheme || (prefersTheme ? 'dark' : 'light');

@@ -9,6 +9,7 @@ const { imageOptimMarkupPlugin } = require('./blog-plugins/image-optim-markup');
 const { headingsWithAnchorsPlugin } = require('./blog-plugins/headings-anchor');
 const { convertToTwitterEmojisPlugin } = require('./blog-plugins/twitter-emojis');
 const { seriesLinksPlugin } = require('./blog-plugins/series-links');
+const { generateTOC } = require('./blog-plugins/generate-toc');
 
 (async () => {
   // Shiki instance
@@ -120,6 +121,9 @@ const { seriesLinksPlugin } = require('./blog-plugins/series-links');
     // The dom representation
     let { document } = new JSDOM(html).window;
 
+    // Now get the TOC
+    const toc = generateTOC(document);
+
     // Images
     ({ document } = await imageOptimMarkupPlugin(document));
 
@@ -134,9 +138,7 @@ const { seriesLinksPlugin } = require('./blog-plugins/series-links');
 
       ({ document } = await seriesLinksPlugin(document, seriesPostsList, series, fileName));
 
-      attributes.title = `(Part ${seriesPostsList.findIndex(({ id }) => id === fileName) + 1}) ${
-        attributes.title
-      }`;
+      attributes.title = `${attributes.title}`;
     }
 
     // Emojis
@@ -160,6 +162,7 @@ const { seriesLinksPlugin } = require('./blog-plugins/series-links');
         body: html,
         id: fileName,
         reading_time,
+        toc,
       })
     );
 
