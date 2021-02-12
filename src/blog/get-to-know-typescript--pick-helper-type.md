@@ -6,8 +6,10 @@ cover_image: media/pick-helper-crossroads.jpg
 series: 'Get to know TypeScript'
 ---
 
+![Crossroads](../../static/media/pick-helper-crossroads.jpg)
+
 {{ series-links }}
 
-![Crossroads](../../static/media/pick-helper-crossroads.jpg)
+Hello world
 
 {{ series-links }}
