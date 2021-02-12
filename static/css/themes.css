@@ -22,7 +22,7 @@ body.light {
   --app-color-shell: white;
 
   /* heading font */
-  --heading-font-family: "Comfortaa", sans-serif;
+  --heading-font-family: 'Comfortaa', sans-serif;
 }
 
 body.midday {
@@ -49,7 +49,7 @@ body.dark {
   --app-color-primary-rgb: 247, 51, 121;
   --app-color-primary-shade: #f970a1;
   --app-color-primary-tint: #ad2455;
-  --app-color-primary-contrast: #ffffff;
+  --app-color-primary-contrast: #000;
 
   --app-color-dark: #f4f5f8;
   --app-color-dark-rgb: 244, 245, 248;

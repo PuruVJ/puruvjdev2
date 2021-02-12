@@ -108,7 +108,6 @@ a[href] {
   font-weight: 600;
 
   color: var(--app-color-primary);
-
   transition: color 200ms ease-out;
 }
 
