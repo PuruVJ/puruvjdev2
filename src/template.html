@@ -49,7 +49,7 @@
 
       const theme = localTheme || (prefersTheme ? 'dark' : 'light');
 
-      document.body.classList.add(theme);
+      document.body.dataset.theme = theme;
 
       localStorage.setItem('theme', theme);
     </script>
