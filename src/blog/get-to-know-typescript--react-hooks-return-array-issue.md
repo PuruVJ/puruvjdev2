@@ -50,27 +50,15 @@ And you run into a weird error:
 
 ![Array type weird error](../../static/media/segregate-array-return-types-react-error-array-type.gif)
 
+The error according to TypeScript is:
+
+```txt
+This expression is not callable.
+Not all constituents of type 'string | Dispatch<SetStateAction<string>>' are callable.
+Type 'string' has no call signatures.ts(2349)
+```
+
 That's weird. Why is that happening?
-
-If you see closely, the type of `setTheme` here is showed as
-
-```ts
-string | React.Dispatch<React.SetStateAction<string>>
-```
-
-But that's weird. We clearly know that `setTheme` is a function. If you hover over it in your editor, you can confirm it's type is `React.Dispatch<React.SetStateAction<string>>`, it doesn't have any `string` type as a constituent.
-
-But wait, that's not it. If you hover over `theme`, it's type is the same as `setState` above.
-
-And when you hover over `useTheme`, you find that it returns an Array of the type above 👇
-
-```ts
-(string | React.Dispatch<React.SetStateAction<string>>)[]
-```
-
-![What the hell is going on](../../static/media/segregate-array-return-types-react-confusion.gif)
-
-This is weird. How can we have TypeScript separate the types for each item?
 
 # (TLDR) Solution
 
@@ -111,7 +99,27 @@ export function useTheme() {
 
 # Explanation
 
-I owe you an explanation. So let's look at tuples.
+If you see closely, the type of `setTheme` here is showed as
+
+```ts
+string | React.Dispatch<React.SetStateAction<string>>
+```
+
+But that's weird. We clearly know that `setTheme` is a function. If you hover over it in your editor, you can confirm it's type is `React.Dispatch<React.SetStateAction<string>>`, it doesn't have any `string` type as a constituent.
+
+But wait, that's not it. If you hover over `theme`, it's type is the same as `setState` above.
+
+And when you hover over `useTheme`, you find that it returns an Array of the type above 👇
+
+```ts
+(string | React.Dispatch<React.SetStateAction<string>>)[]
+```
+
+![What the hell is going on](../../static/media/segregate-array-return-types-react-confusion.gif)
+
+This is weird. How can we have TypeScript separate the types for each item?
+
+Answer here is tuples.
 
 ## Tuples in TypeScript
 
