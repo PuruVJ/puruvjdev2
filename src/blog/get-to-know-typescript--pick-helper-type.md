@@ -10,6 +10,6 @@ series: 'Get to know TypeScript'
 
 {{ series-links }}
 
-Hello world
+There might be a situation where you would have tried to copy a field from a type or an interface, to be used in another type. This leads to duplication of types. And duplication in programming is nothing less than a sin, and should be avoided whenever possible.
 
 {{ series-links }}
