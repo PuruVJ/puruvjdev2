@@ -1,10 +1,10 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
-const theme = writable<"light" | "midday" | "dark">("light");
+const theme = writable<'light' | 'midday' | 'dark'>('light');
 
 export { theme };
 
-let initVal = "";
+let initVal = '';
 theme.subscribe((val) => {
   // @ts-ignore
   if (!process.browser) return;
@@ -17,14 +17,9 @@ theme.subscribe((val) => {
 
   const body = document.body;
 
-  // Remove any and all classes
-  body.classList.remove("light");
-  body.classList.remove("dark");
-  body.classList.remove("midday");
+  body.dataset.theme = val;
 
-  body.classList.add(val);
-
-  localStorage.setItem("theme", val);
+  localStorage.setItem('theme', val);
 
   initVal = val;
 });

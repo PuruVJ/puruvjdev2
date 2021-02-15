@@ -3,7 +3,7 @@ body {
 }
 
 body,
-body.light {
+body[data-theme='light'] {
   --app-color-primary: #6002ee;
   --app-color-primary-rgb: 96, 2, 238;
   --app-color-primary-shade: #4301a7;
@@ -22,10 +22,10 @@ body.light {
   --app-color-shell: white;
 
   /* heading font */
-  --heading-font-family: "Comfortaa", sans-serif;
+  --heading-font-family: 'Comfortaa', sans-serif;
 }
 
-body.midday {
+body[data-theme='midday'] {
   --app-color-primary: #6f491f;
   --app-color-primary-rgb: 111, 73, 31;
   --app-color-primary-tint: #a99279;
@@ -44,12 +44,12 @@ body.midday {
   --app-color-shell: #f9dec9;
 }
 
-body.dark {
+body[data-theme='dark'] {
   --app-color-primary: #fe5591;
-  --app-color-primary-rgb: 247, 51, 121;
+  --app-color-primary-rgb: 254, 85, 145;
   --app-color-primary-shade: #f970a1;
   --app-color-primary-tint: #ad2455;
-  --app-color-primary-contrast: #ffffff;
+  --app-color-primary-contrast: #410017;
 
   --app-color-dark: #f4f5f8;
   --app-color-dark-rgb: 244, 245, 248;
