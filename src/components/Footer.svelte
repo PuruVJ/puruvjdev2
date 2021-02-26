@@ -4,6 +4,7 @@
   import Icon from './Icon.svelte';
 </script>
 
+<!-- hehe -->
 <footer>
   <div class="copy-area">
     Made with&nbsp;<img src="emojis/love.svg" alt="❤" />&nbsp;by Puru Vijay
