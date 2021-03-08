@@ -1,5 +1,5 @@
 ---
-title: Moving Vite app from React to Preact in 10 minutes
+title: Moving Vite app from React to Preact ⚛ in 10 minutes
 description: How I moved my 40+ components app from React to Preact in under 10 minutes
 date: 12 Mar 2021
 cover_image: media/moving-from-react-to-preact-vite--cover.jpg
