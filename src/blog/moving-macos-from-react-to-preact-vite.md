@@ -23,7 +23,7 @@ Alright, so the app in question is a fun side project I'm working on, [macOS Web
 
 ![MacOS Web screenshot](../../static/media/moving-from-react-to-preact-vite--macos-screenshot.png)
 
-I started making it in <mark>React</mark> and <mark>Snowpack</mark> (Think of it as Webpack that does everything you want it do, without telling it anything) boilerplate, then around 2 weeks back, I moved it from <mark>Snowpack</mark> to <mark>Vite<mark> (Similar to Snowpack, just more refined and with more features.), and got some really cool features out of it.
+I started making it in <mark>React</mark> and <mark>Snowpack</mark> (Think of it as Webpack that does everything you want it do, without telling it anything) boilerplate, then around 2 weeks back, I moved it from <mark>Snowpack</mark> to <mark>Vite</mark> (Similar to Snowpack, just more refined and with more features.), and got some really cool features out of it.
 
 Then just a few days ago, I tried an experiment to move it to Preact. This wasn't any final decision. I just made a new branch, and started working on that. And surprisingly, this whole moving took less than 10 minutes.
 
