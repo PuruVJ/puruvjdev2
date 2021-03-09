@@ -33,11 +33,15 @@
     color: var(--app-color-primary);
     fill: var(--app-color-primary);
 
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
 
     :global(.emoji) {
-      margin: 0 0.75rem;
+      margin: 0 0.5rem;
+
+      vertical-align: middle;
+
+      display: inline;
 
       height: 1.2em;
       width: 1.2em;
