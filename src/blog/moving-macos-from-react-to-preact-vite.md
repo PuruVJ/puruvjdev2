@@ -2,7 +2,7 @@
 title: Moving React app to Preact ⚛ in 10 minutes with Vite
 description: How I moved my 40+ components app from React to Preact in under 10 minutes
 date: 9 Mar 2021
-cover_image: media/moving-from-react-to-preact-vite--cover.jpg
+cover_image: media/moving-from-react-to-preact-vite--always-has-been-meme.jpg
 ---
 
 ![Cable car](../../static/media/moving-from-react-to-preact-vite--cover.jpg)
@@ -161,6 +161,12 @@ And BAM!! That's it. Only these 4 files needed to be changed. And this is how it
 # Results
 
 Let's talk business. What benefits did I get out of this weird, eccentric wish to move a whole codebase from one framework to another?
+
+## No need to change imports
+
+There are over 30+ files that import something from `react`. And even now, they're importing from `react`. Only difference is that its actually `preact/compat` underneath. I didn't have to go and change every single import.
+
+![It's preact underneath? Always has been](../../static/media/moving-from-react-to-preact-vite--always-has-been-meme.jpg)
 
 ## Reduced bundle size
 
