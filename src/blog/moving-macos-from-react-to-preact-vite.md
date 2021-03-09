@@ -158,6 +158,53 @@ render(<Desktop />, document.getElementById('root'));
 
 And BAM!! That's it. Only these 4 files needed to be changed. And this is how it all happened in less than 10 minutes.
 
+# Benefits
+
+Let's talk business. What benefits did I get out of this weird, eccentric wish to move a whole codebase from one framework to another?
+
+## Reduced bundle size
+
+`react` alone isn't everything. It needs to be paired up with `react-dom`, to actually render stuff on web. Both of these combined weigh <mark>129KB</mark> minified, and <mark>42.4KB</mark> min+gzip. That's not much really, but I'm a bundle size freak. I want as less size as possible.
+
+Moving to preact did that for me. `preact` is just <mark>4KB</mark> min+gzip. 90% smaller!🤯🤯. Quite miraculous, right?
+
+## Runtime performance
+
+Oh boy, this one is very very interesting.
+
+You see, first I heard of preact was 3 years ago. I found out this 3KB alternative to React, and I quite liked the concept. I also read in some article that its runtime performance was much better. I didn't care at the time, because really, browsers are amazingly fast, and runtime perf didn't matter to me much. So I never cared about it.
+
+But in macOS Web, I realized I desperately needed better runtime performance because of some very janky animations in it. The whole app was very laggy. This was one of the motivations of switching to preact.
+
+So when I was done moving the app, and fired up the dev server, my jaw dropped to the floor.
+
+![Jaw drop](../../static/media/moving-from-react-to-preact-vite--jaw-drop.gif)
+
+All the jank was gone!! Literally **GONE**. Just vanished in thin air. When I hovered over the dock, perfectly smooth. When I open menus, perfectly smooth. When I switched between light and dark themes, perfectly smooth.
+
+You can try it out yourself. (Better you view them on desktop)
+
+React version 👉 https://macos-web-fyri0fstj-puruvj.vercel.app/
+Preact version 👉 https://macos.now.sh
+
+See for yourself which is smoother.
+
+# Unsung hero
+
+Until now I've been singing about Preact, but the true hero of the story is <mark>Vite</mark>. Look back into the section where I'm installing the dependencies. There's only 1 needed devDependency needed there, `vite`. `vite` does everything for you under the hood. It transpiles typescript without any unneeded packages, it transforms JSX into JS readable format, it minifies the crap out of the bundles, it supports all kind of pre-processors, and it does all that without you telling it to do that.
+
+If I had initialized this app with `create-react-app`, which is kind of the standard, this migration wouldn't have been possible, as it would take a lot of time and lots of banging your head against the wall.
+
+![Banging head against window](../../static/media/moving-from-react-to-preact-vite--banging-head.gif)
+
+But with vite, it was easy as `npm install preact` and changing `index.tsx` to use `preact` instead of `react`.
+
+Vite is very amazing, and very versatile. I'm very much in love with it and have no intention of moving away from it anytime soon.
+
+And if you're skeptical about it, Vite is created by the creator of VueJS, [Evan You](https://twitter.com/youyuxi). And its not just for Vue, it's very much framework agnostic. You can use it with any framework(React, Preact, Vue, lit-element, and more. Heck even the next version of svelte is going to be based on Vite itself).
+
+So I really invite you to check Vite out sometime. It's like a breath of fresh air. [Vite Homepage](https://vitejs.dev/)
+
 I hope you got something good out of this article 😉.
 
 Signing off!
