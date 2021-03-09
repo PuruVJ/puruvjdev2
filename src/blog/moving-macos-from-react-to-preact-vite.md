@@ -107,8 +107,58 @@ export default defineConfig({
 });
 ```
 
-Notice the `esbuild` property. Vite is built on top this super fast ES module bundler `esbuild`, here we are passing some options to it. `jsxFactory` and `jsxFragment` are exactly what they look like. The `jsxInject` here is a very magical✨ property, that automatically puts the statement passed to it in every single file, so it saves you the trouble of importing `h` from preact in every single file, or `React` for a `react` app.
+1. Notice the `esbuild` property. Vite is built on top this super fast ES module bundler `esbuild`, here we are passing some options to it. `jsxFactory` and `jsxFragment` are exactly what they look like. The `jsxInject` here is a very magical✨ property, that automatically puts the statement passed to it in every single file, so it saves you the trouble of importing `h` from preact in every single file, or `React` for a `react` app.
 
-In the `plugins` property, I have replaced `reactRefresh` with `prefresh`, and now our app supports HMR.
+2. In the `plugins` property, I have replaced `reactRefresh` with `prefresh`, and now our app supports HMR.
 
-Lastly, `alias` is the most, MOST important property here. In this project, I'm using 15+ packages that import directly from `React`, and moving to preact would have broken them completely. So the alias property accepts a key value pair. In this case, I'm pointing `react` to `preact/compat`, which is `preact`'s compatibility layer to work with existing react apps.
+3. Lastly, `alias` is the most, MOST important property here. In this project, I'm using 15+ packages that import directly from `React`, and moving to preact would have broken them completely. So the alias property accepts a key value pair. In this case, I'm pointing `react` to `preact/compat`, which is `preact`'s compatibility layer to work with existing react apps.
+
+## Fix tsconfig.json
+
+We are using TypeScript with React, and we have to tell it that the JSX factory and fragments are now different, so let's do that small change.
+
+```json
+{
+  ...
+  "jsx": "preserve",
+  "jsxFactory": "h",
+  "jsxFragmentFactory": "Fragment"
+  ...
+}
+```
+
+## Modify index.tsx
+
+The entrypoint of our app is the `index.tsx` app, which would need some modification to work with preact. Luckily the changes needed are **tiny**.
+
+The code before 👇
+
+```tsx
+import ReactDOM from 'react-dom';
+import { Desktop } from './views/desktop/Desktop';
+
+ReactDOM.render(<Desktop />, document.getElementById('root'));
+
+if (import.meta.hot) {
+  import.meta.hot?.accept();
+}
+```
+
+Last 3 lines are just code for the HMR. Nothing much there.
+
+Here we are doing a `ReactDOM.render`. But preact itself has a `render` method. SO let's swap it out with.
+
+```tsx
+import { render } from 'preact';
+import { Desktop } from './views/desktop/Desktop';
+
+render(<Desktop />, document.getElementById('root'));
+
+if (import.meta.hot) {
+  import.meta.hot?.accept();
+}
+```
+
+And BAM!! That's it. Only these 4 files needed to be changed. And this how it all happened in less than 10 minutes.
+
+I hope you got something good out of this article 😉`
