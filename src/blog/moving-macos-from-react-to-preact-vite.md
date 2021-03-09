@@ -158,7 +158,7 @@ render(<Desktop />, document.getElementById('root'));
 
 And BAM!! That's it. Only these 4 files needed to be changed. And this is how it all happened in less than 10 minutes.
 
-# Benefits
+# Results
 
 Let's talk business. What benefits did I get out of this weird, eccentric wish to move a whole codebase from one framework to another?
 
