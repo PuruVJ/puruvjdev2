@@ -74,7 +74,7 @@ So all I did was delete the `react` related packages, and installed these 2 pack
 
 > Why no `@types/preact`?
 >
-> Well, We needed `@types/react` because React doesn't ship its own Typings, which can make DX feel like shooting in the dark, so the community has kindle provided types themselves for it.
+> Well, We needed `@types/react` because React doesn't ship its own Typings, which can make DX feel like shooting in the dark, so the community has kindly provided types themselves for it.
 > But preact is a different story. It ships its own TypeScript typings, so we don't need any extra packages. Its just awesome that way 😍
 
 ## Modifying vite.config.ts
