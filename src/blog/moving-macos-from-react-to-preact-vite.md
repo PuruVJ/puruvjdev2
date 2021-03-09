@@ -1,5 +1,5 @@
 ---
-title: Moving Vite app from React to Preact ⚛ in 10 minutes
+title: Moving React app to Preact ⚛ in 10 minutes with Vite
 description: How I moved my 40+ components app from React to Preact in under 10 minutes
 date: 12 Mar 2021
 cover_image: media/moving-from-react-to-preact-vite--cover.jpg
@@ -11,11 +11,11 @@ Heya you awesome dev!!Glad to see ya here 🙂. This post is just a recount of m
 
 ## Is it true?
 
-You might be wondering if my claim of moving an app this big from one framework to other in just 10 minutes is true or just some clickbaity title, I assure you it isn't. It didn't take 10 minutes for this.
+In case you are wondering if my claim of moving an app this big from one framework to other in just 10 minutes is true or just some clickbaity hoax, I assure you it isn't true. It didn't take 10 minutes for this.
 
 It took somewhere around <mark>8-9</mark> 😅😁
 
-Yup. It took **less than 10 minutes** to move it.
+Yup. It took **less than 10 minutes** to move it. I put 10 minutes in the title b'coz humans love multiples of 10 a lot 😉
 
 # What is this app?
 
@@ -25,9 +25,11 @@ Alright, so the app in question is a fun side project I'm working on, [macOS Web
 
 I started making it in <mark>React</mark> and <mark>Snowpack</mark> (Think of it as Webpack that does everything you want it do, without telling it anything) boilerplate, then around 2 weeks back, I moved it from <mark>Snowpack</mark> to <mark>Vite</mark> (Similar to Snowpack, just more refined and with more features.), and got some really cool features out of it.
 
-Then just a few days ago, I tried an experiment to move it to Preact. This wasn't any final decision. I just made a new branch, and started working on that. And surprisingly, this whole moving took less than 10 minutes.
+Then just a few days ago, I tried an experiment to move it to Preact. I treat this project as a playground of sorts and am constantly stirring things up in it. I just made a new branch, and started fooling around. And surprisingly, this whole moving took less than 10 minutes.
 
 # Process
+
+Here's a brief breakdown of the whole process.
 
 ## Installing right dependencies
 
@@ -70,6 +72,11 @@ Whoa!! That was drastic!! Notice that there's no `preact-dom` here, as `preact` 
 
 So all I did was delete the `react` related packages, and installed these 2 packages(`preact` and `@prefresh/vite`).
 
+> Why no `@types/preact`
+>
+> Well, We needed `@types/react` because React doesn't ship its own Typings, which can make DX feel like shooting in the dark, so the community has kindle provided types themselves for it.
+> But preact is a different story. It ships its own TypeScript typings, so we don't need any extra packages. Its just awesome that way 😍
+
 ## Modifying vite.config.ts
 
 The `vite.config.ts` with React 👇
@@ -107,11 +114,11 @@ export default defineConfig({
 });
 ```
 
-1. Notice the `esbuild` property. Vite is built on top this super fast ES module bundler `esbuild`, here we are passing some options to it. `jsxFactory` and `jsxFragment` are exactly what they look like. The `jsxInject` here is a very magical✨ property, that automatically puts the statement passed to it in every single file, so it saves you the trouble of importing `h` from preact in every single file, or `React` for a `react` app.
+1. Notice the `esbuild` property. Vite is built on top this super fast ES module bundler `esbuild`, here we are passing some options to it. `jsxFactory` and `jsxFragment` are exactly what they look like. The `jsxInject` here is a very ✨magical✨ property, that automatically puts the statement passed to it in every single file, so it saves you the trouble of importing `h` from preact in every single file, or `React` for a `react` app. And during the production build, vite strips out unnecessary imports, so files not needing preact will end up with no preact at all. So no harm is done ultimately.
 
 2. In the `plugins` property, I have replaced `reactRefresh` with `prefresh`, and now our app supports HMR.
 
-3. Lastly, `alias` is the most, MOST important property here. In this project, I'm using 15+ packages that import directly from `React`, and moving to preact would have broken them completely. So the alias property accepts a key value pair. In this case, I'm pointing `react` to `preact/compat`, which is `preact`'s compatibility layer to work with existing react apps.
+3. Lastly, `alias` is the most, **MOST** important property here. In this project, I'm using 15+ packages that import directly from `React`, and moving to preact would have broken them completely. So the alias property accepts a key value pair. In this case, I'm pointing `react` to `preact/compat`, which is `preact`'s compatibility layer to work with existing react apps.
 
 ## Fix tsconfig.json
 
