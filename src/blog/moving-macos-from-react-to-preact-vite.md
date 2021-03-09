@@ -190,7 +190,7 @@ All the jank was gone!! Literally **GONE**. Just vanished in thin air. When I ho
 
 You can try it out yourself. (Better you view them on desktop)
 
-React version 👉 [macos-web-fyri0fstj-puruvj.vercel.app](https://macos-web-fyri0fstj-puruvj.vercel.app/)
+React version 👉 [macos-web-fyri0fstj-puruvj.vercel.app](https://macos-web-fyri0fstj-puruvj.vercel.app/) \
 Preact version 👉 [macos.now.sh](https://macos.now.sh)
 
 See for yourself which is smoother.
