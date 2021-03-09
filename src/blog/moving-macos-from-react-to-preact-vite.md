@@ -72,7 +72,7 @@ Whoa!! That was drastic!! Notice that there's no `preact-dom` here, as `preact` 
 
 So all I did was delete the `react` related packages, and installed these 2 packages(`preact` and `@prefresh/vite`).
 
-> Why no `@types/preact`
+> Why no `@types/preact`?
 >
 > Well, We needed `@types/react` because React doesn't ship its own Typings, which can make DX feel like shooting in the dark, so the community has kindle provided types themselves for it.
 > But preact is a different story. It ships its own TypeScript typings, so we don't need any extra packages. Its just awesome that way 😍
