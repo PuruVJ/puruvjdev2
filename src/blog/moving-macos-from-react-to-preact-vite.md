@@ -138,13 +138,7 @@ import ReactDOM from 'react-dom';
 import { Desktop } from './views/desktop/Desktop';
 
 ReactDOM.render(<Desktop />, document.getElementById('root'));
-
-if (import.meta.hot) {
-  import.meta.hot?.accept();
-}
 ```
-
-Last 3 lines are just code for the HMR. Nothing much there.
 
 Here we are doing a `ReactDOM.render`. But preact itself has a `render` method. SO let's swap it out with.
 
@@ -153,12 +147,10 @@ import { render } from 'preact';
 import { Desktop } from './views/desktop/Desktop';
 
 render(<Desktop />, document.getElementById('root'));
-
-if (import.meta.hot) {
-  import.meta.hot?.accept();
-}
 ```
 
-And BAM!! That's it. Only these 4 files needed to be changed. And this how it all happened in less than 10 minutes.
+And BAM!! That's it. Only these 4 files needed to be changed. And this is how it all happened in less than 10 minutes.
 
-I hope you got something good out of this article 😉`
+I hope you got something good out of this article 😉.
+
+Signing off!
