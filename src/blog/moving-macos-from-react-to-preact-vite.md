@@ -116,7 +116,7 @@ export default defineConfig({
 
 1. Notice the `esbuild` property. Vite is built on top this super fast ES module bundler `esbuild`, here we are passing some options to it. `jsxFactory` and `jsxFragment` are exactly what they look like. The `jsxInject` here is a very ✨magical✨ property, that automatically puts the statement passed to it in every single file, so it saves you the trouble of importing `h` from preact in every single file, or `React` for a `react` app. And during the production build, vite strips out unnecessary imports, so files not needing preact will end up with no preact at all. So no harm is done ultimately.
 
-2. In the `plugins` property, I have replaced `reactRefresh` with `prefresh`, and now our app supports HMR.
+2. In the `plugins` property, I have replaced `reactRefresh` with `prefresh`, and now our app supports HMR for preact.
 
 3. Lastly, `alias` is the most, **MOST** important property here. In this project, I'm using 15+ packages that import directly from `React`, and moving to preact would have broken them completely. So the alias property accepts a key value pair. In this case, I'm pointing `react` to `preact/compat`, which is `preact`'s compatibility layer to work with existing react apps.
 
