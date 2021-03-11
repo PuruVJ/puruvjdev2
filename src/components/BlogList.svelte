@@ -48,6 +48,11 @@
     }
   }
 
+  .show-more .title {
+    display: flex;
+    align-items: center;
+  }
+
   .end {
     justify-content: center;
   }
