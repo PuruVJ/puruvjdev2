@@ -8,7 +8,7 @@
   export let seeMore: boolean = false;
 </script>
 
-{#each blogsList as { title, id, description, date, series, seriesIndex }}
+{#each blogsList as { title, id, description, date, series }}
   <a class="blog-link" rel="prefetch" href="blog/{id}" aria-label={title}>
     <span class="series">
       {#if series}
