@@ -61,7 +61,7 @@
 
     display: flex;
 
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
 
     font-size: 1rem;
   }

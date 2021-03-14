@@ -85,7 +85,7 @@
   }
 
   .title {
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 600;
   }
 

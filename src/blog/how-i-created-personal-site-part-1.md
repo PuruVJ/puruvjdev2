@@ -101,7 +101,7 @@ Remember that joke about color palette I just mentioned? Well it applies to sele
 
 - **Comfortaa** for headings
 - **Quicksand** for blog body
-- **Fira Code** for code snippets, blockquote, and navbar (It's also my IDE's font)
+- **JetBrains Mono** for code snippets, blockquote, and navbar (It's also my IDE's font)
 
 These are all available on Google Fonts. I have an article about [performantly loading Google Fonts respecting user's data saver settings](/blog/google-fonts-prefetch) too. Check it out.
 

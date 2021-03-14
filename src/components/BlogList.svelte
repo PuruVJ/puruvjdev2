@@ -59,7 +59,7 @@
 
   .description {
     color: var(--app-color-dark);
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
   }
 
   p {
@@ -71,7 +71,7 @@
     justify-content: space-between;
 
     color: var(--app-color-primary);
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
     margin-top: 0.3rem;
     font-weight: bold;
   }
@@ -117,7 +117,7 @@
     color: rgba(var(--app-color-dark-rgb), 0.6);
 
     letter-spacing: 1px;
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
 
     mark {
       font-family: 'Quicksand', sans-serif;

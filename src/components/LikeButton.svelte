@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { mdiHeart, mdiHeartOutline } from "@mdi/js";
+  import { mdiHeart, mdiHeartOutline } from '@mdi/js';
 
-  import { onMount } from "svelte";
-  import { API } from "../constants";
-  import { emoStates } from "../stores/emos.store";
-  import { theme } from "../stores/theme.store";
-  import { fadeIn } from "./fade";
-  import Icon from "./Icon.svelte";
+  import { onMount } from 'svelte';
+  import { API } from '../constants';
+  import { emoStates } from '../stores/emos.store';
+  import { theme } from '../stores/theme.store';
+  import { fadeIn } from './fade';
+  import Icon from './Icon.svelte';
 
   // The ID of the blog
   export let blogID: string;
@@ -39,15 +39,15 @@
       // Make the request
       const req = await fetch(API.setEmos, {
         body: JSON.stringify({ ...$emoStates[blogID], blogID }),
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
       });
 
       const res = await req.text();
 
-      if (res === "fail") {
+      if (res === 'fail') {
         $emoStates[blogID].likes -= incrementer;
         marked = !marked;
       }
@@ -57,7 +57,7 @@
     }
 
     if (incrementer === 1) {
-      localStorage.setItem(`like:${blogID}`, "true");
+      localStorage.setItem(`like:${blogID}`, 'true');
     } else {
       localStorage.removeItem(`like:${blogID}`);
     }
@@ -69,6 +69,15 @@
     marked = !!localStorage.getItem(`like:${blogID}`);
   });
 </script>
+
+{#if blogID in $emoStates}
+  <div id="container" in:fadeIn>
+    <button on:click={toggleLikes} class:marked class:dark={$theme === 'dark'}>
+      <Icon size={30} path={marked ? mdiHeart : mdiHeartOutline} />
+      <span>{$emoStates[blogID].likes}</span>
+    </button>
+  </div>
+{/if}
 
 <style lang="scss">
   button {
@@ -89,7 +98,7 @@
     font-size: 1.3rem;
     color: var(--app-color-dark);
     font-weight: 600;
-    font-family: "Fira Code", monospace;
+    font-family: 'JetBrains Mono', monospace;
 
     transition: all 200ms ease-in;
 
@@ -100,8 +109,7 @@
     &:hover,
     &:focus {
       background: var(--app-color-primary-tint);
-      box-shadow: 0 7.9px 8.6px rgba(0, 0, 0, 0.085),
-        0 63px 69px rgba(0, 0, 0, 0.17);
+      box-shadow: 0 7.9px 8.6px rgba(0, 0, 0, 0.085), 0 63px 69px rgba(0, 0, 0, 0.17);
     }
   }
 
@@ -135,8 +143,7 @@
     button {
       background: var(--app-color-shell);
 
-      box-shadow: 0 3px 8.6px rgba(0, 0, 0, 0.27),
-        0 24px 69px rgba(0, 0, 0, 0.54);
+      box-shadow: 0 3px 8.6px rgba(0, 0, 0, 0.27), 0 24px 69px rgba(0, 0, 0, 0.54);
 
       &.dark {
         background-color: #383a3e;
@@ -144,12 +151,3 @@
     }
   }
 </style>
-
-{#if blogID in $emoStates}
-  <div id="container" in:fadeIn>
-    <button on:click={toggleLikes} class:marked class:dark={$theme === 'dark'}>
-      <Icon size={30} path={marked ? mdiHeart : mdiHeartOutline} />
-      <span>{$emoStates[blogID].likes}</span>
-    </button>
-  </div>
-{/if}

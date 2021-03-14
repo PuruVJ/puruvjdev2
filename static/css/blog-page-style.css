@@ -62,7 +62,7 @@ code {
   background-color: rgba(var(--app-color-dark-rgb), 0.1);
   padding: 4px 4px;
   border-radius: 4px;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 1rem;
 }
 
@@ -127,7 +127,7 @@ code {
   margin: 0;
   padding-left: 1rem;
   border-left: solid 4px var(--app-color-primary);
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', monospace;
   border-radius: 0 8px 8px 0;
   background-color: rgba(var(--app-color-dark-rgb), 0.05);
 }

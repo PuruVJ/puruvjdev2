@@ -125,7 +125,7 @@
   }
 
   #about-me {
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 550 !important;
   }
 

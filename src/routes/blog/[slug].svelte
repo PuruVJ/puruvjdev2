@@ -81,7 +81,7 @@
 <style lang="scss">
   p {
     margin: 0;
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-weight: bold;
     font-size: 1.2rem;
     color: var(--app-color-primary);
@@ -122,7 +122,7 @@
     color: rgba(var(--app-color-dark-rgb), 0.6);
 
     letter-spacing: 1px;
-    font-family: 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
 
     mark {
       font-family: 'Quicksand', sans-serif;
