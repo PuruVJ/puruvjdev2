@@ -3,9 +3,12 @@ title: Mindblowing 🤯 TypeScript tricks
 description: There's a lot about TypeScript that most people don't know. I'll surface some of the "unknown" stuff in this blog post.
 date: 19 Mar, 2021
 cover_image: media/mindblowing-typescript-tricks--cover.jpg
+series: 'Get to know TypeScript'
 ---
 
 ![Colorful](../../static/media/mindblowing-typescript-tricks--cover.jpg)
+
+{{ series-links }}
 
 Apologies for the clickbaity title 🙃. But it is in good faith, cuz I'm gonna introduce you to some TypeScript related tricks that are bound to blow your mind to pieces. And if you can read the whole post without feeling wonder at any trick, great for you!! You're TypeScript pro already 🥳
 
@@ -126,3 +129,5 @@ Now the fun part begins.
 ## Retrieve element type from Array
 
 Suppose you have an Array, and you wanna extract the type of each Element from an array
+
+{{ series-links }}
