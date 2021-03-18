@@ -193,11 +193,41 @@ const num: UnwrapPromise<typeof returnsPromise> = 8;
 //    num: number
 ```
 
-here we wrapped a function that returns a promise into this type. This works directly with a regular `Promise<unknown>` type too.
+Here we wrapped a function that returns a promise into this type. This works directly with a regular `Promise<unknown>` type too.
 
 > **Why `PromiseLike` instead of `Promise`?** \
 > <br/>
 >
 > `Promise` interface comes with lot of pre-built methods exclusive to promises. But sometimes, you wanna create functions that return a `.then` just like Promises, but not have all the properties that `Promise`s do. In that case, we use `PromiseLike`
+
+## Turning a tuple into union types
+
+This is a tuple:
+
+```ts
+const tuple = ['a', 'b', 'c', 'd'] as const;
+```
+
+> Note: Without `as const` at the end, typescript will interpret the type as `string[]`, not as a tuple
+
+Now we want to use these specific strings as union types. Easy peasy.
+
+```ts
+type Alphabet = 'a' | 'b' | 'c' | 'd';
+```
+
+This will do. But let's assume that this type and the array above are gonna end up in different files, and the project grows quite big, then you come back a few months later, and add another value `e` to the `tuple` variable, and BOOM!!! The whole codebase breaks, because you forgot to add `e` in the `Alphabet` union type.
+
+We can automate the `Alphabet` union type generation, in such a way that it pulls its members directly from `tuple` variable.
+
+```ts
+type Alphabet = typeof tuple[number];
+```
+
+And here's the universal type safe type:
+
+```ts
+type Unionify<Tup extends readonly [...(string | number | boolean)[]]> = Tup[number];
+```
 
 {{ series-links }}
