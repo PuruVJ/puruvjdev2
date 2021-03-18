@@ -195,7 +195,7 @@ const num: UnwrapPromise<typeof returnsPromise> = 8;
 
 here we wrapped a function that returns a promise into this type. This works directly with a regular `Promise<unknown>` type too.
 
-> Why `PromiseLike` instead of `Promise`?
+> **Why `PromiseLike` instead of `Promise`?** \
 > <br/>
 >
 > `Promise` interface comes with lot of pre-built methods exclusive to promises. But sometimes, you wanna create functions that return a `.then` just like Promises, but not have all the properties that `Promise`s do. In that case, we use `PromiseLike`
