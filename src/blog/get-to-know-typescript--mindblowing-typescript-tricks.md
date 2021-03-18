@@ -130,4 +130,73 @@ Now the fun part begins.
 
 Suppose you have an Array, and you wanna extract the type of each Element from an array
 
+```ts
+type ArrayElement<
+  ArrayType extends readonly unknown[]
+> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
+```
+
+We're using TypeScript's `infer` here, which helps pick out specific types from a complex type.
+
+Here's how to use it:
+
+```ts
+type A = ArrayElement<string[]>; // string
+type B = ArrayElement<readonly string[]>; // string
+type C = ArrayElement<[string, number]>; // string | number
+type D = ArrayElement<['foo', 'bar']>; // "foo" | "bar"
+type E = ArrayElement<(P | Q | R)[]>; // P | Q | R
+
+type Error1 = ArrayElement<{ name: string }>;
+//                         ^^^^^^^^^^^^^^^^
+// Error: Type '{ name: string; }' does not satisfy the constraint 'readonly unknown[]'.
+```
+
+There's a bit simpler version to get the element type.
+
+```ts
+type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType[number];
+```
+
+## Retrieve type from a promise
+
+Ever wanted to retrieve type from a function that returns a promise? You might've tried this:
+
+```ts
+function returnsPromise(): Promise<number>;
+
+let num: typeof returnsPromise;
+//       ^^^^^^^^^^^^^^^^^^^^^
+// num: () => Promise<number>
+```
+
+We want `num`'s type to be the returned type of the promise(in this case `number`), and the above solution definitely didn't work.
+
+The solution is to once again use `infer` to retrieve the type from the promise:
+
+```ts
+type UnwrapPromise<T> = T extends (props: any) => PromiseLike<infer U>
+  ? U
+  : T extends PromiseLike<infer K>
+  ? K
+  : T;
+```
+
+usage:
+
+```ts
+function returnsPromise(props: any) {
+  return Promise.resolve(6);
+}
+
+const num: UnwrapPromise<typeof returnsPromise> = 8;
+//    num: number
+```
+
+here we wrapped a function that returns a promise into this type. This works directly with a regular `Promise<unknown>` type too.
+
+> Why `PromiseLike` instead of `Promise`?
+> <br/>
+> `Promise` interface comes with lot of pre-built methods exclusive to promises. But sometimes, you wanna create functions that return a `.then` just like Promises, but not have all the properties that `Promise`s do. In that case, we use `PromiseLike`
+
 {{ series-links }}
