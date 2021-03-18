@@ -292,4 +292,80 @@ type App =
   | 'calendar';
 ```
 
+## A better Object.Keys
+
+Looking the article, it seems like its a compilation of Helper Types, which is the case. But in this one, I'm gonna share a tip which isn't the most mind-blowing or the coolest. Its pretty boring, but the important thing is that it's the most MOST useful tip in this whole article. If you have to take something away from this article, take this. Ignore the whole article except for this part.
+
+Let's look the object from before:
+
+```ts
+const openApps = {
+  finder: false,
+  launchpad: false,
+  safari: false,
+  messages: false,
+  mail: false,
+  maps: false,
+  photos: false,
+  facetime: false,
+  calendar: false,
+};
+```
+
+Say I wanna apply `Object.keys` to get an array of the keys of this object.
+
+```ts
+const apps = Object.keys(openApps);
+//  ["finder", "launchpad", "safari", "messages", "mail", "maps", "photos", "facetime", "calendar"]
+```
+
+But there's bit of a problem here. If you hover over `apps`, its type will be `string`[]. Not `("finder" | "launchpad" | "safari" | "messages" | "mail" | "maps" | "photos" | "facetime" | "calendar")[]`.
+
+Its not exactly a **problem**, per se, but it would be great to have `Object.keys` return the union types array of the keys.
+
+So let's investigate the issue. We'll start with `Object.keys` definition in pre-built `lib.d.ts`:
+
+```ts
+interface ObjectConstructor {
+  //...
+  keys(o: object): string[];
+  keys(o: {}): string[];
+}
+```
+
+> If you find it weird that `keys` is defined twice, its called <mark>Function/Method overloading</mark>. You can basically define multiple function declarations for flexible usage.
+
+As you can see, its hard coded to always return `string[]`. I'm sure its there for good reasons, but its quite inconvenient for me, so I'm gonna override this method to infer the keys correctly from what it is passed.
+
+If you have a root `.d.ts` file in your project, put the snippet below right in it.
+
+```ts
+type ObjectKeys<Obj> = Obj extends object
+  ? (keyof Obj)[]
+  : Obj extends number
+  ? []
+  : Obj extends Array<any> | string
+  ? string[]
+  : never;
+
+interface ObjectConstructor {
+  keys<ObjectType>(o: ObjectType): ObjectKeys<ObjectType>;
+}
+```
+
+Now let's try the code above with the new `Object.keys`:
+
+```ts
+const apps = Object.keys(openApps);
+// const apps: ("finder" | "launchpad" | "safari" | "messages" | "mail" | "maps" | "photos" | "facetime" | "calendar")[]
+```
+
+Don't trust me? Check it out yourself @ [TypeScript Playground](https://www.typescriptlang.org/play?#code/C4TwDgpgBA8gRgKwgY2AaQiAzgHnggPigF5ZEoIAPYCAOwBMsoB7RFYAKCigH4oAKANaZmAMzIIAlAG0AulygAuCRWp1GUWgFcAtnAgAnBXzkLl+VTQZMAggYMBDEDge0QRAD5QswAwEtaAHNjb18AwNNuZVoIADdDAG4ODgCaA1EHZGh8dgBhZlofAy1UZgMoAG8FYWw8NlQAFXAIAn5mc3rgJshJDqRUDFqcxuaCJIBfZOQCnxZIWhswMCZSKu5RAPpDZQyAGywIABoFXYctWmQACzAHeh2HfaOFLAcM-3vH4+4dCCwXwN+HwOXygOgcfl2QKe3wcyyhILAl2YwGYWHhCgyWWAfh+6O4yAe6gcBnR4ySHGmhWAUFhyxIEnYADoalg2vNFstJEkgA)
+
+> Note: All the credit goes to Steven Baumgeitner's blog post about this exact same thing. I just ripped it off 😁. You can read more about fixing `Object.keys` on his [blog post](https://fettblog.eu/typescript-better-object-keys/).
+
+So, this is it!! Hope you got something out of this blog post!
+
+Signing off!!
+
 {{ series-links }}
