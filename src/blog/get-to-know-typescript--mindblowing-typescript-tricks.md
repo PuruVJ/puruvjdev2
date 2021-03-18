@@ -227,7 +227,7 @@ type Alphabet = typeof tuple[number];
 And here's the universal type safe type:
 
 ```ts
-type Unionify<Tup extends readonly [...(string | number | boolean)[]]> = Tup[number];
+type Unionify<Tup extends readonly (string | number | boolean)[]> = Tup[number];
 ```
 
 {{ series-links }}
