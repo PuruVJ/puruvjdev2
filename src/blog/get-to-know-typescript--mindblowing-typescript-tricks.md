@@ -241,7 +241,7 @@ type Alphabet = UnionFromTuple<typeof alphabets>;
 //  type Alphabet = 'a' | 'b' | 'c' | 'd'
 ```
 
-> **Why `readonly array` ?** > \
+> **Why `readonly array` ?** \
 > \
 > This section is about Tuple to Union types, but in the code itself we haven't used the word `tuple`. The reason is that tuple isn't a keyword. As far as TypeScript is concerned, a `readonly Array` is a tuple. There's no `Tuple` type or anything. That's why I'm making sure the type passed to `UnionFromTuple` is a tuple, not an array. If its an array, its basically the same as the section above where we retrieved the element type from an array
 
