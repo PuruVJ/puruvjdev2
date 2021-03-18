@@ -200,12 +200,14 @@ Here we wrapped a function that returns a promise into this type. This works dir
 >
 > `Promise` interface comes with lot of pre-built methods exclusive to promises. But sometimes, you wanna create functions that return a `.then` just like Promises, but not have all the properties that `Promise`s do. In that case, we use `PromiseLike`
 
+Aside: You could rename `UnwrapPromise` to be `BreakPromise`. Doesn't affect the code, but its good for laughs 🤣🤣
+
 ## Turning a tuple into union types
 
 This is a tuple:
 
 ```ts
-const tuple = ['a', 'b', 'c', 'd'] as const;
+const alphabets = ['a', 'b', 'c', 'd'] as const;
 ```
 
 > Note: Without `as const` at the end, typescript will interpret the type as `string[]`, not as a tuple
@@ -216,9 +218,9 @@ Now we want to use these specific strings as union types. Easy peasy.
 type Alphabet = 'a' | 'b' | 'c' | 'd';
 ```
 
-This will do. But let's assume that this type and the array above are gonna end up in different files, and the project grows quite big, then you come back a few months later, and add another value `e` to the `tuple` variable, and BOOM!!! The whole codebase breaks, because you forgot to add `e` in the `Alphabet` union type.
+This will do. But let's assume that this type and the array above are gonna end up in different files, and the project grows quite big, then you come back a few months later, and add another value `e` to the `alphabets` variable, and BOOM!!! The whole codebase breaks, because you forgot to add `e` in the `Alphabet` union type.
 
-We can automate the `Alphabet` union type generation, in such a way that it pulls its members directly from `tuple` variable.
+We can automate the `Alphabet` union type generation, in such a way that it pulls its members directly from `alphabets` variable.
 
 ```ts
 type Alphabet = typeof tuple[number];
@@ -227,7 +229,66 @@ type Alphabet = typeof tuple[number];
 And here's the universal type safe type:
 
 ```ts
-type Unionify<Tup extends readonly (string | number | boolean)[]> = Tup[number];
+type UnionFromTuple<Tuple extends readonly (string | number | boolean)[]> = Tuple[number];
+```
+
+Usage:
+
+```ts
+const alphabets = ['a', 'b', 'c', 'd'] as const;
+
+type Alphabet = UnionFromTuple<typeof alphabets>;
+//  type Alphabet = 'a' | 'b' | 'c' | 'd'
+```
+
+> **Why `readonly array` ?** > \ \
+> This section is about Tuple to Union types, but in the code itself we haven't used the word `tuple`. The reason is that tuple isn't a keyword. As far as TypeScript is concerned, a `readonly Array` is a tuple. There's no `Tuple` type or anything. That's why I'm making sure the type passed to `UnionFromTuple` is a tuple, not an array. If its an array, its basically the same as the section above where we retrieved the element type from an array
+
+## Union types from object
+
+Let's say we have this object:
+
+```ts
+const openApps = {
+  finder: false,
+  launchpad: false,
+  safari: false,
+  messages: false,
+  mail: false,
+  maps: false,
+  photos: false,
+  facetime: false,
+  calendar: false,
+};
+```
+
+And I want to create a union type that's based on the keys specified here. If I add an extra key-value pair to this object, I want the union type to include that too.
+
+Here's the solution:
+
+```ts
+type KeysOfObject<T extends { [K in string | number]: unknown }> = keyof T;
+```
+
+Usage👇
+
+```ts
+type App = KeysOfObject<typeof openApps>;
+```
+
+This will be equal to 👇
+
+```ts
+type App =
+  | 'finder'
+  | 'launchpad'
+  | 'safari'
+  | 'messages'
+  | 'mail'
+  | 'maps'
+  | 'photos'
+  | 'facetime'
+  | 'calendar';
 ```
 
 {{ series-links }}
