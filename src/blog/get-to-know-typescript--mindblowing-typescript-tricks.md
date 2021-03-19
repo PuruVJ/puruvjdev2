@@ -14,6 +14,10 @@ Apologies for the clickbaity title 🙃. But it is in good faith, cuz I'm gonna 
 
 So let's cut to the chase.
 
+# A little note...
+
+The level of this article is **Advanced**. You may not understand how things work. However, you don't have to. You only have to copy paste the snippet, and understand how to use it, as these will make your life easy, and overtime, you'll get the know-how of how these actually work.
+
 # In-built types 🥱
 
 These are some of the built-in helper types in TypeScript. I'll keep this section short, as you can read about these anywhere. A good starting point would be [TypeScript Docs](https://www.typescriptlang.org/docs/handbook/utility-types.html) Then we'll get to the juicy stuff 😋
@@ -88,7 +92,7 @@ Trying to modify any property like `userData.name = 'Hoolalala'` will result in 
 
 ## Record
 
-Now we are getting to the good stuff. I've had a new-found respect for `Record` recently, while working on my current project [macos.now.sh](https://macos.now.sh) (Shameless Plug: It's basically a macOS Big Sur clone written in Preact and Vite).
+Now we are getting to the good stuff. I've had a new-found respect for `Record` recently, while working on my current project [macos.now.sh](https://macos.now.sh) (**Shameless Plug**, It's basically a macOS Big Sur clone written in Preact and Vite).
 
 Take a look at this 👇
 
@@ -223,10 +227,10 @@ This will do. But let's assume that this type and the array above are gonna end 
 We can automate the `Alphabet` union type generation, in such a way that it pulls its members directly from `alphabets` variable.
 
 ```ts
-type Alphabet = typeof tuple[number];
+type Alphabet = typeof alphabets[number];
 ```
 
-And here's the universal type safe type:
+And here's the universal type safe helper:
 
 ```ts
 type UnionFromTuple<Tuple extends readonly (string | number | boolean)[]> = Tuple[number];
