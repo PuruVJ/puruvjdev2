@@ -22,10 +22,6 @@
 <svelte:body on:scroll={throttle(50, false, handleScroll)} />
 
 <nav class:dark={$theme === 'dark'} class:shadow={scrollY > 2}>
-  <div class="brand">
-    <SiteLogo />
-    <span>Puru Vijay</span>
-  </div>
   <ul>
     <li><a rel="prefetch" aria-current={segment === undefined && 'page'} href="."> HOME </a></li>
     <li>
@@ -35,15 +31,21 @@
     </li>
     <li><a aria-current={segment === 'works' && 'page'} href="works"> WORKS </a></li>
   </ul>
+  <div class="brand">
+    <SiteLogo />
+    <span>Puru Vijay</span>
+  </div>
   <span class="flex" />
-  <ThemeSwitcher />
+  <span class="theme-switcher">
+    <ThemeSwitcher />
+  </span>
 </nav>
 
 <style lang="scss">
   nav {
     display: grid;
     align-items: center;
-    grid-template-columns: auto 1fr 0 auto;
+    grid-template-columns: 1fr auto 0 1fr;
 
     font-family: 'Quicksand', monospace;
     font-size: 1.2rem;
@@ -74,7 +76,7 @@
   ul {
     display: flex;
     align-items: center;
-    justify-content: center;
+    // justify-content: center;
 
     list-style: none;
 
@@ -134,6 +136,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 
     padding: 0 0 0 0.75rem;
 
@@ -151,6 +154,11 @@
 
       margin-right: 0.75rem;
     }
+  }
+
+  .theme-switcher {
+    display: flex;
+    justify-content: flex-end;
   }
 
   @media screen and (max-width: 1100px) {
