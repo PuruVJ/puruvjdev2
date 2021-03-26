@@ -44,3 +44,11 @@
 
   <BlogList {blogsList} />
 </main>
+
+<style lang="scss">
+  h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 2.618rem * 1.618;
+  }
+</style>

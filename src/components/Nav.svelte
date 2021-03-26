@@ -3,6 +3,7 @@
   import { theme } from '../stores/theme.store';
   import { throttle } from 'throttle-debounce';
   import { onMount } from 'svelte';
+  import SiteLogo from './SiteLogo.svelte';
 
   // The scroll from above
   let scrollY: number = 0;
@@ -21,6 +22,10 @@
 <svelte:body on:scroll={throttle(50, false, handleScroll)} />
 
 <nav class:dark={$theme === 'dark'} class:shadow={scrollY > 2}>
+  <div class="brand">
+    <SiteLogo />
+    <span>Puru Vijay</span>
+  </div>
   <ul>
     <li><a rel="prefetch" aria-current={segment === undefined && 'page'} href="."> HOME </a></li>
     <li>
@@ -38,7 +43,7 @@
   nav {
     display: grid;
     align-items: center;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr 0 auto;
 
     font-family: 'Quicksand', monospace;
     font-size: 1.2rem;
@@ -69,6 +74,7 @@
   ul {
     display: flex;
     align-items: center;
+    justify-content: center;
 
     list-style: none;
 
@@ -119,9 +125,47 @@
     background-color: rgba(var(--color-rgb), 0.4);
   }
 
+  .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    color: var(--app-color-primary);
+    font-size: 1.5rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 0 0 0 0.75rem;
+
+    height: 100%;
+
+    :global(path, rect) {
+      transition: fill 200ms ease-in;
+      // transition-delay: -100ms;
+    }
+
+    & :global(svg) {
+      --size: 2rem;
+      height: var(--size);
+      width: var(--size);
+
+      margin-right: 0.75rem;
+    }
+  }
+
   @media screen and (max-width: 1100px) {
     nav {
       width: 95%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .brand {
+      display: none;
+    }
+
+    nav {
+      grid-template-columns: auto 1fr auto;
     }
   }
 
