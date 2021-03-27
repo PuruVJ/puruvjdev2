@@ -21,7 +21,7 @@ Ladies and Gentlemen, what you see above is the final product we're gonna make i
 
 I know!! That's the beauty of Svelte 😌
 
-Don't believe me? You can check it out right here: [Demo](https://macos-web-svelte-dock-puruvj.vercel.app/).
+Don't believe me? You can check it out right here: [Demo](https://macos-web-svelte-dock-puruvj.vercel.app/). \
 And here's the original source code @ Github: [Source](https://github.com/PuruVJ/macos-web-svelte-dock)
 
 Feel free to read the source code directly, if you feel like you can understand what is going on just from reading the source. And if you can't, no problem, that's what this article is for 😎
