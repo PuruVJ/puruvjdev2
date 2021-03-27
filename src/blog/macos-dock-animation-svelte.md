@@ -28,12 +28,30 @@ Feel free to read the source code directly, if you feel like you can understand 
 
 Let's dive into it!!
 
+# Tech Stack
+
+Here's what the tech stack is gonna be for this little demo:
+
+- Svelte
+- Typescript 4
+- Vite
+
+## What's with Vite? 🤔
+
+Vite is the new cool kid in the block 😎. Its basically a bundler and dev server like Webpack(With the Dev Server plugin), only it comes with everything pre-built and pre-configured, so you can jump into the code directly.
+
+It won't change how we write the code, only the way we refer to our assets changes a bit, so you don't have to worry about it much.
+
 # Preliminary setup
 
 Our demo won't look good without that slick background and the great CSS everywhere. So let's set up the basic shell of our application.
 
+So let's start with the root component.
+
 ```html
-<script lang="ts">
+<!-- App.svelte -->
+
+<script>
   import Dock from './lib/Dock.svelte';
 </script>
 
@@ -41,7 +59,7 @@ Our demo won't look good without that slick background and the great CSS everywh
   <Dock />
 </main>
 
-<style lang="scss">
+<style>
   main {
     max-width: 100vw;
     height: 100vh;
@@ -49,6 +67,95 @@ Our demo won't look good without that slick background and the great CSS everywh
     background: url('/wallpaper.jpg');
     background-size: cover;
     background-position: center center;
+  }
+</style>
+```
+
+Let's break it down
+
+1. We're importing the `Dock` component. It's not declared yet, so there will be red squiggles in there. We'll declare it in a moment.
+
+2. We have a `main` tag enclosing the `Dock` element.
+
+3. We have our styles here. These are simply set so that the beautiful macOS Big Sur wallpaper takes up all the space and adjusts to different viewport sizes gracefully.
+
+So we end with this beautiful view 👇
+
+![Basic MacOS colorful wallpaper](../../static/media/macos-dock-animation-svelte--scaffold-wallpaper.png)
+
+> Notice we're referencing `wallpaper.jpg` as if its next to our current file, but it isn't. It's inside Vite's `public` folder. You can refer to those files as if you're current component in inside the `public` folder. This holds for `<link>`, `<img>`, `<a>` tags and what not. Go crazy 🤪!
+
+# The Dock
+
+So let's set up the actual `Dock.svelte` component.
+
+Here it is 👇
+
+```html
+<script lang="ts">
+  import DockItem from './DockItem.svelte';
+
+  const apps: string[] = [
+    'calendar',
+    'facetime',
+    'finder',
+    'launchpad',
+    'mail',
+    'maps',
+    'messages',
+    'photos',
+    'purus-twitter',
+    'safari',
+    'system-preferences',
+    'view-source',
+  ];
+
+  let mouseX: number | null = null;
+</script>
+
+<section class="dock-container">
+  <div
+    class="dock-el"
+    on:mousemove="{(event) => (mouseX = event.x)}"
+    on:mouseleave="{() => (mouseX = null)}"
+  >
+    {#each apps as appID}
+    <DockItem {mouseX} {appID} />
+    {/each}
+  </div>
+</section>
+
+<style>
+  .dock-container {
+    margin-bottom: 0.3rem;
+    left: 0;
+    bottom: 0;
+    z-index: 9900;
+    position: fixed;
+
+    width: 100%;
+    height: 5rem;
+
+    padding: 0.4rem;
+
+    display: flex;
+    justify-content: center;
+  }
+
+  .dock-el {
+    backdrop-filter: blur(5px);
+    background-color: hsla(240, 3%, 11%, 0.4);
+
+    box-shadow: inset 0 0 0 0.2px rgb(245 245 245 / 70%), hsla(0, 0%, 0%, 0.3) 2px 5px 19px 7px;
+
+    padding: 0.3rem;
+
+    border-radius: 1.2rem;
+
+    height: 100%;
+
+    display: flex;
+    align-items: flex-end;
   }
 </style>
 ```
