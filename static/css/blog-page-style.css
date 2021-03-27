@@ -76,10 +76,6 @@ code {
   }
 }
 
-#blog-content p {
-  content-visibility: auto;
-}
-
 #blog-content strong {
   font-weight: 700;
 }
