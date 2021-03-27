@@ -3,6 +3,7 @@
   import { theme } from '../stores/theme.store';
   import { throttle } from 'throttle-debounce';
   import { onMount } from 'svelte';
+  import SiteLogo from './SiteLogo.svelte';
 
   // The scroll from above
   let scrollY: number = 0;
@@ -30,15 +31,21 @@
     </li>
     <li><a aria-current={segment === 'works' && 'page'} href="works"> WORKS </a></li>
   </ul>
+  <div class="brand">
+    <SiteLogo />
+    <span>Puru Vijay</span>
+  </div>
   <span class="flex" />
-  <ThemeSwitcher />
+  <span class="theme-switcher">
+    <ThemeSwitcher />
+  </span>
 </nav>
 
 <style lang="scss">
   nav {
     display: grid;
     align-items: center;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto 0 1fr;
 
     font-family: 'Quicksand', monospace;
     font-size: 1.2rem;
@@ -69,6 +76,7 @@
   ul {
     display: flex;
     align-items: center;
+    // justify-content: center;
 
     list-style: none;
 
@@ -119,9 +127,53 @@
     background-color: rgba(var(--color-rgb), 0.4);
   }
 
+  .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    color: var(--app-color-primary);
+    font-size: 1.5rem;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 0 0 0.75rem;
+
+    height: 100%;
+
+    :global(path, rect) {
+      transition: fill 200ms ease-in;
+      // transition-delay: -100ms;
+    }
+
+    & :global(svg) {
+      --size: 2rem;
+      height: var(--size);
+      width: var(--size);
+
+      margin-right: 0.75rem;
+    }
+  }
+
+  .theme-switcher {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   @media screen and (max-width: 1100px) {
     nav {
       width: 95%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .brand {
+      display: none;
+    }
+
+    nav {
+      grid-template-columns: auto 1fr auto;
     }
   }
 
