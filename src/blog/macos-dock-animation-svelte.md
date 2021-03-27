@@ -32,7 +32,6 @@ Let's dive into it!!
 
 Our demo won't look good without that slick background and the great CSS everywhere. So let's set up the basic shell of our application.
 
-```svelte
-<script lang="ts">
-</script>
+```html
+<script lang="ts"></script>
 ```
