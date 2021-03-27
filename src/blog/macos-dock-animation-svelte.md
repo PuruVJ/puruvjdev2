@@ -33,5 +33,22 @@ Let's dive into it!!
 Our demo won't look good without that slick background and the great CSS everywhere. So let's set up the basic shell of our application.
 
 ```html
-<script lang="ts"></script>
+<script lang="ts">
+  import Dock from './lib/Dock.svelte';
+</script>
+
+<main>
+  <Dock />
+</main>
+
+<style lang="scss">
+  main {
+    max-width: 100vw;
+    height: 100vh;
+
+    background: url('/wallpaper.jpg');
+    background-size: cover;
+    background-position: center center;
+  }
+</style>
 ```
