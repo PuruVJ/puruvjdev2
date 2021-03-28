@@ -141,7 +141,7 @@
     border-radius: var(--border-radius);
 
     will-change: trasnform;
-    transition: all 200ms ease-out;
+    transition: all 170ms ease-in;
 
     background-color: rgba(var(--color-rgb), var(--marker-opacity));
   }
