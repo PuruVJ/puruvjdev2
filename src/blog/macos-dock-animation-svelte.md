@@ -205,6 +205,8 @@ Now, analyzing the html part:
 </section>
 ```
 
-We have a `section.dock-container` as the container for the whole dock. This itself isn't the dock, it **contains** the dock.
+We have a `section.dock-container` as the container for the whole dock. This itself isn't the dock, it **contains** the dock. Its just an invisible container to center the dock.
 
-Next here we have
+Next here we have the `div.dock-el`, which is the dock itself.
+
+![The Dock itself](../../static/media/macos-dock-animation-svelte--the-dock-itself.png)
