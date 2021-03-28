@@ -148,7 +148,7 @@ const { generateTOC } = require('./blog-plugins/generate-toc');
     html = document.body.innerHTML;
 
     // Calculate reading time
-    const reading_time = readingTime(html, { wordsPerMinute: 400 }).minutes;
+    const reading_time = readingTime(body, { wordsPerMinute: 400 }).minutes;
 
     attributes.title = twemoji.parse(attributes.title, {
       ext: '.svg',
