@@ -103,7 +103,7 @@
 
     position: relative;
 
-    transition: all 100ms ease-in;
+    transition: all 170ms ease-in;
 
     &:focus-visible,
     &:hover {
