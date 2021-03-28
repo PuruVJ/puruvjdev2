@@ -104,7 +104,7 @@ Here it is 👇
     'maps',
     'messages',
     'photos',
-    'purus-twitter',
+    'scared-cat',
     'safari',
     'system-preferences',
     'view-source',
@@ -160,4 +160,51 @@ Here it is 👇
 </style>
 ```
 
-Ooh, there's a lot going on here!! Let's break it down
+Ooh, there's a lot going on here!! Let's break it down.
+
+```ts
+import DockItem from './DockItem.svelte';
+
+const apps: string[] = [
+  'calendar',
+  'facetime',
+  'finder',
+  'launchpad',
+  'mail',
+  'maps',
+  'messages',
+  'photos',
+  'scared-cat',
+  'safari',
+  'system-preferences',
+  'view-source',
+];
+
+let mouseX: number | null = null;
+```
+
+1. We're importing the `DockItem` component. It is the heart of the whole demo, as all the animation is handled within it. I'll show you how to write it soon.
+
+2. Next up we have a list of all app IDs. Why are these needed? Because our app icons are stored by these names only, so we can easily `<img src=` them.
+
+3. And here we have a `mouseX` variable, which we're gonna be tracking the current x-coordinate of our mouse (Distance of mouse from the left side of the screen). Notice we have defined its type as `number` or `null`. It will be `null` when the mouse isn't on the dock, so as to prevent any unintended resizing of elements. So we initialize it as `null`.
+
+Now, analyzing the html part:
+
+```html
+<section class="dock-container">
+  <div
+    class="dock-el"
+    on:mousemove="{(event) => (mouseX = event.x)}"
+    on:mouseleave="{() => (mouseX = null)}"
+  >
+    {#each apps as appID}
+    <DockItem {mouseX} {appID} />
+    {/each}
+  </div>
+</section>
+```
+
+We have a `section.dock-container` as the container for the whole dock. This itself isn't the dock, it **contains** the dock.
+
+Next here we have
