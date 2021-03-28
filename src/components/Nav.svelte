@@ -97,12 +97,14 @@
     margin: 0.4rem 0.5rem;
 
     font-weight: 600;
-    color: var(--color);
+    color: var(--color) !important;
 
     position: relative;
 
-    // transition: color;
-    &:focus-visible {
+    transition: all 100ms ease-in;
+
+    &:focus-visible,
+    &:hover {
       --border-radius: 4px;
       --marker-height: 100%;
       --marker-opacity: 1;
@@ -113,10 +115,7 @@
       }
     }
 
-    &:hover,
     &[aria-current='page'] {
-      color: var(--color) !important;
-
       &::after {
         transform: scaleX(1);
       }
