@@ -93,6 +93,8 @@
 
     display: block;
 
+    user-select: none;
+
     z-index: 22;
 
     padding: 0rem 0.3rem;
