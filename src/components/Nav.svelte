@@ -91,10 +91,12 @@
     --marker-opacity: 0.4;
     --border-radius: 0;
 
+    display: block;
+
     z-index: 22;
 
-    padding: 0.2rem 0.3rem;
-    margin: 0.4rem 0.5rem;
+    padding: 0rem 0.3rem;
+    margin: 0.5rem 0.5rem;
 
     font-weight: 600;
     color: var(--color) !important;
@@ -195,8 +197,8 @@
   }
 
   @media screen and (max-width: 405px) {
-    li {
-      margin: 0.6rem 0.4rem;
+    a {
+      margin: 0.2rem 0.2rem !important;
     }
   }
 </style>
