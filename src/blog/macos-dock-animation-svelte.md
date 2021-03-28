@@ -210,3 +210,11 @@ We have a `section.dock-container` as the container for the whole dock. This its
 Next here we have the `div.dock-el`, which is the dock itself.
 
 ![The Dock itself](../../static/media/macos-dock-animation-svelte--the-dock-itself.png)
+
+Notice the event handlers we have put on this element.
+
+```html
+on:mousemove="{(event) => (mouseX = event.x)}"
+```
+
+This simply sets

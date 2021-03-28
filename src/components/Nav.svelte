@@ -84,13 +84,18 @@
     margin: 0;
   }
 
-  li {
-    margin: 0.6rem 0.8rem;
-  }
-
   a {
     --color: var(--app-color-primary);
     --color-rgb: var(--app-color-primary-rgb);
+    --marker-height: 6px;
+    --marker-opacity: 0.4;
+    --border-radius: 0;
+    --transform-origin: left;
+
+    z-index: 22;
+
+    padding: 0.2rem 0.3rem;
+    margin: 0.4rem 0.5rem;
 
     font-weight: 600;
     color: var(--color);
@@ -98,10 +103,26 @@
     position: relative;
 
     // transition: color;
+    &:focus-visible {
+      --border-radius: 4px;
+      --marker-height: 100%;
+      --marker-opacity: 1;
+      --color: var(--app-color-primary-contrast) !important;
+
+      &::after {
+        --transform-origin: bottom;
+        transform: scaleX(1);
+      }
+    }
+
+    &:hover {
+      --transform-origin: left;
+    }
 
     &:hover,
-    &:focus,
     &[aria-current='page'] {
+      color: var(--color) !important;
+
       &::after {
         transform: scaleX(1);
       }
@@ -114,17 +135,20 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
 
     width: 100%;
-    height: 6px;
+    height: var(--marker-height);
 
     transform: scaleX(0);
-    transform-origin: left;
+    transform-origin: var(--transform-origin);
+
+    border-radius: var(--border-radius);
 
     will-change: trasnform;
     transition: all 200ms ease-out;
 
-    background-color: rgba(var(--color-rgb), 0.4);
+    background-color: rgba(var(--color-rgb), var(--marker-opacity));
   }
 
   .brand {
