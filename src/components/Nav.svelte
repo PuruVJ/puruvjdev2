@@ -90,7 +90,6 @@
     --marker-height: 6px;
     --marker-opacity: 0.4;
     --border-radius: 0;
-    --transform-origin: left;
 
     z-index: 22;
 
@@ -110,13 +109,8 @@
       --color: var(--app-color-primary-contrast) !important;
 
       &::after {
-        --transform-origin: bottom;
         transform: scaleX(1);
       }
-    }
-
-    &:hover {
-      --transform-origin: left;
     }
 
     &:hover,
@@ -141,7 +135,7 @@
     height: var(--marker-height);
 
     transform: scaleX(0);
-    transform-origin: var(--transform-origin);
+    transform-origin: bottom;
 
     border-radius: var(--border-radius);
 
