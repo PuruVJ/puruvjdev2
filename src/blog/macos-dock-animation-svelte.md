@@ -254,7 +254,7 @@ We're looping through all the `apps`, which if you remember is the array of IDs 
 
 Next up is the `DockItem` taking in `mouseX` and current `appID` as props. We'll see how these are used within the component.
 
-## The juicy stuff 😋
+# The juicy stuff 😋
 
 Let's do the `DockItem` element now.
 
@@ -340,3 +340,24 @@ I'll drop the whole code here. Its quite big. Try reading it before the explanat
   </ButtonBase>
 </section>
 ```
+
+So let's break down the JS part of it. Notice there are `blocks` in the JS code. As in 👇
+
+```ts
+/** Block 1 */
+```
+
+There are blocks in the code. So let's break them down block by block.
+
+## Block 1
+
+```ts
+/** Block 1 */
+
+export let appID: string;
+export let mouseX: number | null;
+
+let el: HTMLImageElement;
+```
+
+Nothing much here.
