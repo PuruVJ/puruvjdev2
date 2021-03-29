@@ -159,9 +159,13 @@
     align-items: center;
     justify-content: center;
 
-    padding: 0 0 0 0.75rem;
+    // padding: 0 0 0 0.75rem;
 
     height: 100%;
+
+    span {
+      line-height: 1 !important;
+    }
 
     :global(path, rect) {
       transition: fill 200ms ease-in;
