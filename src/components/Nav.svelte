@@ -33,7 +33,7 @@
   </ul>
   <div class="brand">
     <SiteLogo />
-    <span>Puru Vijay</span>
+    <span>puruvj.dev</span>
   </div>
   <span class="flex" />
   <span class="theme-switcher">
