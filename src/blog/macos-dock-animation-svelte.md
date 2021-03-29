@@ -33,6 +33,7 @@ Let's dive into it!!
 Here's what the tech stack is gonna be for this little demo:
 
 - Svelte
+- popmotion library
 - Typescript 4
 - Vite
 
@@ -41,6 +42,20 @@ Here's what the tech stack is gonna be for this little demo:
 Vite is the new cool kid in the block 😎. Its basically a bundler and dev server like Webpack(With the Dev Server plugin), only it comes with everything pre-built and pre-configured, so you can jump into the code directly.
 
 It won't change how we write the code, only the way we refer to our assets changes a bit, so you don't have to worry about it much.
+
+## Popmotion?
+
+Yeah, this is an animation library on which the utterly awesome <mark>Framer Motion</mark> library is build. We don't really need the animation related stuff from this library, only a small helper function that is essential for this demo. Install it beforehand
+
+```bash
+npm i popmotion
+```
+
+Or if you're a `Yarn` person
+
+```bash
+yarn add popmotion
+```
 
 # Preliminary setup
 
@@ -217,4 +232,124 @@ Notice the event handlers we have put on this element.
 on:mousemove="{(event) => (mouseX = event.x)}"
 ```
 
-This simply sets
+This simply sets the value of the `mouseX` variable to the value of mouse's x-coordinate, or simply the distance from the left side of the screen.
+
+```html
+on:mouseleave="{() => (mouseX = null)}"
+```
+
+This simply sets the value of `mouseX` back to null, as a way of telling our components that dock isn;t being hovered over, so it can disable the animation.
+
+How does this tie into the whole thing? I'll explain soon.
+
+Next up we have this little section:
+
+```html
+{#each apps as appID}
+<DockItem {mouseX} {appID} />
+{/each}
+```
+
+We're looping through all the `apps`, which if you remember is the array of IDs of apps, by which name the app icons are stored in the `public` folder.
+
+Next up is the `DockItem` taking in `mouseX` and current `appID` as props. We'll see how these are used within the component.
+
+## The juicy stuff 😋
+
+Let's do the `DockItem` element now.
+
+I'll drop the whole code here. Its quite big. Try reading it before the explanation, then the explanation will make more sense.
+
+```html
+<script lang="ts">
+  import { interpolate } from 'popmotion';
+  import { spring } from 'svelte/motion';
+  import ButtonBase from './ButtonBase.svelte';
+
+  /** Block 1 */
+
+  export let appID: string;
+  export let mouseX: number | null;
+
+  let el: HTMLImageElement;
+
+  /** Block 2 */
+
+  const baseWidth = 57.6;
+  const distanceLimit = baseWidth * 6;
+  const beyondTheDistanceLimit = distanceLimit + 1;
+  const distanceInput = [
+    -distanceLimit,
+    -distanceLimit / 1.25,
+    -distanceLimit / 2,
+    0,
+    distanceLimit / 2,
+    distanceLimit / 1.25,
+    distanceLimit,
+  ];
+  const widthOutput = [
+    baseWidth,
+    baseWidth * 1.1,
+    baseWidth * 1.618,
+    baseWidth * 2.618,
+    baseWidth * 1.618,
+    baseWidth * 1.1,
+    baseWidth,
+  ];
+
+  let distance = beyondTheDistanceLimit;
+
+  const widthPX = spring(baseWidth, {
+    damping: 0.38,
+    stiffness: 0.1,
+  });
+
+  $: $widthPX = interpolate(distanceInput, widthOutput)(distance);
+
+  let width: string;
+  $: width = `${$widthPX / 16}rem`;
+
+  /** Block 3 */
+
+  let raf: number;
+
+  function animate(mouseX: number) {
+    if (el && mouseX !== null) {
+      const rect = el.getBoundingClientRect();
+
+      // get the x coordinate of the img DOMElement's center
+      // the left x coordinate plus the half of the width
+      const imgCenterX = rect.left + rect.width / 2;
+
+      // difference between the x coordinate value of the mouse pointer
+      // and the img center x coordinate value
+      const distanceDelta = mouseX - imgCenterX;
+      distance = distanceDelta;
+      return;
+    }
+
+    distance = beyondTheDistanceLimit;
+  }
+
+  $: raf = requestAnimationFrame(() => animate(mouseX));
+</script>
+
+<section>
+  <ButtonBase>
+    <img
+      bind:this="{el}"
+      class="app-icon"
+      src="/app-icons/{appID}/256.png"
+      alt=""
+      style="width: {width};"
+    />
+  </ButtonBase>
+</section>
+
+<style>
+  .app-icon {
+    width: 57.6px;
+    height: auto;
+  }
+</style>
+```
