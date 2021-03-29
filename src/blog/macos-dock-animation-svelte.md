@@ -336,20 +336,7 @@ I'll drop the whole code here. Its quite big. Try reading it before the explanat
 
 <section>
   <ButtonBase>
-    <img
-      bind:this="{el}"
-      class="app-icon"
-      src="/app-icons/{appID}/256.png"
-      alt=""
-      style="width: {width};"
-    />
+    <img bind:this="{el}" src="/app-icons/{appID}/256.png" alt="" style="width: {width};" />
   </ButtonBase>
 </section>
-
-<style>
-  .app-icon {
-    width: 57.6px;
-    height: auto;
-  }
-</style>
 ```
