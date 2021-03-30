@@ -360,4 +360,58 @@ export let mouseX: number | null;
 let el: HTMLImageElement;
 ```
 
-Nothing much here.
+Nothing much here. We're exporting the 2 props we passed to this element in the `Dock` component above
+
+```html
+<DockItem {mouseX} {appID} />
+```
+
+Then we have an `el`. This is going to hold the reference to the main image element. This image element is the one whose width would be animated. We have to refer it so as to compute the correct width during the animation.
+
+## Block 2
+
+```ts
+/** Block 2 */
+
+const baseWidth = 57.6;
+const distanceLimit = baseWidth * 6;
+const beyondTheDistanceLimit = distanceLimit + 1;
+const distanceInput = [
+  -distanceLimit,
+  -distanceLimit / 1.25,
+  -distanceLimit / 2,
+  0,
+  distanceLimit / 2,
+  distanceLimit / 1.25,
+  distanceLimit,
+];
+const widthOutput = [
+  baseWidth,
+  baseWidth * 1.1,
+  baseWidth * 1.618,
+  baseWidth * 2.618,
+  baseWidth * 1.618,
+  baseWidth * 1.1,
+  baseWidth,
+];
+
+let distance = beyondTheDistanceLimit;
+
+const widthPX = spring(baseWidth, {
+  damping: 0.38,
+  stiffness: 0.1,
+});
+
+$: $widthPX = interpolate(distanceInput, widthOutput)(distance);
+
+let width: string;
+$: width = `${$widthPX / 16}rem`;
+```
+
+Let's break it down.
+
+First off we have `baseWidth` variable. As the name suggests, it is gonna be the width of the images when they're not being hovered. But there's more. We're gonna build our whole animation calculations based on this variable.
+
+`distanceLimit`
+
+![Boundaries](../../static/media/macos-dock-animation-svelte--marked-dock-positions.jpg)
