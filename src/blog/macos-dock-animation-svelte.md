@@ -412,6 +412,57 @@ Let's break it down.
 
 First off we have `baseWidth` variable. As the name suggests, it is gonna be the width of the images when they're not being hovered. But there's more. We're gonna build our whole animation calculations based on this variable.
 
-`distanceLimit`
+`distanceLimit` and `beyondTheDistanceLimit` variables are used to setup how far from the cursor's position items should be scaled up
+
+Next up we got an array `distanceInput`. To explain it, let's take a look at the photo below 👇
 
 ![Boundaries](../../static/media/macos-dock-animation-svelte--marked-dock-positions.jpg)
+
+As you can see, we are hovering over the messages app, so it's the biggest right now. The vertical green line is where the cursor would be lying at the moment. The arrows extend out to 3 icons, on each side of the currently hovered over icon. Notice, that the farther you go, the smaller the icons become.
+
+We can assert from this that the size of the icon is a function of its distance from the cursor. But what is the function?
+
+> By function I refer to `mathematical functions`, as in `y = x + 1`, or `y = x^2 + x + 1`.
+
+Don't worry, we won't go into any math here. We'll let a helper function figure out the relationship between the distance and the size. I'll explain that in a moment.
+
+And next we have a `widthOutput` array. Notice the pattern in here. First element is small, 2nd is bigger. 3rd is even bigger. 4th is the biggest! 5th is as small as the 3rd. 6th as same as 2nd, and 7th is the smallest, same as the first.
+
+```txt
+1
+  2
+    3
+      4
+    5
+  6
+7
+```
+
+You can see this symmetricity in the `distanceInput` too. 7 items, following a similar pattern to `widthOutput`. So these arrays are related.Now all we need to do is find out how to relate them, so we can calculate the width for every icon based on its distance from mouse.
+
+This is where the helper function to generate that relationship comes in. We're gonna use the `popmotion` library finally. It has a function `interpolate` that does that for you.
+
+Before that, let's create our spring animation first.
+
+```ts
+let distance = beyondTheDistanceLimit;
+
+const widthPX = spring(baseWidth, {
+  damping: 0.38,
+  stiffness: 0.1,
+});
+```
+
+`distance` here is the variable in which we're gonna track, you got it, the distance of current item's center point from cursor. For now we'll initialize with the value of `beyondTheDistanceLimit`, so we don't get any accidental animations when user just hovers over dock.
+
+`widthPX` is the actual spring animation, imported from `svelte/motion`. For an initial value, we simply pass it the `baseWidth`, which we want the icon to have when we aren't hovering over it or when it is far away.
+
+We also have a config for this spring animation, in which I have put some sensible values to make the animation look natural. Feel free to play around with these.
+
+Now we have this little snippet:
+
+```ts
+$: $widthPX = interpolate(distanceInput, widthOutput)(distance);
+```
+
+We're using Svelte's reactive statements to watch `distance`, and when it changes, our `interpolate` function will basically
