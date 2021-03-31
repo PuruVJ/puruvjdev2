@@ -313,7 +313,7 @@ I'll drop the whole code here. Its quite big. Try reading it before the explanat
 
   let raf: number;
 
-  function animate(mouseX: number) {
+  function animate(mouseX: number | null) {
     if (el && mouseX !== null) {
       const rect = el.getBoundingClientRect();
 
@@ -465,4 +465,133 @@ Now we have this little snippet:
 $: $widthPX = interpolate(distanceInput, widthOutput)(distance);
 ```
 
-We're using Svelte's reactive statements to watch `distance`, and when it changes, our `interpolate` function will basically
+We're using Svelte's reactive statements to watch `distance`, and when it changes, our `interpolate` function will basically figure out the width for the current app icon, and set the value of `widthPX` to it. As `widthPX` is a spring timed store, it will simply keep changing bit by bit after we have set its value, just like a spring.
+
+Next up, we have some unit conversion:
+
+```ts
+let width: string;
+$: width = `${$widthPX / 16}rem`;
+```
+
+widthPX is in pixels. Pixels will work too, but I'm a `rem` and `em` guy. I like all my units to be in `rems`. So I will declare a value to hold the value in `rem`
+
+As `$widthPX` will be constantly changing, we need to put a reactive statement here to make sure `width` is always synchronized.
+
+## Block 3
+
+```ts
+/** Block 3 */
+
+let raf: number;
+
+function animate(mouseX: number | null) {
+  if (el && mouseX !== null) {
+    const rect = el.getBoundingClientRect();
+
+    // get the x coordinate of the img DOMElement's center
+    // the left x coordinate plus the half of the width
+    const imgCenterX = rect.left + rect.width / 2;
+
+    // difference between the x coordinate value of the mouse pointer
+    // and the img center x coordinate value
+    const distanceDelta = mouseX - imgCenterX;
+    distance = distanceDelta;
+    return;
+  }
+
+  distance = beyondTheDistanceLimit;
+}
+
+$: raf = requestAnimationFrame(() => animate(mouseX));
+```
+
+Next up, we have the block 3 here.
+
+We first declare a variable `raf`. This will hold a `requestAnimationFrame` instance. It's not needed, but not having it resulted in some bugs for me, so better keep it.
+
+Next up, we have the `animate` function. We're passing in `mouseX`, the cursor's current position passed to it by the array element.
+
+Inside the function, we got a condition checking if `el`, the image element exists, and the `mouseX` isn't null. This is the explanation folks, why mouseX value is either `number` or `null`. When it's set to `null` by the `Dock` component, the animation is simply ignored thanks to the `if` statement here.
+
+Next up, in the `if` statement, we're simply doing some calculations to calculate distance of the center of the image from the cursor, adn finally setting the `distance` variable to the distance.
+
+If any of the conditions fail, we simply set `distance` to be `beyondTheDistanceLimit`, so it falls out of the `widthOutput` range, and isn't animated
+
+> Remember how we have a reactive statement watching `distance`?
+> `$: $widthPX = interpolate(distanceInput, widthOutput)(distance);`
+> When the `distance` changes, `widthPX` will be updated. This in turn will update `width` to take on the value in `rem`s.
+
+Next up, we have a very important line here. A reactive statement requesting a `requestAnimationFrame` when running this function.
+
+> Note: Not assigning the RequestAnimationFrame to a variable(`raf` in this case) results in some bugs.
+
+This is the end of the logic. Most of the work is over now. All we need to do now is set up the markup
+
+## Markup
+
+```html
+<section>
+  <ButtonBase>
+    <img bind:this="{el}" src="/app-icons/{appID}/256.png" alt="" style="width: {width};" />
+  </ButtonBase>
+</section>
+```
+
+Just a `section` wrapping our image element for semantics, then we got a custom `ButtonBase` Svelte component. This is an unstyled button component that I created for general use. I'll drop the component code below. Not much to see here.
+
+next up we have the star of the show: The `img` element.
+
+1. We're doing a `bind:this` to set element reference to `el` variable.
+
+2. `src` is requesting the icon from the `public` folder. In Vite, if something is in `public` folder, you can refer to it as if it was in the same directory as the file you're writing code in. We're injecting the `appID` prop in the string.
+
+3. Lastly, `style="width: {width}"` is the one doing all the magic here. Simply setting `width` property to the `width` variable will do all we need it to do.
+
+Lastly, this is the `ButtonBase` code:
+
+```html
+<button {...$$props}>
+  <slot />
+</button>
+
+<style lang="scss">
+  button {
+    color: inherit;
+    text-decoration: none;
+    vertical-align: middle;
+
+    border: 0;
+    border-radius: 0;
+
+    outline: 0;
+
+    margin: 0;
+    padding: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    user-select: none;
+
+    appearance: none;
+
+    background-color: transparent;
+
+    -webkit-tap-highlight-color: transparent;
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+</style>
+```
+
+And the animation is done.
+
+# Improvements
+
+This isn't perfect yet. There are many impro
