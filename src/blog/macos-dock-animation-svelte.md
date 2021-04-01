@@ -593,4 +593,8 @@ Lastly, this is the `ButtonBase` code:
 And the animation is done.
 
 [Demo](https://macos-web-svelte-dock-puruvj.vercel.app/). <br/>
-Source code @ Github: [Source](https://github.com/PuruVJ/macos-web-svelte-dock)
+[Source](https://github.com/PuruVJ/macos-web-svelte-dock)
+
+Hope you got something good out of it
+
+Signing off 🖖
