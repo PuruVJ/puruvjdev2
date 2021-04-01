@@ -1,11 +1,11 @@
-export interface IWork {
+export type IWork = {
   title: string;
   url: string;
   stack: string;
   description: string;
   repo: {
     url: string;
-    type: "github";
+    type: 'github';
   };
   image: {
     large: {
@@ -19,4 +19,4 @@ export interface IWork {
     aspectHTW: number;
     color: number[];
   };
-}
+};
