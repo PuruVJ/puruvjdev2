@@ -33,7 +33,7 @@
   </ul>
   <div class="brand">
     <SiteLogo />
-    <span>Puru Vijay</span>
+    <span>puruvj.dev</span>
   </div>
   <span class="flex" />
   <span class="theme-switcher">
@@ -84,23 +84,41 @@
     margin: 0;
   }
 
-  li {
-    margin: 0.6rem 0.8rem;
-  }
-
   a {
     --color: var(--app-color-primary);
     --color-rgb: var(--app-color-primary-rgb);
+    --marker-height: 6px;
+    --marker-opacity: 0.4;
+    --border-radius: 0;
+
+    display: block;
+
+    user-select: none;
+
+    z-index: 22;
+
+    padding: 0rem 0.3rem;
+    margin: 0.5rem 0.5rem;
 
     font-weight: 600;
-    color: var(--color);
+    color: var(--color) !important;
 
     position: relative;
 
-    // transition: color;
+    transition: all 170ms ease-in;
 
-    &:hover,
-    &:focus,
+    &:focus-visible,
+    &:hover {
+      --border-radius: 4px;
+      --marker-height: 100%;
+      --marker-opacity: 1;
+      --color: var(--app-color-primary-contrast) !important;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
     &[aria-current='page'] {
       &::after {
         transform: scaleX(1);
@@ -114,17 +132,20 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: -1;
 
     width: 100%;
-    height: 6px;
+    height: var(--marker-height);
 
     transform: scaleX(0);
-    transform-origin: left;
+    transform-origin: bottom;
+
+    border-radius: var(--border-radius);
 
     will-change: trasnform;
-    transition: all 200ms ease-out;
+    transition: all 170ms ease-in;
 
-    background-color: rgba(var(--color-rgb), 0.4);
+    background-color: rgba(var(--color-rgb), var(--marker-opacity));
   }
 
   .brand {
@@ -138,9 +159,13 @@
     align-items: center;
     justify-content: center;
 
-    padding: 0 0 0 0.75rem;
+    // padding: 0 0 0 0.75rem;
 
     height: 100%;
+
+    span {
+      line-height: 1 !important;
+    }
 
     :global(path, rect) {
       transition: fill 200ms ease-in;
@@ -178,8 +203,8 @@
   }
 
   @media screen and (max-width: 405px) {
-    li {
-      margin: 0.6rem 0.4rem;
+    a {
+      margin: 0.2rem 0.2rem !important;
     }
   }
 </style>
