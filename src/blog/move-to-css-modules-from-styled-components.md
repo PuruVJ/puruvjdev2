@@ -1,7 +1,7 @@
 ---
 title: Why I moved from Styled Components to (S)CSS modules
 description: A little writeup of my reasons behind moving from Styled Components to SCSS modules, and the benefits I got out of this.
-date: 16 April, 2021
+date: 16 Apr, 2021
 cover_image: media/why-move-styled-to-css-modules--cover.jpg
 ---
 
@@ -105,4 +105,30 @@ CSS modules are very handy for this. Plus you can add tooling like `autoprefixer
 
 # The app in question
 
-Now the intro is over, lets look at the app which I moved from Styled components to CSS modules.
+Now the intro is over, lets look at the app which I moved from Styled components to CSS modules. Let me introduce you to my baby, [macos.now.sh](https://macos.now.sh), a macOS Big Sur clone written In Preact, TypeScript and uses Vite as the bundler. Check it out, I think you'll like it (Tip: Just hover over the app dock at the bottom).
+
+Anyways, this whole app was written in Styled Components, until I threw it out of the 30+ components in favour of CSS Modules.
+
+# Why? 🧐
+
+## CSS not minified
+
+Take a look at this image 👇
+
+![Unmodified Styled Components](../../static/media/why-move-styled-to-css-modules--unmin-styled-comps-code.png)
+
+This the main production bundle of the app. As you can see, it's minified in some place, and not, in other places. You can see the unminified part is the `CSS` part. These are the styles I wrote as template literals(Or string literals, I mix both up 😅). As these aren't CSS to bundler's internal CSS minifier, it stays as it is, which is kinda bummer. I am a die-hard performance freak, and the 1st rule of performance on Web: Bundle and minify your resources. Make them as small as possible, then make them even smaller ¯\\\_(ツ)\_/¯.
+
+### Why not use the babel plugin? 🤨
+
+If you don't know, Styled Components has a Babel plugin for this purpose exactly, minifying the CSS inside the template literals, and its pretty decent.
+
+But it wasn't working for me.
+
+No literally, it wasn't **working** for me, as in I set up the babel plugin and did the correct config, installed the plugin, but no it wasn't working. Something was going wrong with Vite's plugin running. The plugin was working, as build times had increased a lot from before, but the output was still not minified. The same plugin worked perfectly in a `create-react-app` reproduction I created to check this.
+
+But anyways, even if this problem was solved, there's a bigger Elephant in the room
+
+## CSS injected by JS
+
+All of this CSS still lives in the JavaScript, and is only applied when JS is evaluated by the browser, and
