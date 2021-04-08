@@ -119,6 +119,8 @@ Take a look at this image 👇
 
 This the main production bundle of the app. As you can see, it's minified in some place, and not, in other places. You can see the unminified part is the `CSS` part. These are the styles I wrote as template literals(Or string literals, I mix both up 😅). As these aren't CSS to bundler's internal CSS minifier, it stays as it is, which is kinda bummer. I am a die-hard performance freak, and the 1st rule of performance on Web: Bundle and minify your resources. Make them as small as possible, then make them even smaller ¯\\\_(ツ)\_/¯.
 
+Seriously, you can check this file out right here: [https://macos-web-fwyxhwxry-puruvj.vercel.app/assets/index.da0c587c.js](https://macos-web-fwyxhwxry-puruvj.vercel.app/assets/index.da0c587c.js)
+
 ### Why not use the babel plugin? 🤨
 
 If you don't know, Styled Components has a Babel plugin for this purpose exactly, minifying the CSS inside the template literals, and its pretty decent.
@@ -131,4 +133,18 @@ But anyways, even if this problem was solved, there's a bigger Elephant in the r
 
 ## CSS injected by JS
 
-All of this CSS still lives in the JavaScript, and is only applied when JS is evaluated by the browser, and
+All of this CSS still lives in the JavaScript, and is only applied when JS is evaluated by the browser, and I'm pretty sure you know of this, <mark>JavaScript is HEAVY!!!</mark>. It takes quite some power to parse it, and its heavy on main thread. Our HTML being rendered by JS itself is pushing the limit, but rendering CSS using JS too? That's way too much load on the browser.
+
+Browsers have become amazingly efficient at parsing JS as well as rendering HTML and CSS, all in parallel. But JavaScript doing all the work, well, browsers still aren't that efficient at it(For good reason).
+
+If you want ultimate performance, CSS in separate files or inlined in style tag is the way too go. It doesn't get better than that.
+
+## Performance had become paramount
+
+When I started this project almost 6 months ago (November 2020), I made myself a little deal: Do not stress about the performance. Off course, at that time, Performance meant just lower bundle sizes, not runtime performance, cuz I really had never run into any runtime perf issues before. But this project is different in the sense that there's a lot going on. There are loads of `requestAnimationFrame`s, tons of component, lot of global state, and what not going on. And all of it is on the screen at once. You can't really lazy load much stuff, cuz almost everything is eagerly loaded.
+
+All of it was weighing down the runtime perf of the app. The dock animation was janky, the menus took a while to open up, theme switching was also noticeably janky. So I had to finally consider the runtime performance. And the most obvious choice
+
+# Is this article dirt on Styled Components?
+
+Absolutely not!! Regardless of the points I stated above, I believe Styled Components to have one of the best API design, and would use it in more projects
