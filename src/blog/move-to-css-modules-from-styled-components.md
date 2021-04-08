@@ -139,12 +139,34 @@ Browsers have become amazingly efficient at parsing JS as well as rendering HTML
 
 If you want ultimate performance, CSS in separate files or inlined in style tag is the way too go. It doesn't get better than that.
 
-## Performance had become paramount
+## Performance had become important
 
 When I started this project almost 6 months ago (November 2020), I made myself a little deal: Do not stress about the performance. Off course, at that time, Performance meant just lower bundle sizes, not runtime performance, cuz I really had never run into any runtime perf issues before. But this project is different in the sense that there's a lot going on. There are loads of `requestAnimationFrame`s, tons of component, lot of global state, and what not going on. And all of it is on the screen at once. You can't really lazy load much stuff, cuz almost everything is eagerly loaded.
 
-All of it was weighing down the runtime perf of the app. The dock animation was janky, the menus took a while to open up, theme switching was also noticeably janky. So I had to finally consider the runtime performance. And the most obvious choice
+All of it was weighing down the runtime perf of the app. The dock animation was janky, the menus took a while to open up, theme switching was also noticeably janky. So I had to finally consider the runtime performance. And the most obvious choice was to start throwing out fancy stuff and move back to basics again.
 
-# Is this article dirt on Styled Components?
+# Did it work?
 
-Absolutely not!! Regardless of the points I stated above, I believe Styled Components to have one of the best API design, and would use it in more projects
+Absolutely!! The performance increased like crazy. Both runtime as well as bundle size.
+
+This is the compressed CSS file output. Its run through Autoprefixer for vendor styles, and Vite automatically puts it into a single CSS file, super compressed. Take a look yourself 👇
+
+![Optimized CSS Module file](../../static/media/why-move-styled-to-css-modules--optimised-css-modules.png)
+
+And here's the `index.js` 👇
+
+![Optimised JavaScript](../../static/media/why-move-styled-to-css-modules--optimised-js.png)
+
+Completely minified, JS lives in js files, CSS lives in its own file, and its all processed parallelly by the browser, styles aren't generated for every prop change like in styled components. Only the classes are applied, and the styles for that is already present in the CSS file. Just like the old times, simply and fast.
+
+![Perfection](../../static/media/why-move-styled-to-css-modules--perfection.gif)
+
+# What did it cost?
+
+![Gamora: What did it cost?; Thanos: Everything](../../static/media/why-move-styled-to-css-modules--thanos-gamora-everything.gif)
+
+Yup. I lost something: A great API design.
+
+Writing styles in Styled Components is a pleasure. The API design is amazing, and I prefer it over CSS modules in terms of writing the code.
+
+If you aren't using a style, means you aren't using a component, so the component will be called out by VSCode as not being used, so you can easily remove it
