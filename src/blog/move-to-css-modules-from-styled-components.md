@@ -113,6 +113,12 @@ Anyways, this whole app was written in Styled Components, until I threw it out o
 
 # Why? 🧐
 
+The simple answer 👇
+
+![Why? Why shouldn't I not use CSS Modules](../../static/media/why-move-styled-to-css-modules--bilbo-keep-it-meme.jpg)
+
+Just kidding 😅. Here's a full technical explantion 👇
+
 ## CSS not minified
 
 Take a look at this image 👇
@@ -163,7 +169,7 @@ Completely minified, JS lives in js files, CSS lives in its own file, and its al
 
 ![Perfection](../../static/media/why-move-styled-to-css-modules--perfection.gif)
 
-## Reduced Bundle Size,
+## Reduced Bundle Size
 
 This total maneuver took away 60KB from my bundles, which is just huge. I removed `styled-components`, `react-is`(Styled components require it for some reason), `styled-reset` and `color2k`(For color manipulation).
 
