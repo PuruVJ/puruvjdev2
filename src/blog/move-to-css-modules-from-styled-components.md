@@ -65,7 +65,7 @@ CSS Modules are a slightly-less radical way of writing CSS. Its basically separa
 
 > Notice I use `.css` at the end. It could be `.scss` or `.less` or `.styl` too, you name it. I personally use SCSS modules.
 
-Notice that our CSS Module has in the name itself that its a module, `*.module.*`. Its a <mark>Convention over Configuration</mark> approach, very prevalent in futuristic bundlers like [ESBuilt](https://esbuild.github.io/), [Vite](https://vitejs.dev/), [Snowpack](https://www.snowpack.dev/), etc.
+Notice that our CSS Module has in the name itself that its a module, `*.module.*`. Its a <mark>Convention over Configuration</mark> approach, very prevalent in futuristic bundlers like [ESBuild](https://esbuild.github.io/), [Vite](https://vitejs.dev/), [Snowpack](https://www.snowpack.dev/), etc.
 
 And to use them, you import the css file in JS, and refer to it like this.
 
