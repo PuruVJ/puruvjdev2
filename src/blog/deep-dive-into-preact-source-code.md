@@ -1,11 +1,11 @@
 ---
 title: The Zen of Preact's source code
 description: Dive into Preact's source code and explore its simplicity
-date: 23 April, 2020
+date: 23 April, 2021
 cover_image: media/deep-dive-preact-source--cover.jpg
 ---
 
-![Cover image](../../static/media/deep-dive-preact-source--cover.jpg);
+![Cover image](../../static/media/deep-dive-preact-source--cover.jpg)
 
 > _Artwork by [Fernando Jorge](https://unsplash.com/photos/GxymWkdnl4Y)_
 
