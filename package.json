@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "scripts": {
     "start": "sapper dev",
-    "prebuild": "npm run g:works && cd scripts && node blogs-list.js && node get-popular-blogs.js && node blog-md-html.js",
+    "prebuild": "pnpm run g:works && cd scripts && node blogs-list.js && node get-popular-blogs.js && node blog-md-html.js",
     "build": "sapper export --entry \"/ /404 \"",
-    "postbuild": "npm run g:sitemap",
+    "postbuild": "pnpm run g:sitemap",
     "g:works": "cd scripts && node generate-works-list.js",
     "g:sitemap": "cd scripts && node generate-sitemap.js && curl http://www.google.com/ping?sitemap=https://puruvj.dev/sitemap.xml"
   },
