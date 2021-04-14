@@ -5,7 +5,7 @@
   "scripts": {
     "start": "sapper dev",
     "prebuild": "pnpm run g:works && cd scripts && node blogs-list.js && node get-popular-blogs.js && node blog-md-html.js",
-    "build": "sapper export --entry \"/ /404 \"",
+    "build": "pnpm run prebuild && sapper export --entry \"/ /404 \" && pnpm run postbuild",
     "postbuild": "pnpm run g:sitemap",
     "g:works": "cd scripts && node generate-works-list.js",
     "g:sitemap": "cd scripts && node generate-sitemap.js && curl http://www.google.com/ping?sitemap=https://puruvj.dev/sitemap.xml"
