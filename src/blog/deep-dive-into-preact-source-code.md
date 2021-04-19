@@ -29,13 +29,13 @@ An example:
 
 This is the `types.d.ts` file:
 
-```ts
+```js
 export type RenamedType = number | null;
 ```
 
 And here's the JS file
 
-```ts
+```js
 /**
  * @param {import('./types').RenamedType} a
  * @param {import('./types').RenamedType} b
@@ -143,7 +143,7 @@ export const isValidElement = (vnode) => vnode != null && vnode.constructor === 
 
 Let me blow your mind. `ref`s in P/React are basically used to encapsulate values that shouldn't trigger re-renders and are not re-created on every re-render. Lets see how Preact defines it:
 
-```ts
+```js
 export function createRef() {
   return { current: null };
 }
@@ -155,7 +155,7 @@ A ref is just an object with `current` property set to `null`. It's always adver
 
 Next up, we have `Fragment`. Its also another astonishing thing.
 
-```ts
+```js
 export function Fragment(props) {
   return props.children;
 }
