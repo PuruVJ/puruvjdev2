@@ -107,7 +107,9 @@ import options from './options';
  * @param {Array<import('.').ComponentChildren>} [children] The children of the virtual node
  * @returns {import('./internal').VNode}
  */
-export function createElement(type, props, children) { ... }
+export function createElement(type, props, children) {
+  /*...*/
+}
 
 /**
  * Create a VNode (used internally by Preact)
@@ -121,7 +123,9 @@ export function createElement(type, props, children) { ... }
  * receive a reference to its created child
  * @returns {import('./internal').VNode}
  */
-export function createVNode(type, props, key, ref, original) { ... }
+export function createVNode(type, props, key, ref, original) {
+  /*...*/
+}
 
 export function createRef() {
   return { current: null };
@@ -141,6 +145,8 @@ export const isValidElement = (vnode) => vnode != null && vnode.constructor === 
 
 > Omitted `createElement` and `createVNode` as they're quite big.
 
+### createRef
+
 Let me blow your mind. `ref`s in P/React are basically used to encapsulate values that shouldn't trigger re-renders and are not re-created on every re-render. Lets see how Preact defines it:
 
 ```js
@@ -153,6 +159,8 @@ A ref is just an object with `current` property set to `null`. It's always adver
 
 ![Astonished](../../static/media/deep-dive-preact-source--astonished-cat.gif)
 
+### Fragment
+
 Next up, we have `Fragment`. Its also another astonishing thing.
 
 ```js
@@ -162,3 +170,108 @@ export function Fragment(props) {
 ```
 
 Fragment, just returns its `children`. That's all! 🤯🤯
+
+I knew that's what it's **supposed** to do, but I always pictured some complex code. Didn't realise that it was just this super simple thing.
+
+### isValidElement
+
+```js
+/**
+ * Check if a the argument is a valid Preact VNode.
+ * @param {*} vnode
+ * @returns {vnode is import('./internal').VNode}
+ */
+export const isValidElement = (vnode) => vnode != null && vnode.constructor === undefined;
+```
+
+Simply checking if the current Virtual DOM Node passed to it is valid or not. Again, one liner, super small, but here's a pattern I found out by looking at this code only. Notice `@returns {vnode is import('./internal').VNode}` in JSDoc. The coe is basically using type assertions. Right in the JSDoc. I haven't seen this pattern before, which is all the more testimony to the old saying about reading code written by developers better than you.
+
+## render.js
+
+Remember the index.jsx file, where you initialize your preact app
+
+```jsx
+import { render, h } from 'preact';
+import App from './App';
+
+render(<App />, document.querySelector('#app'));
+```
+
+This is the `render` function 👇
+
+```js
+/**
+ * Render a Preact virtual node into a DOM element
+ * @param {import('./internal').ComponentChild} vnode The virtual node to render
+ * @param {import('./internal').PreactElement} parentDom The DOM element to
+ * render into
+ * @param {import('./internal').PreactElement | object} [replaceNode] Optional: Attempt to re-use an
+ * existing DOM tree rooted at `replaceNode`
+ */
+export function render(vnode, parentDom, replaceNode) {
+  if (options._root) options._root(vnode, parentDom);
+
+  // We abuse the `replaceNode` parameter in `hydrate()` to signal if we are in
+  // hydration mode or not by passing the `hydrate` function instead of a DOM
+  // element..
+  let isHydrating = typeof replaceNode === 'function';
+
+  // To be able to support calling `render()` multiple times on the same
+  // DOM node, we need to obtain a reference to the previous tree. We do
+  // this by assigning a new `_children` property to DOM nodes which points
+  // to the last rendered tree. By default this property is not present, which
+  // means that we are mounting a new tree for the first time.
+  let oldVNode = isHydrating ? null : (replaceNode && replaceNode._children) || parentDom._children;
+
+  vnode = ((!isHydrating && replaceNode) || parentDom)._children = createElement(Fragment, null, [
+    vnode,
+  ]);
+
+  // List of effects that need to be called after diffing.
+  let commitQueue = [];
+  diff(
+    parentDom,
+    // Determine the new vnode tree and store it on the DOM element on
+    // our custom `_children` property.
+    vnode,
+    oldVNode || EMPTY_OBJ,
+    EMPTY_OBJ,
+    parentDom.ownerSVGElement !== undefined,
+    !isHydrating && replaceNode
+      ? [replaceNode]
+      : oldVNode
+      ? null
+      : parentDom.firstChild
+      ? EMPTY_ARR.slice.call(parentDom.childNodes)
+      : null,
+    commitQueue,
+    !isHydrating && replaceNode ? replaceNode : oldVNode ? oldVNode._dom : parentDom.firstChild,
+    isHydrating
+  );
+
+  // Flush all queued effects
+  commitRoot(commitQueue, vnode);
+}
+
+/**
+ * Update an existing DOM element with data from a Preact virtual node
+ * @param {import('./internal').ComponentChild} vnode The virtual node to render
+ * @param {import('./internal').PreactElement} parentDom The DOM element to
+ * update
+ */
+export function hydrate(vnode, parentDom) {
+  render(vnode, parentDom, hydrate);
+}
+```
+
+First off, **very well commented**.
+
+From how well I can make sense of the situation here, `render` function is basically making a `commitQueue` to store all the changes needed to be done. next, the `diff` function is taking in the old VNode and the new VNode, making sense of situation and figuring out which DOM Nodes need to be updated, and populating `commitQueue`.
+
+Then its basically `committing` these changes. Its just like how we do it in Database. We perform some operation in batch, the commit, so they all get applied one by one at the same time.
+
+### hydrate
+
+This function is very interesting, as it nothing but calling the `render` function. But something even more interesting, its passing along **itself** as the 3rd argument. And if you look again at `render` function, it actually has an if condition looking if the function passed to it is named `hydrate`
+
+I'm probably exhausting my repeat limit, but darn!! Preact's reuse of itself is really, darn good!!!

@@ -76,14 +76,6 @@
   <article id="blog-content">
     {@html body}
   </article>
-  <div
-    id="cusdis"
-    data-host="https://cusdis.com"
-    data-app-id="625847c1-b155-4171-af7e-6867c0b2bdce"
-    data-page-id={id}
-    data-page-url="https://puruvj.dev/blog/{id}"
-    data-page-title="{browserTitle} // Puru Vijay"
-  />
 </main>
 
 <style lang="scss">
