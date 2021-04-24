@@ -160,7 +160,7 @@ Simply checking if the current Virtual DOM Node passed to it is valid or not. Ag
 
 Remember the index.jsx file, where you initialize your preact app
 
-```jsx
+```js
 import { render, h } from 'preact';
 import App from './App';
 
