@@ -226,8 +226,106 @@ From how well I can make sense of the situation here, `render` function is basic
 
 Then its basically `committing` these changes. Its just like how we do it in Database. We perform some operation in batch, the commit, so they all get applied one by one at the same time.
 
+> I would love to cover `diff` in the blog post too, but its so big it has its own **500 lines** long file 😵. All you have to know, its job is to figure out which DOM Nodes need to be updated and which to keep the same.
+
 ### hydrate
 
-This function is very interesting, as it nothing but calling the `render` function. But something even more interesting, its passing along **itself** as the 3rd argument. And if you look again at `render` function, it actually has an if condition looking if the function passed to it is named `hydrate`
+This function is very interesting, as it nothing but calling the `render` function. But something even more interesting, its passing along **itself** as the 3rd argument. And if you look again at `render` function, it actually has an if condition looking if the function passed to it is named `hydrate`. Heck there's even a comment about `abusing` the 3rd argument 😂. These people are way too smart!!
 
 I'm probably exhausting my repeat limit, but darn!! Preact's reuse of itself is really, darn good!!!
+
+## create-context.js
+
+This one will probably excite you, as Context is a very, very loved API by a majority of P/React developers. This wasn't always the case, but the `useContext` hooks made it very easy to use context. Way too easy!!
+
+```ts
+const { lemonsCount, setLemonsCount } = useContext(lemonsContext);
+```
+
+```ts
+import { enqueueRender } from './component';
+
+export let i = 0;
+
+export function createContext(defaultValue, contextId) {
+  contextId = '__cC' + i++;
+
+  const context = {
+    _id: contextId,
+    _defaultValue: defaultValue,
+    /** @type {import('./internal').FunctionComponent} */
+    Consumer(props, contextValue) {
+      return props.children(contextValue);
+    },
+    /** @type {import('./internal').FunctionComponent} */
+    Provider(props) {
+      if (!this.getChildContext) {
+        let subs = [];
+        let ctx = {};
+        ctx[contextId] = this;
+
+        this.getChildContext = () => ctx;
+
+        this.shouldComponentUpdate = function (_props) {
+          if (this.props.value !== _props.value) {
+            subs.some(enqueueRender);
+          }
+        };
+
+        this.sub = (c) => {
+          subs.push(c);
+          let old = c.componentWillUnmount;
+          c.componentWillUnmount = () => {
+            subs.splice(subs.indexOf(c), 1);
+            if (old) old.call(c);
+          };
+        };
+      }
+
+      return props.children;
+    },
+  };
+
+  // Devtools needs access to the context object when it
+  // encounters a Provider. This is necessary to support
+  // setting `displayName` on the context object instead
+  // of on the component itself. See:
+  // https://reactjs.org/docs/context.html#contextdisplayname
+
+  return (context.Provider._contextRef = context.Consumer.contextType = context);
+}
+```
+
+This file, this small file, is all there's to the core context API. These 42 lines do so much(Comments excluded).
+
+So,let's inspect `Consumer`. Go back a long time back and remember we used to use `Consumer` to access context data.
+
+(Hard to remember? Yeah, me too 😉)
+
+Anyways, so this is how it looked
+
+```js
+<Consumer>{(data) => <div>Hello {data}</div>}</Consumer>
+```
+
+This looks pretty manageable, but it could get worse when your code grew.
+
+So, if we look at the code of `Consumer`, it's just this:
+
+```ts
+Consumer(props, contextValue) {
+  return props.children(contextValue);
+},
+```
+
+That's it!! Its expecting its `children` to be a function, and it's simply calling it with the context data. Suddenly the `Consumer` pattern example above makes sense 🤯🤯.
+
+As for `Provider`, what it's doing mostly is modifying its parent component's lifecycle hooks to watch for context state changes.
+
+Lastly, there's the `return` statement at the bottom. The last line is big mutation trick that is used often while coding classical languages like C, C++, Java etc, that is, returning a variable and mutating it at the same time. Here, it is mutating it for the sake of Preact devtools, so as to show the `displayName` in devtools, as React Devtools do.
+
+And now, its time for the section you probably came here for entirely: **HOOKS!!**
+
+# Hooks
+
+So, first off, Hooks are located in a separate directory. Unlike React, everything is opt-in in Preact, which makes my inner Minimalist rejoice. There's intentionality in every thing you do here. I like that.
