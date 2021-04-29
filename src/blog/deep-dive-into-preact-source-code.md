@@ -1,5 +1,5 @@
 ---
-title: Preact's source code blows me away...
+title: Zen of Preact source code
 description: Dive into Preact's source code and explore its simplicity
 date: 23 April, 2021
 cover_image: media/deep-dive-preact-source--cover.jpg
@@ -9,7 +9,7 @@ cover_image: media/deep-dive-preact-source--cover.jpg
 
 > _Artwork by [Fernando Jorge](https://unsplash.com/photos/GxymWkdnl4Y)_
 
-Preact is [web dev]household name at this point. Almost every web developer who's been in tis business for longer than 2 years has heard of it and maybe even tried it themselves. And probably reached the same conclusion as me: **It's awesome!! 😻**.
+Preact is [web dev]household name at this point. Almost every web developer who's been in this business for longer than 2 years has heard of it and maybe even tried it themselves. And probably reached the same conclusion as me: **It's awesome!! 😻**.
 
 So today, I'm gonna do a deep dive into Preact's source code, and remark on interesting things I find there.
 
@@ -60,7 +60,7 @@ Yup. One of the reasons Preact is so small is that it reuses it's own exported f
 
 # Disclaimer
 
-This is not gonna be a complete breakdown, and won't be sequential. Preact is quite a big library to cover in a blog post, so I'll just cover the interesting parts
+This is not gonna be a complete breakdown, and won't be sequential. Preact is quite a big library to cover in a blog post, so I'll just cover the interesting parts.
 
 So, let's begin!! We'll look at some interesting things in the `core` module(i.e., the one when you type `import {} from 'preact'`), then we'll got to hooks
 
@@ -328,4 +328,93 @@ And now, its time for the section you probably came here for entirely: **HOOKS!!
 
 # Hooks
 
-So, first off, Hooks are located in a separate directory. Unlike React, everything is opt-in in Preact, which makes my inner Minimalist rejoice. There's intentionality in every thing you do here. I like that.
+So, first off, Hooks are located in a separate directory. Unlike React, everything is opt-in in Preact, which makes the Minimalist in me rejoice. There's intentionality in every thing you do here. I 😍 that.
+
+So, let's start off with the very, very first hook you ever encountered: `useState`
+
+> But Beware, a twist lies here 😈
+
+## useState
+
+This, is `useState`:
+
+```js
+export function useState(initialState) {
+  currentHook = 1;
+  return useReducer(invokeOrReturn, initialState);
+}
+```
+
+![Wait, what!?!?](../../static/media/deep-dive-preact-source--wait-what.gif)
+
+Mindblown right? As you can see, useState is basically calling `useReducer`, which is another standard React hook. So basically, `useState` is just an alias of `useReducer`, you could say.
+
+> The variables `invokeOrReturn` and `currentHook` are defined in the same file, in the module scope and managed by Preact.
+
+And lemme give you another nugget. See the `currentHook = 1` expression? Guess what: It's not needed in the core functionality. It exists solely for <mark>Preact Devtools</mark>. That is, if Devtools weren't a consideration, this code might as well have been:
+
+```ts
+const useState = (initialState) => useReducer(invokeOrReturn, initialState);
+```
+
+Literally a one liner!! 🤯🤯🤯🤯
+
+Again, intense focus on the whole self-reusing thing I keep repeating.
+
+All the heavy lifting here is done by the `useReducer`, so let's look at it next.
+
+## useReducer
+
+```ts
+export function useReducer(reducer, initialState, init) {
+  /** @type {import('./internal').ReducerHookState} */
+  const hookState = getHookState(currentIndex++, 2);
+  hookState._reducer = reducer;
+  if (!hookState._component) {
+    hookState._value = [
+      !init ? invokeOrReturn(undefined, initialState) : init(initialState),
+
+      (action) => {
+        const nextValue = hookState._reducer(hookState._value[0], action);
+        if (hookState._value[0] !== nextValue) {
+          hookState._value = [nextValue, hookState._value[1]];
+          hookState._component.setState({});
+        }
+      },
+    ];
+
+    hookState._component = currentComponent;
+  }
+
+  return hookState._value;
+}
+```
+
+I'll admit I don't fully understand what's going on here 😅, but something that caught my eye here: Look at the `hookState._value = [` declaration inside the `if` block. Its an array with 2 elements. 1st element is simply a value. 2nd one is a function.
+
+Wait a sec. 1st element a value, 2nd element a function...
+
+Holy smokes!!! Its the `[state, setState]` pair returned from `useState` 😵😵
+
+```ts
+const [state, setState] = useState(Infinity); // 😈
+```
+
+if that didn't blow your brains apart, I dunno what will.
+
+Next up: The 2nd most famous hook!
+
+## useEffect
+
+```ts
+export function useEffect(callback, args) {
+  /** @type {import('./internal').EffectHookState} */
+  const state = getHookState(currentIndex++, 3);
+  if (!options._skipEffects && argsChanged(state._args, args)) {
+    state._value = callback;
+    state._args = args;
+
+    currentComponent.__hooks._pendingEffects.push(state);
+  }
+}
+```
