@@ -132,6 +132,8 @@ export function createRef() {
 
 A ref is just an object with `current` property set to `null`. It's always advertised as that, but I never thought that it's **actually** an object internally too.
 
+A little clip of me when I found this out 👇
+
 ![Astonished](../../static/media/deep-dive-preact-source--astonished-cat.gif)
 
 ### Fragment
@@ -418,3 +420,74 @@ export function useEffect(callback, args) {
   }
 }
 ```
+
+Aha!!! Notice the `if` block here. We're checking for 2 things.
+
+`!options._skipEffects` - Preact has an options config, where you can turn off all side effects from running. So to run this `useEffect`, we have to make sure its safe to run effects.
+
+2. `argsChanged(state._args, args)`: This one is very interesting. Remember the 2nd argument you pass to `useEffect`?
+
+```ts
+useEffect(() => {
+  /* Do epic shit */
+}, [emojiUpdated]);
+```
+
+Guess what, `argsChanged` is the function responsible for checking if changes were made in the dependencies passed to `useEffect`. Here, we pass it `state._args`, the argument list maintained by Preact for this specific hook, and the 2nd argument is the new set of dependencies. If any changes are detected, this function returns true, and the effect is run again.
+
+As for `argsChanged` function, its simply this 👇
+
+```ts
+function argsChanged(oldArgs, newArgs) {
+  return (
+    !oldArgs ||
+    oldArgs.length !== newArgs.length ||
+    newArgs.some((arg, index) => arg !== oldArgs[index])
+  );
+}
+```
+
+Its basically checking if oldArgs even exist or not at first. Why?
+
+Cuz the dependency list passed to `useEffect` itself could be a state holding an array.
+
+```ts
+const [deps, setDeps] = useState([]);
+
+useEffect(() => {
+  /* Do epic shit */
+}, deps);
+```
+
+OFC, a simple reason could be that you didn't pass the array. That is what most people would do rather than this above method 😅.
+
+2nd, its checking if argument list length is different or not. This is a smart move, because if the array size itself is changed, you don't need to go through and check every value.
+
+> The cheapest function call is the one you never make ~~ <mark>Jason Miller</mark>
+
+And finally, when all these conditions are true, we finally check if the values match up using the `arr.some` method.
+
+From what I can tell, this function is written in a way to stop as soon as it can. You could've written this same function in a way that it would do all these things, **and then** tell the result. Here, through some clever <mark>short circuiting </mark>, they made this function pretty efficient.
+
+Next up, is another hook that will blow your mind and change the way you write your `Ref`s. Yepp, you guessed it right, its `useRef` 😎
+
+## useRef 😎
+
+> This hook's implementation is so cool that I can't help but put the Sunglasses emoji in front of it 😁
+
+```ts
+export function useRef(initialValue) {
+  currentHook = 5;
+  return useMemo(() => ({ current: initialValue }), []);
+}
+```
+
+If you notice, `useRef` is just `useMemo` in disguise, with an object that has one property: `current` with value null.
+
+So, effectively, you could write your refs as memos
+
+```ts
+const containerElementRef = useMemo(() => ({ current: null }), []);
+```
+
+Don't take this too seriously though. Its better if element refs are assigned to proper `useRef` values only, as it is cleaner, the syntax is built around it
