@@ -1,5 +1,5 @@
 ---
-title: The Zen of Preact' source code
+title: The Zen of Preact's source code
 description: Dive into Preact's source code and explore its simplicity
 date: 1 May, 2021
 cover_image: media/deep-dive-preact-source--cover.jpg
