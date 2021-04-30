@@ -161,7 +161,7 @@ I knew that's what it's **supposed** to do, but I always pictured some complex c
 export const isValidElement = (vnode) => vnode != null && vnode.constructor === undefined;
 ```
 
-Simply checking if the current Virtual DOM Node passed to it is valid or not. Again, one liner, super small, but here's a pattern I found out by looking at this code only. Notice `@returns {vnode is import('./internal').VNode}` in JSDoc. The code is basically using type guards. Right in the JSDoc. I haven't seen this pattern before, which is all the more testimony to the old saying about reading code written by developers better than you.
+Simply checking if the current Virtual DOM Node passed to it is valid or not. Again, one liner, super small, but here's a pattern I found out by looking at this code only. Notice `@returns {vnode is import('./internal').VNode}` in JSDoc. The code is basically using type guards. Right in the JSDoc. I haven't seen this pattern before, which is all the more proof that reading code written by those smarter than you can make you a better dev.
 
 ## render.js
 
