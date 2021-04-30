@@ -469,6 +469,39 @@ And finally, when all these conditions are true, we finally check if the values 
 
 From what I can tell, this function is written in a way to stop as soon as it can. You could've written this same function in a way that it would do all these things, **and then** tell the result. Here, through some clever <mark>short circuiting </mark>, they made this function pretty efficient.
 
+## useLayoutEffect
+
+```ts
+export function useLayoutEffect(callback, args) {
+  /** @type {import('./internal').EffectHookState} */
+  const state = getHookState(currentIndex++, 4);
+  if (!options._skipEffects && argsChanged(state._args, args)) {
+    state._value = callback;
+    state._args = args;
+
+    currentComponent._renderCallbacks.push(state);
+  }
+}
+```
+
+This hook is very, very interesting. If you read the code of `useEffect`, you'll find that they are exactly the same, except for the very last line.
+
+In `useEffect`, it is 👇
+
+```ts
+currentComponent.__hooks._pendingEffects.push(state);
+```
+
+Whereas here it is 👇
+
+```ts
+currentComponent._renderCallbacks.push(state);
+```
+
+In `useEffect`, the effects to executed are pushed to a queue that executes asynchronously.
+
+Whereas in `useLayoutEffect`, the effects are pushed to the `render` callbacks, making it execute eagerly, as the rendering is going on. That's why its called use**Layout**Effect.
+
 Next up, is another hook that will blow your mind and change the way you write your `Ref`s. Yepp, you guessed it right, its `useRef` 😎
 
 ## useRef 😎
@@ -490,4 +523,134 @@ So, effectively, you could write your refs as memos
 const containerElementRef = useMemo(() => ({ current: null }), []);
 ```
 
-Don't take this too seriously though. Its better if element refs are assigned to proper `useRef` values only, as it is cleaner, the syntax is built around it
+Don't take this too seriously though. Its better if element refs are assigned to proper `useRef` values only, as it is cleaner, the syntax is built around it.
+
+What I wanna point at is, is that a lot of people, especially beginners, equate `Ref` as the thing that holds DOM references, and that's all it do. Which is not a good thing really.
+
+But when you look at this code and realise that the Ref is just a value that's cached for the lifecycle of the component, clarity sinks in. The mental block and the sense of magic goes away, and you feel fully in control.
+
+## useCallback
+
+```ts
+export function useCallback(callback, args) {
+  currentHook = 8;
+  return useMemo(() => callback, args);
+}
+```
+
+And here's another hook that's just `useMemo` under the hood. This gives me the lols 😂😂. At this point, I'm simply giggling silently seeing that everything in Preact hooks is just `useMemo`.
+
+![Astronaut at gunpoint: So its all just useMemo...? Astronaut with gun: Always has been](../../static/media/deep-dive-preact-source--always-has-been-meme.jpg)
+
+## useMemo
+
+Ahh, the star of the show, `useMemo`!!🤩 Finally!
+
+```ts
+export function useMemo(factory, args) {
+  /** @type {import('./internal').MemoHookState} */
+  const state = getHookState(currentIndex++, 7);
+  if (argsChanged(state._args, args)) {
+    state._value = factory();
+    state._args = args;
+    state._factory = factory;
+  }
+
+  return state._value;
+}
+```
+
+This one is pretty simple. Get the state for this specific hook, compare the previous dependencies to the new and update values and factory function passed to it if anything changes.
+
+And this again is so small, it makes me laugh as well as cry. Seriously, going through this codebase gives me huge imposter syndrome everytime. The architecture is so damn well done that code duplication isn't needed anywhere here, so everything is super small. Well done Preacters 🥲
+
+## useContext
+
+One of the most favorite hooks of all time, `useContext` 😍
+
+```ts
+export function useContext(context) {
+  const provider = currentComponent.context[context._id];
+  // We could skip this call here, but than we'd not call
+  // `options._hook`. We need to do that in order to make
+  // the devtools aware of this hook.
+  /** @type {import('./internal').ContextHookState} */
+  const state = getHookState(currentIndex++, 9);
+  // The devtools needs access to the context object to
+  // be able to pull of the default value when no provider
+  // is present in the tree.
+  state._context = context;
+  if (!provider) return context._defaultValue;
+  // This is probably not safe to convert to "!"
+  if (state._value == null) {
+    state._value = true;
+    provider.sub(currentComponent);
+  }
+  return provider.props.value;
+}
+```
+
+Lots of comments here. If I remove all of them
+
+```ts
+export function useContext(context) {
+  const provider = currentComponent.context[context._id];
+  const state = getHookState(currentIndex++, 9);
+  state._context = context;
+  if (!provider) return context._defaultValue;
+  if (state._value == null) {
+    state._value = true;
+    provider.sub(currentComponent);
+  }
+  return provider.props.value;
+}
+```
+
+Are you kidding me!?!? Just 7 lines in the body, and you have the biggest simplification that came when React hooks launched. What sorcery is this!! 😑😑
+
+Notable points here: If no provider is detected, it returns a default value, thanks to that 1 liner if statement. And if no value is found here, preact subscribes the current component to the context.
+
+## useErrorBoundary
+
+```ts
+export function useErrorBoundary(cb) {
+  /** @type {import('./internal').ErrorBoundaryHookState} */
+  const state = getHookState(currentIndex++, 10);
+  const errState = useState();
+  state._value = cb;
+  if (!currentComponent.componentDidCatch) {
+    currentComponent.componentDidCatch = (err) => {
+      if (state._value) state._value(err);
+      errState[1](err);
+    };
+  }
+  return [
+    errState[0],
+    () => {
+      errState[1](undefined);
+    },
+  ];
+}
+```
+
+I'm a huge, huge fan of preact for providing a `useErrorBoundary` hook. In React, if you want error boundaries, you have to create a class component yourself and set at the root of your component tree. Whereas it ships by default in Preact, which makes my heart flutter 😅
+
+Notable points here: This hook mostly sets the `componentDidCatch` lifecycle to catch the errors and do what you tell this hook to do. Its more or less same as you yourself making a class component, only you don't have to nest anything here, just drop this hook in any component thats on top of the component tree.
+
+That's it for hooks. I didn't cover `useDebugValue` and `useImperativeHandle`, as I have never had to use `useDebugValue`, and `useImperativeHandle` is deemed unsafe to use ¯\\\_(ツ)\_/¯
+
+# A note on simplicity
+
+Notice how I've been saying the code is super simple. Well, it is super easy to read, because that's how simple it is, but writing it is hard. Simplicity is rarely easy, its always harder to achieve. Writing a good, emotional rollercoaster in 100 words is hard. Throwing out excessive clothes is hard. Having a clean desk is harder than a cluttered desk.
+
+And making 3KB code for what was originally 42KB is hard.
+
+> Subtraction is harder than addition, division is harder than multiplication.
+
+Making Preact by no means would've been an easy task, but Jason did it amazingly, and all the contributors that jumped in later made it even greater, while still keeping everything small and simpler. This is a monumental task. Hats off to the Preact team for this effort
+
+![Hats off!!](../../static/media/deep-dive-preact-source--katniss-salute.gif)
+
+This is it today.
+
+Signing off!!
