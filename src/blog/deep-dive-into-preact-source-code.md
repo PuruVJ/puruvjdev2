@@ -1,5 +1,5 @@
 ---
-title: Zen of Preact source code
+title: The Zen of Preact' source code
 description: Dive into Preact's source code and explore its simplicity
 date: 1 May, 2021
 cover_image: media/deep-dive-preact-source--cover.jpg
@@ -23,7 +23,7 @@ Before we look at the code, I'll remark on some things about Preact.
 
 ## Written in TypeScript, but not quite...
 
-Preact source code is written in TypeScript, but the main files themselves aren't. The main files with the functionality are written in plain JavaScript, but they use `JSDoc` to pull in Types from TypeScript Definition files (.d.ts).
+Preact's source code is written in TypeScript, but the main files themselves aren't. The main files with the functionality are written in plain JavaScript, but they use `JSDoc` to pull in Types from TypeScript Definition files (.d.ts).
 
 An example:
 
