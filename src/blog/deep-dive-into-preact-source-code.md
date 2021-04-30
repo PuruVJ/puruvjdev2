@@ -86,7 +86,7 @@ export { toChildArray } from './diff/children';
 export { default as options } from './options';
 ```
 
-Notable points: `h`, which is Preact's JSX factory, is actually named `createElement`. Just like `React.createElement`. But is exported as `h` because it allows you to write raw Preact(Without JSX) 👇
+Notable points: `h`, which is Preact's JSX factory, is actually named `createElement`. Just like `React.createElement`. But is exported as `h` because it allows you to write raw Preact(Without JSX), also because it was initially inspired from [HyperScript](https://github.com/hyperhype/hyperscript) 👇
 
 ```js
 h('div', { class: 'haha' }, h('span', { key: 34 }, h('h1', {}, h('span', {}, 'Whoa'))));
