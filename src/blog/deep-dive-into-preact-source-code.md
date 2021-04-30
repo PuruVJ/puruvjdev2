@@ -305,7 +305,7 @@ export function createContext(defaultValue, contextId) {
 
 This file, this small file, is all there's to the core context API. These 42 lines do so much(Comments excluded).
 
-So,let's inspect `Consumer`. Go back a long time back and remember we used to use `Consumer` to access context data.
+So, let's inspect `Consumer`. Go back a long time back and remember we used to use `Consumer` to access context data.
 
 This is how it looks
 
