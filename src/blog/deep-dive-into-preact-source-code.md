@@ -1,7 +1,7 @@
 ---
 title: Zen of Preact source code
 description: Dive into Preact's source code and explore its simplicity
-date: 23 April, 2021
+date: 1 May, 2021
 cover_image: media/deep-dive-preact-source--cover.jpg
 ---
 
@@ -11,11 +11,11 @@ cover_image: media/deep-dive-preact-source--cover.jpg
 
 Preact is [web dev]household name at this point. Almost every web developer who's been in this business for longer than 2 years has heard of it and maybe even tried it themselves. And probably reached the same conclusion as me: **It's awesome!! 😻**.
 
-So today, I'm gonna do a deep dive into Preact's source code, and remark on interesting things I find there.
+So today, I'm gonna do a deep dive into Preact's source code, and remark on some interesting things I find there.
 
 # What is Preact?
 
-In case you're not familiar, Preact is the `3Kb` alternative to the `42KB` of React, by [Jason Miller](https://twitter.com/_developit). It's fully compatible with React's API and supports all packages that rely on React. Its awesome that way.
+In case you're not familiar, Preact is the `3KB` alternative to the `42KB` of React, by [Jason Miller](https://twitter.com/_developit). It's fully compatible with React's API and supports all packages that rely on React. Its awesome that way.
 
 # Observations
 
@@ -46,7 +46,7 @@ function sum(a, b) {
 }
 ```
 
-As you can see, the JavaScript code is just that: JavaScript. You won't see TypeScript style type specified in it. Rather all type information is specified in comments, which are ignored completely. There's a whole article about [Using TypeScript without TypeScript](https://puruvj.dev/blog/get-to-know-typescript--using-typescript-without-typescript), but the TLDR; here would be: Avoid development time tooling. if its just plain JS, you don't need to run a file watcher to transpile files as you change them. Just run what you got. And you already got a TypeScript compiler running all the time without you explicitly running it: Your VSCode.
+As you can see, the JavaScript code is just that: JavaScript. You won't see TypeScript style type specified in it. Rather all type information is specified in comments, which are ignored completely. There's a whole article about [Using TypeScript without TypeScript](https://puruvj.dev/blog/get-to-know-typescript--using-typescript-without-typescript), but the TLDR; here would be: Avoid development time tooling. If its just plain JS, you don't need to run a file watcher to transpile files as you change them. Just run what you got. And you already got a TypeScript compiler running all the time without you explicitly running it: Your VSCode.
 
 This is a very interesting approach and I see more and more libraries take it up, especially non-UI libraries(For UI libraries, you already got a web server running, so adding in TypeScript in the tooling won't change much, go ahead and add TypeScript)
 
@@ -62,13 +62,13 @@ Yup. One of the reasons Preact is so small is that it reuses it's own exported f
 
 This is not gonna be a complete breakdown, and won't be sequential. Preact is quite a big library to cover in a blog post, so I'll just cover the interesting parts.
 
-So, let's begin!! We'll look at some interesting things in the `core` module(i.e., the one when you type `import {} from 'preact'`), then we'll got to hooks
+So, let's begin!! We'll look at some interesting things in the `core` module(i.e., the one when you type `import {} from 'preact'`), then we'll get to hooks
 
 # Core module
 
 ## index.js
 
-As is the tradition, lets start with the `index.js` file:
+As is the tradition, let's start with the `index.js` file:
 
 ```js
 export { render, hydrate } from './render';
@@ -153,14 +153,19 @@ I knew that's what it's **supposed** to do, but I always pictured some complex c
 ### isValidElement
 
 ```js
+/**
+ * Check if a the argument is a valid Preact VNode.
+ * @param {*} vnode
+ * @returns {vnode is import('./internal').VNode}
+ */
 export const isValidElement = (vnode) => vnode != null && vnode.constructor === undefined;
 ```
 
-Simply checking if the current Virtual DOM Node passed to it is valid or not. Again, one liner, super small, but here's a pattern I found out by looking at this code only. Notice `@returns {vnode is import('./internal').VNode}` in JSDoc. The coe is basically using type assertions. Right in the JSDoc. I haven't seen this pattern before, which is all the more testimony to the old saying about reading code written by developers better than you.
+Simply checking if the current Virtual DOM Node passed to it is valid or not. Again, one liner, super small, but here's a pattern I found out by looking at this code only. Notice `@returns {vnode is import('./internal').VNode}` in JSDoc. The code is basically using type guards. Right in the JSDoc. I haven't seen this pattern before, which is all the more testimony to the old saying about reading code written by developers better than you.
 
 ## render.js
 
-Remember the index.jsx file, where you initialize your preact app
+Remember the index.jsx file, where you initialize your <mark>Preact</mark> app
 
 ```js
 import { render, h } from 'preact';
@@ -302,9 +307,7 @@ This file, this small file, is all there's to the core context API. These 42 lin
 
 So,let's inspect `Consumer`. Go back a long time back and remember we used to use `Consumer` to access context data.
 
-(Hard to remember? Yeah, me too 😉)
-
-Anyways, so this is how it looked
+This is how it looks
 
 ```js
 <Consumer>{(data) => <div>Hello {data}</div>}</Consumer>
@@ -633,7 +636,7 @@ export function useErrorBoundary(cb) {
 }
 ```
 
-I'm a huge, huge fan of preact for providing a `useErrorBoundary` hook. In React, if you want error boundaries, you have to create a class component yourself and set at the root of your component tree. Whereas it ships by default in Preact, which makes my heart flutter 😅
+I'm a huge, huge fan of <mark>Preact</mark> for providing a `useErrorBoundary` hook. In React, if you want error boundaries, you have to create a class component yourself and set at the root of your component tree. Whereas it ships by default in Preact, which makes my heart flutter 😅
 
 Notable points here: This hook mostly sets the `componentDidCatch` lifecycle to catch the errors and do what you tell this hook to do. Its more or less same as you yourself making a class component, only you don't have to nest anything here, just drop this hook in any component thats on top of the component tree.
 
@@ -651,6 +654,6 @@ Making Preact by no means would've been an easy task, but Jason did it amazingly
 
 ![Hats off!!](../../static/media/deep-dive-preact-source--katniss-salute.gif)
 
-This is it today.
+This is it for today!
 
 Signing off!!
