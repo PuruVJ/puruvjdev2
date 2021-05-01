@@ -1,2 +1,1 @@
-export const waitFor = (time: number) =>
-  new Promise((resolve) => setTimeout(resolve, time));
+export const waitFor = (time: number) => new Promise((resolve) => setTimeout(resolve, time));
