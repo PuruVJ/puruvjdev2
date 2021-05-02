@@ -3,6 +3,7 @@
     const res = await this.fetch('./data/homepage-blogs-list.json');
     const data = await res.json();
 
+    console.log(data);
     return { blogsList: data };
   }
 </script>
