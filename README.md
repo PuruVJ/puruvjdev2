@@ -1,3 +1,6 @@
+# ALERT!!!!
+This is the old version of puruvj.dev. The current version is @ [PuruVJ/puruvjdev3](https://github.com/puruvj/puruvjdev3)
+
 This is the complete source code for Puru Vijay's personal site/blog/portfolio [puruvj.dev](https://puruvj.dev).
 
 # License
